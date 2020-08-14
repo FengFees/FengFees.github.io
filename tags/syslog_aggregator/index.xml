@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>syslog_aggregator on 浙大SEL实验室</title>
+    <link>https://fengfees.github.io/tags/syslog_aggregator/</link>
+    <description>Recent content in syslog_aggregator on 浙大SEL实验室</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 07 May 2014 10:19:32 +0000</lastBuildDate>
+    
+	<atom:link href="https://fengfees.github.io/tags/syslog_aggregator/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cloud Foundry中syslog_aggregator的实现分析</title>
+      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 07 May 2014 10:19:32 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry中，用来收集Cloud Foundry各组件日志信息的组件，名为syslog_aggregator。 syslog_aggregator可以做到方便的收集Cloud Foundry中所有组件的日志信息，并将这些信息进行初步处理，比如说：将不同月份产生的日志，进行分类存储；另外还对同一月份内产生的日志，将其通过不同的日期进行分类。这样的话，当Cloud Foundry平台的开发者，在运营该平台时需要查看Cloud Foundry中某一个组件产生的日志时，可以方便的查找到对应日期的日志。syslog_aggregator除了可以对日志进行分组件，分月份，分日期进行存储外，还提供一些对日志进行打包或剪枝的功能，比如：syslog_aggregator会将一定期限内的日志，进行压缩，以达到节省存储空间的功能；另外syslog_aggregator还会定期对日志进行清除，比如只保存一定期限时间长度的日志，当日志超过该时限，syslog_aggregator会将其清除。 以下是对syslog_aggregator实现的简单分析： syslog_aggregator组件主要包括monit模块，日志管理模块。
+monit模块 monit模块主要是实现：监控syslog_aggregator组件的运行状态，一旦监控过syslog_aggregator组件中该进程不存活时，即刻重启该进程；另外，syslog_aggregator组件还将自身的信息通过cloud_agent传送给NATS，这里的信息包括syslog_aggregator组件所在的宿主机的存活状态以及资源使用情况。 以下通过monit监控进程的代码： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
+check process syslog_aggregator with pidfile /var/vcap/sys/run/syslog_aggregator/syslog_aggregator.pid start program &amp;quot;/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl start&amp;quot; stop program &amp;quot;/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl stop&amp;quot; group vcap  该段代码中清晰的标明了进程的pid，进程的start命令以及stop命令。 cloud_agent作为BOSH监控Cloud Foundry组件级信息的辅助工具，负责收集syslog_aggregator组件所在宿主机的运行状态以及资源使用情况，并发送给health_monitor，由health_monitor统一管理。由于cloud_agent不是本文的重点，所以本文不再赘述。
+日志管理模块 实现日志管理，syslog_aggregator是通过启动syslog_aggregator_ctl脚本来实现的。上文中提到的monit模块中，也正是监控这个脚本命令启动的进程。以下来分析一下该脚本的代码实现： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
+#!/bin/bash RUN_DIR=/var/vcap/sys/run/syslog_aggregator LOG_DIR=/var/vcap/store/log JOB_DIR=/var/vcap/jobs/syslog_aggregator PACKAGE_DIR=/var/vcap/packages/syslog_aggregator BIN_DIR=$JOB_DIR/bin PIDFILE=$RUN_DIR/syslog_aggregator.pid source /var/vcap/packages/common/utils.sh case $1 in start) apt-get -y install rsyslog-relp pid_guard $PIDFILE &amp;quot;Syslog aggregator&amp;quot; mkdir -p $RUN_DIR mkdir -p $LOG_DIR chown -R vcap:vcap $LOG_DIR rm -f /etc/cron.</description>
+    </item>
+    
+  </channel>
+</rss>
