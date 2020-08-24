@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">
+                                      <a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -190,7 +190,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">Haproxy端口映射（client头中URL/HOST修改后转发）</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">Haproxy端口映射（client头中URL/HOST修改后转发）</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -199,16 +199,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/"><i class="far fa-calendar"></i> 2014-10-28</a>
+                                            <a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/"><i class="far fa-calendar"></i> 2014-10-28</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。
-解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。
-Haproxy的安装：(也可通过源码安装) apt-get install haproxy
-修改基本的配置文件如下： 配置文件所在地址：/etc/haproxy/haproxy.cfg（用xx.xx.xx.xx代表一个IP地址）
-global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user haproxy group haproxy stats socket /var/lib/haproxy/stats debug defaults log global option httpclose timeout connect 30000ms timeout client 300000ms timeout server 300000ms frontend http-in mode http bind \*:81 reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas option httplog option forwardfor reqadd X-Forwarded-Proto:\\ http default\_backend http-routers backend http-routers mode http reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas balance roundrobin server node0 t1.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main"></a>
+                                    <p class="intro">CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -408,40 +404,40 @@ global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user ha
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="《Docker容器与容器云》推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="Docker背后的标准化容器执行引擎——runC">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
                     </div>
                 </div>
                 

@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -190,7 +190,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">cf-release结构解析</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/">cf-release结构解析</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -199,16 +199,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/"><i class="far fa-calendar"></i> 2014-12-17</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/"><i class="far fa-calendar"></i> 2014-12-17</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">cf-release结构解析
-1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com  1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/blobs文件夹下创建以package真实名字命名的软链接到.blobs里面各个具体的包。  1.4. 下载完所有的blobs后，开始对照cf-release/packages文件夹下各个包的spec文件逐个在blobs文件夹下找到，然后拷贝到.final_builds或者.dev_builds，根据是否加了&ndash;final参数决定。拷贝前会执行预安装脚本prepackaging，检查文件是否都存在，做一些单元测试等。执行完后把prepackaging脚本删除后压缩文件夹。 (TIPS：有时候某些不需要部署的组件，却因为过不了prepacking脚本的执行导致release做不出来，可以把prepackaging脚本删掉再制作，会自动跳过这个执行过程。) 1.5. 对所有cf-release/jobs进行的操作相对简单，除了拷贝到.final_builds或者.dev_builds以外，通过spec文件检查template等文件是否齐全。 1.6. 最后生成releases/cf-#{version}.yml文件,在dev_releases文件夹下生成cf-{version}.dev.yml release就算初步制作完成了。
-2. 部署时的cf-release结构解析  2.1. 获得cf-release的配置文件： 扫描./releases以及./dev_releases文件夹，对其中的release配置文件进行排序，排序规则为数字大的优先，相同大小的数字以小数点后大的优先，两个数字都相同取没有dev标记的。 194 &gt; 193 194.1 &gt; 194 194.1 &gt; 194.1-dev 这里得到的最新的文件，就是定义当前release包所有版本的配置文件，称之为@release。 2.2. 获取部署配置文件manifest/cf.yml中，要部署的job构成的所有template。部署时定义的job在配置文件中包含多个template，每个template由多个package组成。
---- deployment: cf jobs: - name: nats template: - nats - nats_stream_forwarder - name: nfs_server template: - debian_nfs_server  2.3. 对于2.2中找出的每个template，找到其在@release文件中的version编号以及sha1值（jobs属性下），然后找到.final_builds/jobs下对应的index.yml和.dev_builds/jobs下对应的index.yml，比对两个文件中的sha1，找到对应的版本。此时我们就获得了template的全部具体信息，称之为@template。 2.4. @template下有个压缩包，后缀为.tgz，解压缩后得到job.MF文件，可获得该template的所有配置文件，配置文件需要的属性以及依赖的packages。也就是这里，我们获得了构成这个template的所有packages名字。然后我们对照之前的@release文件，又可以得到具体每个package需要的版本。 2.5. 值得注意的是，每个template由一个或多个packages构成，而每个package，由零个或多个其他packages构成，而每个package依赖哪些其它package，也在@release文件中的packages栏目下。 2.6. 通过类似的方法，我们在.final_builds和.dev_builds中的packages对应的package中可以对比出具体的package版本信息，找到需要部署的包，我们命名为@package。 至此，部署所需要的cf-release结构就已经全部解析出来了。
-3. 部署 3.1. 默认的部署目录为/var/vcap，部署之前会在该目录下创建目录bosh,data,jobs,monit,packages,shared,store,sys这几个目录。 3.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="intro">cf-release结构解析</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -218,7 +214,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -226,7 +222,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">Blue-Green Deployments on Cloud Foundry (利用CloudFoundry实现蓝绿发布)</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">Blue-Green Deployments on Cloud Foundry (利用CloudFoundry实现蓝绿发布)</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -235,14 +231,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">利用CloudFoundry实现蓝绿发布
-前言 原文地址：Blue-Green Deployments on Cloud Foundry We’ll begin with a basic Spring application named ms-spr-demo. This app takes users to a simple web page announcing the ubiquitous “Hello World!” message. We’ll utilize the cf command-line interface to push the application: 这里先向CF PUSH一个很简单的打印“Hello World”的应用：
-$ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Memory Limit&gt; 512M Creating ms-spr-demo... OK 1: ms-spr-demo 2: none Subdomain&gt; ms-spr-demo 1: cfapps.io 2: mattstine.com 3: none Domain&gt; 1 Creating route ms-spr-demo.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/" class="btn btn-template-main"></a>
+                                    <p class="intro">利用CloudFoundry实现蓝绿发布</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -252,7 +246,7 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -260,7 +254,7 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">Cloud Foundry’s 新容器技术： A Garden Overview</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">Cloud Foundry’s 新容器技术： A Garden Overview</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -269,18 +263,12 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。
-Warden和Garden Warden背景： &ldquo;CloudFoundry’s container technology is provided by Warden,which was created by VMware’s Pieter Noorduis and others.Warden is a subtle combination of Ruby code, a core written inC, and shell scripts to configure the host and containers.&rdquo; 在此前的WardenDEA中，在每个安装好的DEA上都会运行Warden服务（Ruby写的，调用大量shell来配置host），用来管理Cgroup，Namespaces和以及进程管理。同时，Warden容器的感知和状态监控也由此服务来负责。作为一个C/S结构的服务，Warden使用了谷歌的protobuf协议来负责交互。每个容器内部都运行一个wshd daemon（C语言写的）来负责容器内的管理比如启动应用进程，输出日志和错误等等。这里需要注意的正是由于使用了protobuf，warden对外的交互部分强依赖于wardenprotocol，使得warden对开发者的易用性大打折扣。 
-Wardenstructure
-在CloudFoundry的下一代PaaS项目Diego中，Pivotal团队对于Warden进行了基于Golang的重构，并建立了一个独立的项目Garden。在Garden中，容器管理的功能被从server代码里分离出来，即server部分只负责接收协议请求，而原先的容器管理则交给backend组件，包括将接收到的请求映射成为Linux（假如是Linux backend的话）操作。值得注意的是：这样backend架构再次透露出了warden跨平台的野心，可以想象一旦Windowsbackend被社区（比如IronFoundry）贡献出来后的威力。更重要的是，RESTful风格的API终于被引入到了Garden里面，原作者说是为了实验和测试，但实际上Docker最成功的一点正是友好的API和以此为基础的扩展能力。 
-Gardenstructure
-Namespaces 容器化应用依然通过namespaces来定义它所能使用的资源。最简单的例子，应用的运行需要监听指定的端口，而传统方法中这个端口就必须在全局的host网络namespaces上可见。为了避免应用互相之间出现端口冲突，Garden服务就需要设置一组namepaces来隔离每个应用的IP和port（即网络namespace）。需要再次强调，容器化的应用资源隔离不同于传统的虚拟化技术，虽然我们在讲容器，但是我们并没有去创建“什么”，而是为实实在在运行着的应用进程划分属于它自己的“命名空间”。 Garden使用了除用户namespace之外的所有namespace技术。具体实现是使用挂载namespace的方法来用用户目录替换原host的root文件系统（使用pivot_root指令），然后unmount这个root文件系统使得从容器不会直接访问到该目录 备注：Linux在很早之前就支持了namespaces技术，从一开始为文件系统挂载点划分namespace，到最新的为用户添加namespace，具体演化参见：Articles on Linux namespaces
-ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿名的操作系统环境“中自由的使用类似于CPU和MEM这样的资源，但是应用仍然是直接访问系统设备的。Linux提供了一系列controlgroups来将进程划分为层级结构的组然后将它们限制到不同的约束中。这些约束由cgroup中的resourcecontrollers来实现并负责与kernel子系统进行交互。举个例子：memoryresource controller可以限制一个controlgroup中的进程能够在真实内存中使用的页数，从而确保这些进程在超出限制后被停止。 Garden使用了五种资源控制：cpuset(CPUs and memory nodes) , cpu (CPU bandwidth), cpuacct (CPUaccounting), devices (device access), and memory(memoryusage)，并通过这些资源控制堆每一个容器设置一个controlgroup。所以容器中的进程将被限制在resourcecontrollers指定的资源数下运行（严格地说cpuacct仅统计CPUusage，并不做出具体限制）。 此外，Garden还使用setrlimit系统调用来控制容器中进程的资源使用；使用setquota来为容器中的用户设置配额。这一点上也同Warden相同。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/" class="btn btn-template-main"></a>
+                                    <p class="intro">编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -290,7 +278,7 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -298,7 +286,7 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">Cloud Foundry中warden的架构与实现</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">Cloud Foundry中warden的架构与实现</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -307,21 +295,12 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：
- warden的功能介绍及框架实现 warden框架的对外接口及实现 warden框架的内部模块及实现 warden的运行示例  warden的功能介绍及框架实现 warden功能介绍 由于Cloud Foundry v1中DEA组件运行应用程序时，自身设计存在一定的缺陷，即同一个DEA上运行的应用不能很好的实现运行过程中资源的隔离与限制，故在Cloud Foundry v2中引入了warden这一模块。 warden专门接收DEA组件发送的关于应用的管理请求，在处理这部分管理请求时，借助轻量级虚拟化技术，将宿主机操作系统进行虚拟化，在容器内部执行请求的具体内容。warden的具体使用效果为应用程序之间互不感知，资源间完成隔离，各自的资源使用存在上限。假设Cloud Foundry不存在应用程序资源的隔离与限制机制，则在同一个DEA上运行的多个应用程序，在负载增加的时候，会出现竭力竞争资源的情况，当资源消耗殆尽时，大大降低应用程序的可用性与安全性。 在资源隔离与限制方面，warden主要提供3个维度的用户自定义隔离与限制：内存、磁盘、网络带宽；另外warden还提供以下维度的资源隔离与限制，但仅提供默认值，不提供用户自定义设置：CPU、CPUACCT、Devices。 同时，warden作为一个虚拟化容器，还提供众多的API命令，供用户完成对warden container的管理。主要的命令如下：copy in、copy out、create、destroy、echo、error 、info、limit_bandwidth、limit_disk、limit_memory、limit_cpu、link 、list、message、net in、net out、ping、run、spawn、stop和stream等 。这些命令的功能介绍可以简单参见：James Bayer对于warden与docker的比较文档。
-warden框架实现 在涉及warden框架的具体实现时，需要先申明和warden相关的多个概念：
- warden：在Cloud Foundry中实现应用资源隔离与控制的框架，其中包括，warden_client、warden_server、warden_protocol和warden container； warden server：warden框架中server端的实现，主要负责接收client端请求，以及请求的处理执行； warden client：warden框架中client端的实现，被Cloud Foundry中被dea_ng组件调用，实现给warden_server发送具体请求； warden protocol：warden框架中定义warden_client与warden_server通信时的消息请求协议； warden container：warden框架中管理与运行应用程序的容器，资源的隔离与限制以容器为单位。  warden框架的实现为典型的C/S架构，如下图：
-
-warden框架的对外接口及实现 虽然warden模块是Cloud Foundry中不可或缺的一部分，但是如果不借助Cloud Foundry的话，warden依然可以用来管理warden container，并在container内部运行应用程序等。 若warden运行在Cloud Foundry内部，则dea_ng组件内嵌warden_client，并以warden_client与warden_server建立通信，分发应用的管理请求；若warden单独存在，则可以通过warden的REPL（Read-Eval-Print Loop）命令行工具瑞与warden_server进行通信，用户通过命令行发起container的管理请求。本章将以以上两个方式阐述warden框架的对外接口及实现。
-warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea_ng一起捆绑使用。在部署dea_ng时，不论Cloud Foundry集群中安装了多个dea_ng组件，每个dea_ng组件所在的节点上都会安装一个warden，由此可见warden与dea_ng的存在为一一对应关系。 以下是warden与dea_ng的交互示意图：
-
-由以上示意图可知，从dea_ng接受请求，分发container请求，主要分为以下几个步骤：
- dea_ng通过消息中间件NATS获取app的管理请求； dea_ng根据请求类型，并通过Warden::Protocol协议创建出相对应的container请求； dea_ng通过已经和warden_server建立连接的waren_client发送container请求。  warden与REPL命令行交互 warden也可以单独安装在某个机器上，当需要管理warden时，可以通过REPL命令行的方式，启动一个进程，创建warden_client，并负责接收用户在命令行输入的warden container管理命令，然后通过warden_client给warden_server发送请求。 从上可知，REPL和dea_ng与warden的通信方式几乎相同，区别仅仅在两者的使用方式。以下是warden与repl命令行交互的示意图：</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -331,7 +310,7 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -339,7 +318,7 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">Cloud Foundry中DEA与warden通信完成应用端口监听</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">Cloud Foundry中DEA与warden通信完成应用端口监听</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -348,16 +327,12 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。
-DEA在执行启动一个应用的时候，主要做到以下这些部分：promise_droplet, promise_container, 其中这两个部分并发完成；promise_extract_droplet, promise_exec_hook_script(“before_start”), promise_start等。代码如下：
-\[ promise\_droplet, promise\_container \].each(&amp;:run).each(&amp;:resolve) \[ promise\_extract\_droplet, promise\_exec\_hook\_script('before\_start'), promise\_start \].each(&amp;:resolve)  promise_droplet: 在这一个环节，DEA主要做的工作是将droplet下载本机，通过droplet_uri,其中基本的路径在/config/dea.yml中，为base_dir: /tmp/dea_ng, 因此最终DEA下载到的droplet存放于DEA组件所在的宿主机上。
-promise_container: 该环节的工作主要完成创建一个warden container，随后可以为应用的运行提供一个合适的环境。promise_container的源码实现如下：
-def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; droplet.droplet\_dirname, 'dst\_path' =&gt; droplet.droplet\_dirname}\] with\_network = true container.create\_container( bind\_mounts: bind\_mounts + config\['bind\_mounts'\], limit\_cpu: config\['instance'\]\['cpu\_limit\_shares'\], byte: disk\_limit\_in\_bytes, inode: config.instance\_disk\_inode\_limit, limit\_memory: memory\_limit\_in\_bytes, setup\_network: with\_network) attributes\['warden\_handle'\] = container.handle promise\_setup\_def create\_container(params) \[:bind\_mounts, :limit\_cpu, :byte, :inode, :limit\_memory, :setup\_network\].</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -367,7 +342,7 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">
+                                      <a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -375,7 +350,7 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">Cloud Foundry中gorouter对StickySession的支持</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">Cloud Foundry中gorouter对StickySession的支持</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -384,16 +359,12 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/"><i class="far fa-calendar"></i> 2014-11-21</a>
+                                            <a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/"><i class="far fa-calendar"></i> 2014-11-21</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。
-本文即分析Cloud Foundry中gorouter关于StickySession的实现方式。 该部分内容需要对gorouter有一定的了解，可以参见笔者之前的博文：Cloud Foundry中gorouter源码分析 关于StickySession的信息，gorouter所做的工作，主要分为两个部分：如何给HTTP请求添加StickySession、如何通过StickySession辨别应用的具体实例。
-如何给HTTP请求添加StickySession 在分析这个问题的时候，首先我们需要提出另一个问题：什么情况下需要给HTTP请求添加StickySession？ 首先，来看这样的一个方法setupStickySession的go语言实现：
-func (h \*RequestHandler) setupStickySession(endpointResponse \*http.Response, endpoint \*route.Endpoint) { needSticky := false for \_, v := range endpointResponse.Cookies() { if v.Name == StickyCookieKey { needSticky = true break } } if needSticky &amp;&amp; endpoint.PrivateInstanceId != &quot;&quot; { cookie := &amp;http.Cookie{ Name: VcapCookieId, Value: endpoint.PrivateInstanceId, Path: &quot;/&quot;, } http.SetCookie(h.response, cookie) } }  紧接着，查看setupStickySession方法何时被调用的代码：
-func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/" class="btn btn-template-main"></a>
+                                    <p class="intro">Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -403,7 +374,7 @@ func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                                      <a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -411,7 +382,7 @@ func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">Cloud Foundry中DEA启动应用实例时环境变量的使用</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">Cloud Foundry中DEA启动应用实例时环境变量的使用</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -420,18 +391,12 @@ func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"><i class="far fa-calendar"></i> 2014-11-20</a>
+                                            <a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/"><i class="far fa-calendar"></i> 2014-11-20</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。
-DEA接收应用启动请求及其执行流程 在这部分，通过代码的形式来说明DEA对于应用启动请求的执行流程。 1.首先DEA订阅相应主题的消息，主题为“dea.#{bootstrap.uuid}.start”，含义为“自身DEA的应用启动消息”：
-subscribe(&quot;dea.#{bootstrap.uuid}.start&quot;) do |message| bootstrap.handle\_dea\_directed\_start(message) end  2.当收到订阅主题之后，执行bootstrap.handle_dea_directed_start(message)，含义为“通过bootstrap类实例来处理应用的启动请求”：
-def handle\_dea\_directed\_start(message) start\_app(message.data) end  3.可以认为处理的入口，即为以上代码中的start_app方法：
-def start\_app(data) instance = instance\_manager.create\_instance(data) return unless instance instance.start end  4.在start_app方法中，首先通过instance_manager类实例来创建一个instance对象，通过执行instance实例的类方法start，可以看到自始至终，传递的参数的原始来源都是通过NATS消息传递来的message，也就是1中的message：
-def start(&amp;callback) p = Promise.new do …… \[ promise\_droplet, promise\_container \].each(&amp;:run).each(&amp;:resolve) \[ promise\_extract\_droplet, promise\_exec\_hook\_script('before\_start'), promise\_start \].each(&amp;:resolve) …… p.deliver end  5.其中真正关于应用启动的执行在promise_start方法中实现：
-def promise\_start Promise.new do |p| env = Env.new(StartMessage.new(@raw\_attributes), self) if staged\_info command = start\_command || staged\_info\['start\_command'\] unless command p.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -441,7 +406,7 @@ def promise\_start Promise.new do |p| env = Env.new(StartMessage.new(@raw\_attri
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">
+                                      <a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -449,7 +414,7 @@ def promise\_start Promise.new do |p| env = Env.new(StartMessage.new(@raw\_attri
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">Haproxy端口映射（client头中URL/HOST修改后转发）</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/">Haproxy端口映射（client头中URL/HOST修改后转发）</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -458,16 +423,12 @@ def promise\_start Promise.new do |p| env = Env.new(StartMessage.new(@raw\_attri
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/"><i class="far fa-calendar"></i> 2014-10-28</a>
+                                            <a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/"><i class="far fa-calendar"></i> 2014-10-28</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。
-解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。
-Haproxy的安装：(也可通过源码安装) apt-get install haproxy
-修改基本的配置文件如下： 配置文件所在地址：/etc/haproxy/haproxy.cfg（用xx.xx.xx.xx代表一个IP地址）
-global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user haproxy group haproxy stats socket /var/lib/haproxy/stats debug defaults log global option httpclose timeout connect 30000ms timeout client 300000ms timeout server 300000ms frontend http-in mode http bind \*:81 reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas option httplog option forwardfor reqadd X-Forwarded-Proto:\\ http default\_backend http-routers backend http-routers mode http reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas balance roundrobin server node0 t1.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main"></a>
+                                    <p class="intro">CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -477,7 +438,7 @@ global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user ha
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                                      <a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -485,7 +446,7 @@ global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user ha
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Cloud Foundry中gorouter源码分析</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Cloud Foundry中gorouter源码分析</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -494,18 +455,12 @@ global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user ha
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"><i class="far fa-calendar"></i> 2014-05-07</a>
+                                            <a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"><i class="far fa-calendar"></i> 2014-05-07</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意. 为了提高Cloud Foundry router的可用性，Cloud Foundry开源社区不久前推出了gorouter。gorouter采用现阶段比较新颖的go作为编程语言，并重新设计了原有的组件架构。由于go语言本身的特性，gorouter处理并发请求的能力大大超过了router，甚至在同种实验环境下，性能是原先router的20倍左右。 由于gorouter的高性能，笔者也抱着期待的心态去接触go，当然还有gorouter。本文不会从go语言语法的角度入手gorouter，所以有一些go语言的基础再来看本文，是有必要的。本文主要是对gorouter的源码的简单解读，另外还包含一些笔者对gorouter的看法。
-gorouter的程序组织形式 首先，先从gorouter的程序组织形式入手，可见下图：
-
-以下简单介绍其中一些重要文件的功能：
- common：common意指通用，所以该文件夹中也是一些比较通识的概念定义，比如varz，healthz，component等，以及关于项目过程的一些基本操作定义。 config：顾名思义，该文件夹中的文件为gorouter组件的配置文件。 log：定义gorouter的log形式定义。 proxy：作为一个代理处理外界进入Cloud Foundry的所有请求。 registry：处理组件或者DEA中应用到gorouter来注册uri的事件，另外还负责请求访问应用时查找应用真实IP，port。 route：主要定义在rigistry中需要使用到的三个数据结构：endpoint，pool和uris。 router：程序的主入口，main函数所在处。 stats：主要负责一些应用记录的状态，还有一些其他零碎的东西，比如定义一个堆。 util：其中一般是工具源码，在这里只负责给gorouter进程写pid这件事。 varz：主要涉及varz信息的处理，其实就是gorouter组件状态的查阅。 router.go: 主要定义了router的数据结构，及其实例初始化的过程，还有最终运行的流程。  gorouter的功能：gorouter的功能主要可以分为三个部分：负责接收Cloud Foundry内部组件及应用uri注册以及注销的请求，负责转发所有外部对Cloud Foundry的访问请求，负责提供gorouter作为一个组件的状态监控。
- 接受uri注册及注销请求 当Cloud Foundry内一个组件需要提供HTTP服务的时候，那么这个组件则必须将自己的uri和IP一起注册到gorouter处，典型的有，Cloud Foundry中Service Gateway与Cloud Controller通过HTTP建立连接的，另外Cloud Controller也需要对外提供HTTP服务，所以这些组件必须在gorouter中进行注册，以便可以顺利通信或访问。 除了平台级的组件uri注册，最常见的是应用级的应用uri注册，也就是在Cloud Foundry中新部署应用时，应用所在的DEA会向gorouter发送一个uri，IP和port的注册请求。gorouter收到这个请求后，会添加该记录，并保证可以解析外部的URL访问形式。当然，反过来，当一个应用被删除的时候，为了不浪费Cloud Foundry内部的uri资源，Cloud Foundry会将该uri从gorouter中注销，随即gorouter在节点处删除这条记录。 转发对Cloud Foundry的访问请求 gorouter接受到的访问请求大致可以分为三种：外部请求有：用户对应用的访问请求，用户对Cloud Foundry内部资源的管理请求；内部的请求有：内部组件之间通过HTTP的各类通信。 虽然说请求的类型可以分为三种，但是gorouter对于这些请求的操作都是一致的，找到相应的uri，提取出相应的IP和port，然后进行转发。需要注意的是，在原先版本的router中，router只能接收HTTP请求，然而现在gorouter中，已经考虑了TCP连接，以及websocket。 提供组件监控 Cloud Foundry都有自己的状态监控，可以通过HTTP访问。这主要是每个组件在启动的时候，都作为一个component向Cloud Foundry进行注册，注册的时候带有很多关于自身组件的信息，同时也启动了一个HTTP server。  gorouter的初始化及启动流程和Router对象实例的创建与初始化 gorouter的启动过程主要在router.go文件中，在该文件中，首先定义创建一个Router实例的操作并进行初始化，另外还定义了Router实例的开始运行所做的操作。 在router.go文件中，首先需要是Router结构体的定义： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-type Router struct { config *config.Config …… }  随后又定义了Router实例的初始化： [plain] view plaincopy在CODE上查看代码片派生到我的代码片</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意.</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -515,7 +470,7 @@ type Router struct { config *config.Config …… }  随后又定义了Router实
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                                      <a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -523,7 +478,7 @@ type Router struct { config *config.Config …… }  随后又定义了Router实
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Cloud Foundry中collector组件的源码分析</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Cloud Foundry中collector组件的源码分析</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -532,15 +487,12 @@ type Router struct { config *config.Config …… }  随后又定义了Router实
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"><i class="far fa-calendar"></i> 2014-05-07</a>
+                                            <a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"><i class="far fa-calendar"></i> 2014-05-07</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry中有一个叫collector的组件，该组件的功能是通过消息总线发现在Cloud Foundry中注册过的各个组件的信息，然后通过varz和healthz接口来查询它们的信息并发送到指定的存储位置。 本文从collector的功能出发，主要讲述以上两个功能的源码实现。
-发现注册组件 在Cloud Foundry中，每个组件在启动的时候后会以一个component的形式向Cloud Foundry注册，同时也会作为一个组件，向NATS发布一些启动信息。 首先以DEA为例，讲述该组件register与向NATS publish信息的实现。首先看以下/dea/lib/dea/agent.rb中register的代码： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-VCAP::Component.register(:type =&gt; 'DEA', :host =&gt; @local_ip, :index =&gt; @config['index'], :config =&gt; @config, :port =&gt; status_config['port'], :user =&gt; status_config['user'], :password =&gt; status_config['password'])  这段代码表示，DEA通过VCAP::Component对象中的register方法，实现注册。以下进入vcap-common/lib/vcap/component.rb中的register方法： [ruby] view plaincopy在CODE上查看代码片派生到我的代码片
-def register(opts) uuid = VCAP.secure_uuid …… auth = [opts[:user] || VCAP.secure_uuid, opts[:password] || VCAP.secure_uuid] @discover = { :type =&gt; type, …… :credentials =&gt; auth, :start =&gt; Time.now } …… @healthz = &quot;ok\n&quot;.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry中有一个叫collector的组件，该组件的功能是通过消息总线发现在Cloud Foundry中注册过的各个组件的信息，然后通过varz和healthz接口来查询它们的信息并发送到指定的存储位置。 本文从collector的功能出发，主要讲述以上两个功能的源码实现。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -740,40 +692,40 @@ def register(opts) uuid = VCAP.secure_uuid …… auth = [opts[:user] || VCAP.se
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="《Docker容器与容器云》推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="Docker背后的标准化容器执行引擎——runC">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
                     </div>
                 </div>
                 

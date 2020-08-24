@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                                      <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                                           
                                           <img src="/img/banner.jpg" class="img-responsive" alt="">
                                           
@@ -190,7 +190,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -199,22 +199,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/"><i class="far fa-calendar"></i> 2016-11-30</a>
+                                            <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/"><i class="far fa-calendar"></i> 2016-11-30</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">自Docker容器与容器云第1版出版以来，销量达到10000多本，得到了广大技术人员的认可，并且翻译成繁体，进入台湾市场。本书对Docker和Kubernetes的源码解析深入细致，是国内Docker界的良心之作。 经过作者们多年的实践经验积累及近一年的精心准备，浙江大学SEL实验室出版的《Docker容器与容器云》第2版，终于与我们见面了。
-本书根据Docker 1.10版和Kubernetes 1.2版对第1版进行了全面更新，从实践者的角度出发，以Docker和Kubernetes为重点，沿着“基本用法介绍”到“核心原理解读”到“高级实践技巧”的思路，一本书讲透当前主流的容器和容器云技术，有助于读者在实际场景中利用Docker容器和容器云解决问题并启发新的思考。
-全书包括两部分，第一部分深入解读Docker容器技术，包括Docker架构与设计、核心源码解读和高级实践技巧；第二部分归纳和比较了三类基于Docker的主流容器云项目，包括专注Docker容器编排与部署的容器云、专注应用支撑的容器云以及一切皆容器的Kubernetes，进而详细解读了Kubernetes核心源码的设计与实现，最后介绍了几种典型场景下的Kubernetes最佳实践。 自本书第1版出版以来，容器生态圈已经发生了翻天覆地的变化。新的开源项目层出不穷，各个开源项目都在快速迭代演进。
-Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从本书第1版里的0.16发展到了现在的1.2，并且在1.0.1版本时宣布其已经正式进入可投入生产环境（production ready）的状态。 第3章是本书第一部分的重点。Docker 1.10版相对于本书第1版中的1.6.2版，主要的更新包括如下几个方面：
- 1、Docker在架构方面不断将自身解耦，逐步发展成容器运行时（runtime）、镜像构建（builder）、镜像分发（distribution）、网络（networking）、数据卷（volume）等独立的功能组件，提供daemon来管理，并通过Engine暴露一组标准的API来操作这些组件（详见本书3.2节）； 2、将网络和数据卷提升为“一等公民”，提供了独立子命令进行操作，网络和数据卷具备独立的生命周期，不再依赖容器的生命周期（详见本书3.7节、3.8节）； 3、网络实现方面，Docker将网络相关的实现解耦为独立的组件libnetwork，抽象出一个通用的容器网络模型（CNM），功能上也终于原生支持了跨主机通信（详见本书3.8节）； 4、在扩展性方面，在1.7.0版本后就开始支持网络、volume和存储驱动（仍处于实验阶段）的插件化，开发者可以通过实现Docker提供的插件标准来定制自己的插件（详见本书3.6节、3.7节、3.8节）； 5、在Docker安全方面，Docker支持了user namespace和seccomp来提高容器运行时的安全，在全新的镜像分发组件中引入可信赖的分发和基于内容存储的机制，从而提高镜像的安全性（详见本书3.5节、3.6节、3.9节）。  需要特别指出的一点是，随着容器如火如荼的发展，为了推动容器生态的健康发展，促进生态系统内各组织间的协同合作，容器的标准化也显得越来越重要。Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，并针对容器格式和运行时制定了一个开放的工业化标准，即OCI标准。Docker公司率先贡献出满足OCI标准的容器运行时runC，HyperHQ公司也开源了自己的OCI容器运行时runV，相信业界会有越来越多的公司加入这个标准化浪潮中。Docker公司虽然没有在Docker 1.10版本中直接使用runC作为容器的运行时，但是已经将“修改Docker engine来直接调用runC的二进制文件为Docker提供容器引擎”写入到了1.10版本的roadmap中。本书在3.4.3节中对runC的构建和使用进行了介绍。 第8章是本书第二部分的重点。由于Kubernetes的代码始终处于积极更新之中，自本书第1版截稿以来，Kubernetes又相继发布了0.17、0.18、0.19、0.20、0.21、1.0、1.1与1.2等几个版本。主要的更新包括如下几个方面：
- 1、大大丰富了支撑的应用运行场景。从全面重构的long-running service的replicaSet，到呼声渐高的支持batch job的Job、可类比为守护进程的DaemonSet、负责进行应用更新的Deployment、具备自动扩展能力的HPA（Horizontal Pod Autoscaler），乃至于有状态服务的petSet，都已经或者即将涵盖在Kubernetes的支撑场景中（详见本书8.2节）。 2、加强各个组件的功能扩展或者性能调优。apiserver和controller manager为应对全新的resource和API有显著的扩展；scheduler也在丰富调度策略和多调度器协同调度上有积极的动作；kubelet在性能上也有长足的进步，使得目前单个节点上支持的pod从原来的30个增长到了110个，集群工作节点的规模也从100个跃升为1000个；多为人诟病的kube-proxy如今也鸟枪换炮，默认升级为iptables模式，在吞吐量上也更为乐观；在可以预期的未来，rescheduler将成为Kubernetes家庭中的新成员，使得重调度成为可能（详见本书8.3节）； 3、兼容更多的容器后端模型、网络及存储方案。从Docker到rkt，Kubernetes展示了对容器后端开放姿态，同时它还准备以C/S模式实现对其他容器的支撑。在网络方面，Kubernetes引入了网络插件，其中最为瞩目的当属CNI；存储上的解决方案更是层出不穷，flocker、Cinder、CephFS不一而足，还增加了许多特殊用途的volume，如secret、configmap等（详见本书8.4节、8.5节）； 4、增加了OpenID、Keystone等认证机制、Webhook等授权机制，以及更为丰富的多维资源管理机制admissioncontroller（详见本书8.6节）； 5、另外，作为Kubernetes社区的积极参与者，我们还专门增加了8.8节，讨论当前社区正在酝酿中的一些新特性，如Ubernetes、petSet、rescheduler。我们还讨论了Kubernetes性能优化，以及Kubernetes与OCI的关系等话题。   除了全面更新这两个重点章节之外，我们还在第1章中更新了Docker近期的“大事记”并重新整理了容器生态圈，加入了许多重要的容器云技术开源项目，以及OCI、CNCF等国际标准化组织；在第2章中，我们将Docker命令行工具的基础用法更新到了Docker 1.10版；在第4章中完善了对时下火热的“容器化思维”和“微服务”的讨论；在第6章中更新了对Docker“三剑客”——Compose、Swarm和Machine的讨论；在附录中以Docker 1.10版为标准更新了附录A的Docker安装指南，以Kubernetes 1.2为标准，更新了附录F中Kubernetes的安装指南。 如果你是初级程序员，本书可以帮助你熟悉Docker与kubernetes的基本使用；如果你正在IT领域进行高级进阶修炼，那本书也可以与你一起探索Docker与kubernetes的工作原理。无论是架构师、开发者、运维人员，还是对Docker比较好奇的读者，本书都是一本不可多得的带你从入门向高级进阶的精品书，值得大家选择！
- 最后，摘录一些读者的推荐如下—— —— 许式伟，七牛云存储CEO ： “虽然在此之前已经有了由Docker团队出的第一本Docker书，但是这是国内第一本深入解读Docker与Kubernetes原理的原创图书，这一点意义重大。本书比较完整地介绍了Docker与Kubernetes的工作原理和生态，非常有借鉴意义。” ——肖德时，数人科技CTO： “Docker容器技术已经在国内如火如荼地流行起来，浙江大学SEL实验室目前是国内掌握Docker技术最熟练的技术团队之一，他们在国内Docker技术界一直产生着重要影响。这次他们把Docker的实战经验汇编成书，可以帮助更多的Docker爱好者学习到一手的实战经验。”
-——程显峰，火币网CTO ： “本书非常细致地讲解了Docker技术的来龙去脉和技术细节，更为难得是还加入了Docker生态当中的其他技术。Docker这项技术本身就是将多种思想和技术融合的产物，从生态的视角去解读技术的来龙去脉将极大地促进读者对云计算和容器技术的重新思考。”
-—— 刘俊，百度运维部高级架构师，两次百度最高奖获得者 ： “本书宏观上描绘了容器和容器云技术发展的浪潮和生态系统，微观上以Docker和Kubernetes为典型进行了深度分析。无论是Docker技术爱好者，还是系统架构师、云端开发者、系统管理和运维人员，都能在本书中找到适合自己阅读的要点。浙江大学SEL实验室云计算团队是一支非常优秀的云计算研究团队，很多85后、90后人才活跃在顶级社区前沿，感谢他们能将多年的知识和智慧积累分享出来！”
-——郝林，微影时代架构师，《Go并发编程实战》作者 ： “本书是浙江大学SEL实验室云计算团队多年深耕Docker及背后的容器技术的结晶。最大的特点就是深入，并且有各种实用案例和细致讲解。另外，这本书在怎样真正地把Docker及周边产品落地以构建灵活多变的云平台方面也进行了生动的阐释。” ——网友 Monster-Z： “自本书第一版出版以来，Docker社区又经过了如火如荼的发展，特别是网络部分的实现已经发生了翻天覆地的变化，而本书在第一版的基础之上及时地对网络部分的内容进行了更新。本书对于docker网络最新内容深入透彻的分析，让我们这些急于想要对Docker网络部分实现原理有所了解的开发人员如醍醐灌顶。相信对Docker技术感兴趣的读者在读完本书之后会与我有相同的感受。”
-——网友 XiaoYu： “之前对于浙江大学的SEL实验室早有耳闻，也深知他们在云计算领域有着深厚的积淀。这次对他们著作的第二版进行了深入的研读，可以看得出，在保持了第一版架构的同时，对各个章节的内容又进行了大量的扩充，紧紧跟随着Docker以及k8s社区的发展步伐。相信不论是对于初涉容器领域的新人，还是希望深入理解Docker容器实现原理的开发人员，这都是一本不可多得的好书。” ——网友 Mongo： “在学习了本书的第一版之后，就一直期待着本书第二版的出版。于是当得到第二版出版的消息之后，就迫不及待入手了一本。捧读之后，发现在内容上与第一版有了较大的变化，这应该与Docker本身快速的发展有关，当然也从侧面反应了容器技术在时下的热度。相信对于像我这样Docker技术的一线使用者来说，本书固有的深度以及第二版的时效性都将让我们对Docker的使用和理解都更上一层楼。”</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/" class="btn btn-template-main"></a>
+                                    <p class="intro">自Docker容器与容器云第1版出版以来，销量达到10000多本，得到了广大技术人员的认可，并且翻译成繁体，进入台湾市场。本书对Docker和Kubernetes的源码解析深入细致，是国内Docker界的良心之作。 经过作者们多年的实践经验积累及近一年的精心准备，浙江大学SEL实验室出版的《Docker容器与容器云》第2版，终于与我们见面了。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -224,7 +214,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                                      <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -232,7 +222,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -241,28 +231,12 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/"><i class="far fa-calendar"></i> 2015-10-21</a>
+                                            <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/"><i class="far fa-calendar"></i> 2015-10-21</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。
-该书从2014年12月开始写作到2015年9月正式出版发行，期间数易其稿，从最初的对源码进行逐字逐句的分析，转变为带着问题去思考，最后再回到源码去理解问题背后的本质，书的每一章每一节都是实验室智慧与汗水的结晶。 出版发行以来，我们几乎没有对本书进行特别的宣传，凭着少数几次活动以及朋友圈里朋友们的口口相传，逐渐被广大云计算爱好者们发现，并受到了业内外读者的一致好评。从九月初至今，不到两个月的时间，第一次印刷的三千五百册就已接近全部售罄，准备进行第二次印刷。我们也会尽可能多的根据读者的反馈，对第一次印刷中存在的问题进行勘误。 我们自己没有太多权利评判书本本身的好坏，但是我们看到了业内外读者的评价，让我们感受到了深深的肯定，非常感谢大家的支持！同时也向更多朋友推荐我们这本《Docker容器与容器云》，这绝对是您在容器技术方面最值得一读的书！
-
-最后，摘录一些读者的推荐如下：
-  “虽然在此之前已经有了由Docker团队出的第一本Docker书，但是这是国内第一本深入解读Docker与Kubernetes原理的原创图书，这一点意义重大。本书比较完整地介绍了Docker与Kubernetes的工作原理和生态，非常有借鉴意义。” ——许式伟，七牛云存储CEO
-  “Docker容器技术已经在国内如火如荼地流行起来，浙江大学SEL实验室目前是国内掌握Docker技术最熟练的技术团队之一，他们在国内Docker技术界一直产生着重要影响。这次他们把Docker的实战经验汇编成书，可以帮助更多的Docker爱好者学习到一手的实战经验。”——肖德时，数人科技CTO
-  “本书非常细致地讲解了Docker技术的来龙去脉和技术细节，更为难得是还加入了Docker生态当中的其他技术。Docker这项技术本身就是将多种思想和技术融合的产物，从生态的视角去解读技术的来龙去脉将极大地促进读者对云计算和容器技术的重新思考。”——程显峰，OneAPM首席运营官
-  “本书宏观上描绘了容器和容器云技术发展的浪潮和生态系统，微观上以Docker和Kubernetes为典型进行了深度分析。无论是Docker技术爱好者，还是系统架构师、云端开发者、系统管理和运维人员，都能在本书中找到适合自己阅读的要点。浙江大学SEL实验室云计算团队是一支非常优秀的云计算研究团队，很多85后、90后人才活跃在顶级社区前沿，感谢他们能将多年的知识和智慧积累分享出来！”——刘俊，百度运维部高级架构师，百度最高奖获得者
-  “本书是浙江大学SEL实验室云计算团队多年深耕Docker及背后的容器技术的结晶。最大的特点就是深入，并且有各种实用案例和细致讲解。另外，这本书在怎样真正地把Docker及周边产品落地以构建灵活多变的云平台方面也进行了生动的阐释。”——郝林，微影时代架构师，《Go并发编程实战》作者
-  “Docker颠覆了容器技术，也将容器技术带到了新的高度。InfoQ从2014年初就开始密切关注容器技术，见证并切身参与了容器技术的发展。作为我们的优秀作者，浙江大学SEL实验室在InfoQ撰写了很多与Docker、Kubernetes相关的技术文章，得到了广大读者的肯定。希望这本书能推动容器技术在中国的落地。”——郭蕾，InfoQ主编
-  “浙江大学SEL实验室属于国内较早接触并研究开源PaaS技术的团队之一，从传统PaaS的开源代表CloudFoundry、OpenShift，到新一代基于Docker的PaaS平台如DEIS、Flynn等，他们均有深入的研究和实践经验。更为难得的是，他们不仅参与开源贡献，而且笔耕不辍，通过博客、论坛等方式积极分享有深度、有内涵的技术文章，并广泛参与国内PaaS届各种技术交流会议。华为PaaS团队也在与之交流中汲取了不少营养。此次，他们将近年来对Docker容器和Kubernetes、DEIS、Flynn等PaaS开源平台的研究成果结集成册，内容详尽且深入浅出。我相信，无论是入门者还是老手，都能够从中获益。”——刘赫伟，华为中央软件院
-  “容器技术在大型互联网企业中已广泛应用，而Docker是容器技术中的杰出代表。本书不仅介绍了Docker基础知识，而且进行了代码级的深入分析，并通过对Kubernetes等技术的讲解延伸至集群操作系统以及对Docker生态领域的思考，同时结合了大量实践，内容丰富，值得拥有。”——王炜煜，百度运维部高级架构师，JPaaS项目负责人
-  “Docker作为操作系统层面轻量级的虚拟化技术，凭借简易的使用、快速的部署以及灵活敏捷的集成支持等优势，奠定了Docker如今在PaaS领域的江湖地位。 浙江大学SEL实验室在云计算和 PaaS领域耕耘多年， 积累了丰富的经验。本书既有对Docker源代码层面的深度解读，也有实战经验的分享，希望这本书能够帮助Docker开发者在技术上更上一层楼。”——李三红，蚂蚁金服基础技术部JVM Architect
-  本书覆盖面非常广，从docker的使用、核心原理、高级实践再到编排工具以及著名的集群调度工具kubernetes均有涉及，很好的把握了技术人员的痛点。而且架构原理方面均是用docker1.7和部分1.6作为依据，非常有时效性。《Docker源码分析》的作者也是出于该团队，容器云方面功底很深厚啊。 ——网友Crazykev
-  比较专业的书，书中的内容远远高于这本书的物理容量，希望好好研究Docker和Linux某些虚拟化机制的同学，可以以这本书入门去不断扩充自己的知识。不过这边毕竟是一Docker为主线的书，主要还是为了深入帮助大家理解Docker，以及Docker生态圈内的应用和服务。一句话：国内不可多得的一本Docker相关知识的书，此书讲解深入，排版合理，内容紧凑，值得好好看。 ——网友RHMAN
-  其实之前不太了解SEL实验室的背景是什么，不过从此书的内容来看，团队的研究能力和文字能力都相当不错。好久没有读过让人“爽快”的技术书籍了。在Docker应用中各领域的知识要点都能提纲挈领的进行讲解，而且对于生产环境的挑战也有深刻的理解，算得上是既有广度又有深度的佳作。 ——网友jerryshang
-  </p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/" class="btn btn-template-main"></a>
+                                    <p class="intro">《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -272,7 +246,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/">
+                                      <a href="https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -280,7 +254,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/">4S: Services Account, Secret, Security Context and Security in Kubernetes</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/">4S: Services Account, Secret, Security Context and Security in Kubernetes</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -289,16 +263,12 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/"><i class="far fa-calendar"></i> 2015-07-30</a>
+                                            <a href="https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/"><i class="far fa-calendar"></i> 2015-07-30</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。
-1. 集群安全（Security in Kubernetes) 众所周知，集群安全的首要关注点无疑是隔离性。进程之间的相互隔离，进程与集群基础设施的严格界限，用户与管理员之前的天然角色区分，都应该被考虑到隔离性的范畴内。 统而言之，集群安全性必须考虑如下几个目标： (1) 保证容器与其运行的宿主机的隔离。 (2) 限制容器对于基础设施及其它容器的影响权限，运行拥有特权模式的容器是不被推荐的行为。 (3) 最小权限原则——对所有组件权限的合理限制。 (4) 通过清晰地划分组件的边界来减少需要加固和加以保护的系统组件数量。 (5) 普通用户和管理员的角色区分，同时允许在必要的时候将管理员权限委派给普通用户。 (6) 允许集群上运行的应用拥有secret data。 涉及安全，authentication和authorization是不能绕过的两个话题。下面我们就先来了解一下k8s在这两个issue所提供的支持。
-2. Authentication k8s目前支持三种认证方式，包括certificates/tokens/http basic auth。 client certificate authentication是双向认证的方式，可以经由easyrsa等证书生成工具生成服务器端并客户端证书。 Token authentication：单向认证方式，为kube-apiserver提供- -token_ auth_file，格式为一个有3columns的csv file：token,user name,user id。此处为使用该认证方法的常见的elasticsearch case。 Basic authentication：传入明文用户名密码作为apiserver的启动参数，不支持在不重启apiserver的前提下进行用户名/密码修改。 更多细节详见官方相关文档。
-3. Authorization --authorization-mode，apiserver的参数，用于定义对secure port设置何种authorization policy，包括三种AlwaysAllow/AlwayDeny/ABAC，第一种policy允许所有对apiserver的API request，与之相反，第二种则会block所有的API request，第三种则为Attribute-Based Access Control，即对于不同request attribute，有不同的access control。 下面我们着重讨论ABAC mode。
-3.1 Request Attributes 在考虑authorization时，一个request有5种attribute需要考虑： - user - group - readOnly - resource（如只访问API endpoint，如/api/v1/namesapces/default/pods，或者其它杂项endpoint，如/version，此时的resource是空字符串） - namespace</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/" class="btn btn-template-main"></a>
+                                    <p class="intro">Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -308,7 +278,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/">
+                                      <a href="https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -316,7 +286,7 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/">Google Kubernetes设计文档之Volumes</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/">Google Kubernetes设计文档之Volumes</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -325,23 +295,12 @@ Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/"><i class="far fa-calendar"></i> 2015-01-02</a>
+                                            <a href="https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/"><i class="far fa-calendar"></i> 2015-01-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">摘要：
-Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文描述了Kubernetes中Volumes的使用情况，Volume是一个能够被容器访问的目录。
-Volumes 本文描述了Kubernetes中Volumes的使用情况，建议在阅读本文前，首先熟悉pods。 Volume是一个能够被容器访问的目录，它可能还会包含一些数据。Kubernetes Volumes与Docker Volumes类似，但并不完全相同。 一个Pod会在它的ContainerManifest 属性中指明其容器需要哪些Volumes。 容器中的进程可见的文件系统视图由两个源组成：一个单独的Docker image和零个或多个Volumes。Docker image位于文件层次结构的根部。所有的Volumes都挂载在Docker image的节点上。Volumes不能挂载在其他的Volumes上，也没有连接其他Volumes的硬链接。Pod中的每个容器都单独地指明了其image挂载的Volume。这会通过VolumeMount属性来确定。
-资源 Volume的存储介质(如硬盘、固态硬盘或内存)是由保存kubelet根目录(一般为/var/lib/kubelet)的文件系统的存储介质决定的。一个EmptyDir或者PersistentDir类型的Volume可以使用多少空间是没有限制的，同时在容器或者pods间也不存在隔离。 将来，我们预计一个Volume将能够通过使用资源规范来请求一个确定大小的空间；同时，对于包含多种存储介质的集群，将可以选择Volume使用的介质类型。
-Volumes的类型 Kubernetes现在支持三种类型的Volumes，但将来会支持更多的类型。
-EmptyDir 一个EmptyDir Volume是在Pod绑定到Node时创建的。当第一条容器命令启动时，它的初始状态为空。在同一个Pod上的容器可以读写EmptyDir中的相同文件。当一个Pod被解绑，在EmptyDir中的数据将永久性删除。 EmptyDir的一些用途如下：
- 暂存空间，例如用于基于磁盘的归并排序或者长计算的检查点； 一个目录，由一个内容管理容器填充数据，同时由一个网络服务器容器供应数据。  目前，用户无法控制EmptyDir使用的介质种类。如果Kubelet的配置是使用硬盘，那么所有的EmptyDirectories都将创建在该硬盘上。将来，可以预料的是Pods将可以控制EmptyDir是位于硬盘、固态硬盘还是基于内存的tmpfs上。
-HostDir 一个HostDir的Volume将可以访问当前宿主机节点上的文件。 HostDir的一些用途如下：
- 运行一个需要访问Docker内部结构的容器；可以访问/var/lib/docker这个HostDir ；在容器中运行cAdvisor；可以访问/dev/cgroups这个HostDir。  当使用该类型的Volume时，需要格外小心，因为：
- 具有相同配置的pods(例如由同一个podTemplate创建的pods)可能在不同宿主节点上由于宿主机上的目录和文件不同而有着不同的访问结果； 当Kubernetes增加资源敏感调度，按其计划，它将不能考虑到HostDir使用的资源。  GCEPersistentDisk 重要提示：必须创建并格式化一个永久磁盘(PD)才能使用GCEPersistentDisk。 拥有GCEPersistentDisk的Volume可以访问谷歌计算引擎（Google Compute Engine, GCE）的永久磁盘上的文件。 使用GCEPersistentDisk时，有一些限制条件：
- 节点(运行kubelet的节点)需要是GCE虚拟机； 这些虚拟机需要在相同的GCE项目中，同时被划作PD； 避免使用相同Volume来创建多个pods  如果多个pods引用相同的Volume，并且都部署在同一台机器上，不论它们是只读还是可读写的，那么第二个pod的部署都将失败； 只有使用只读加载的文件系统的pod才能创建复制控制器。    创建一个PD 在你能够在pod上使用GCE PD前，你需要先创建并格式化它。 我们正在积极努力得使这个过程更加精简容易。
-DISK\_NAME=my-data-disk DISK\_SIZE=500GB ZONE=us-central1-a gcloud compute disks create --size=$DISK\_SIZE --zone=$ZONE $DISK\_NAME gcloud compute instances attach-disk --zone=$ZONE --disk=$DISK\_NAME --device-name temp-data kubernetes-master gcloud compute ssh --zone=$ZONE kubernetes-master \\ --command &quot;sudo mkdir /mnt/tmp &amp;&amp; sudo /usr/share/google/safe\_format\_and\_mount /dev/disk/by-id/google-temp-data /mnt/tmp&quot; gcloud compute instances detach-disk --zone=$ZONE --disk $DISK\_NAME kubernetes-master  GCE PD的配置实例：</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/" class="btn btn-template-main"></a>
+                                    <p class="intro">摘要：</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -351,7 +310,7 @@ DISK\_NAME=my-data-disk DISK\_SIZE=500GB ZONE=us-central1-a gcloud compute disks
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -359,7 +318,7 @@ DISK\_NAME=my-data-disk DISK\_SIZE=500GB ZONE=us-central1-a gcloud compute disks
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/">Google Kubernetes设计文档之网络篇</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/">Google Kubernetes设计文档之网络篇</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -368,17 +327,12 @@ DISK\_NAME=my-data-disk DISK\_SIZE=500GB ZONE=us-central1-a gcloud compute disks
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-29</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-29</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">摘要： Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。其从Docker默认网络模型中独立出来形成了一套自己的网络模型，本文将详细介绍。
-模型和动机 Kubernetes从Docker默认的网络模型中独立出来形成一套自己的网络模型。该网络模型的目标是：每一个pod都拥有一个扁平化共享网络命名空间的IP，通过该IP，pod就能够跨网络与其它物理机和容器进行通信。一个pod一个IP模型创建了一个干净、反向兼容的模型，在该模型中，从端口分配、网络、域名解析、服务发现、负载均衡、应用配置和迁移等角度，pod都能够被看成虚拟机或物理机。 另一方面，动态端口分配需要以下方面的支持： 1，固定端口（例如：用于外部可访问服务）和动态分配端口； 2，分割集中分配和本地获取的动态端口； 不过，这不但使调度复杂化（因为端口是一种稀缺资源），而且应用程序的配置也将变得复杂，具体表现为端口冲突、重用和耗尽。 3，使用非标准方法进行域名解析（例如：etcd而不是DNS）； 4，对使用标准域名/地址解析机制的程序（例如：web浏览器）使用代理和/或重定向。 5，除了监控和缓存实例的非法地址/端口变化外，还要监控用户组成员变化以及阻止容器/pod迁移（例如：使用CRIU）。 NAT将地址空间分段的做法引入了额外的复杂性，这将带来诸如破坏自注册机制等问题。 在一个pod一个IP模型中，从网络角度看，在一个pod中的所有用户容器都像是在同一台宿主机中那样。它们能够在本地访问其它用户容器的端口。暴露给主机网卡的端口是通过普通Docker方式实现的。所有pod中的容器能够通过他们“10”网段（10.x.x.x）的IP地址进行通信。
-除了能够避免上述动态端口分配带来的问题，该方案还能使应用平滑地从非容器环境（物理机或虚拟机）迁移到同一个pod内的容器环境。在同一台宿主机上运行应用程序栈这种场景已经找到避免端口冲突的方法（例如：通过配置环境变量）并使客户端能够找到这些端口。 该方案确实降低了pod中容器之间的隔离性&ndash;尽管端口可能存在冲突而且也不存在pod内跨容器的私有端口，但是对于需要自己的端口范围的应用程序可以运行在不同的pod中，而对于需要进行私有通信的进程则可以运行在同一个容器内。另外，该方案假定的前提条件是：在同一个pod中的容器共享一些资源（例如：磁盘卷、处理器、内存等），因此损失部分隔离性也在可接受范围之内。此外，尽管用户能够指定不同容器归属到同一个pod，但一般情况下不能指定不同pod归属于同一台主机。 当任意一个容器调用SIOCGIFADDR（发起一个获取网卡IP地址的请求）时，它所获得的IP和与之通信的容器看到的IP是一样的&ndash;每个pod都有一个能够被其它pod识别的IP。通过无差别地对待容器和pdo内外部的IP和端口，我们创建了一个非NAT的扁平化地址空间。&ldquo;ip addr show&quot;能够像预期那样正常工作。该方案能够使所有现有的域名解析/服务发现机制：包括自注册机制和分配IP地址的应用程序在容器外能够正常运行（我们应该用etcd、Euraka（用于Acme Air）或Consul等软件测试该方案）。对pod之间的网络通信，我们应该持乐观态度。在同一个pod中的容器之间更倾向于通过内存卷（例如：tmpfs）或IPC（进程间通信）的方式进行通信。 该模型与标准Docker模型不同。在该模型中，每个容器会得到一个“172”网段（172.x.x.x）的IP地址，而且通过SIOCGIFADDR也只能看到一个“172”网段（172.x.x.x）的IP地址。如果这些容器与其它容器连接，对方容器看到的IP地址与该容器自己通过SIOCGIFADDR请求获取的IP地址不同。简单地说，你永远无法在容器中注册任何东西或服务，因为一个容器不可能通过其私有IP地址被外界访问到。 我们想到的一个解决方案是增加额外的地址层：以pod为中心的一个容器一个IP模式。每个容器只拥有一个本地IP地址，且只在pod内可见。这将使得容器化应用程序能够更加容易地从物理/虚拟机迁移到pod，但实现起来很复杂（例如：要求为每个pod创建网桥，水平分割/虚拟私有的 DNS），而且可以预见的是，由于新增了额外的地址转换层，将破坏现有的自注册和IP分配机制。
-当前实现 Google计算引擎（GCE）集群配置了高级路由，使得每个虚拟机都有额外的256个可路由IP地址。这些是除了分配给虚拟机的通过NAT用于访问互联网的“主”IP之外的IP。该实现在Docker外部创建了一个叫做cbr0的网桥（为了与docker0网桥区别开），该网桥只负责对从容器内部流向外部的网络流量进行NAT转发。 目前，从“主”IP（即互联网，如果制定了正确的防火墙规则的话）发到映射端口的流量由Docker的用户模式进行代理转发。未来，端口转发应该由Kubelet或Docker通过iptables进行：Issue #15。 启动Docker时附加参数：DOCKER_OPTS=&rdquo;&ndash;bridge cbr0 &ndash;iptables=false&rdquo;。 并用SaltStack在每个node中创建一个网桥，代码见container_bridge.py：
-cbr0: container\_bridge.ensure: - cidr: {{ grains\['cbr-cidr'\] }} ... grains: roles: - kubernetes-pool cbr-cidr: $MINION\_IP\_RANGE\`  在GCE中，我们让以下IP地址可路由：
-\`gcloud compute routes add &quot;${MINION\_NAMES\[$i\]}&quot; \\ --project &quot;${PROJECT}&quot; \\ --destination-range &quot;${MINION\_IP\_RANGES\[$i\]}&quot; \\ --network &quot;${NETWORK}&quot; \\ --next-hop-instance &quot;${MINION\_NAMES\[$i\]}&quot; \\ --next-hop-instance-zone &quot;${ZONE}&quot; &amp;  以上代码中的MINION_IP_RANGES是以10.开头的24位网络号IP地址空间（10.x.x.x/24）。 尽管如此，GCE本身并不知道这些IP地址的任何信息。 这些IP地址不是外部可路由的，因此，那些有与外界通信需求的容器需要使用宿主机的网络。如果外部流量要转发给虚拟机，它只会被转发给虚拟机的主IP（该IP不会被分配给任何一个pod），因此我们使用docker的-p标记把暴露的端口映射到主网卡上。该方案的带来的副作用是不允许两个不同的pod暴露同一个端口（更多相关讨论见Issue #390）。 我们创建了一个容器用于管理pod的网络命名空间，该网络容器内有一个本地回环设备和一块虚拟以太网卡。所有的用户容器从该pod的网络容器那里获取他们的网络命名空间。 Docker在它的“container”网络模式下从网桥（我们为每个节点上创建了一个网桥）那里分配IP地址，具体步骤如下： 1，使用最小镜像创建一个普通容器（从网络角度）并运行一条永远阻塞的命令。这不是一个用户定义的容器，给它一个特别的众所周知的名字。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/" class="btn btn-template-main"></a>
+                                    <p class="intro">摘要： Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。其从Docker默认网络模型中独立出来形成了一套自己的网络模型，本文将详细介绍。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -388,7 +342,7 @@ cbr0: container\_bridge.ensure: - cidr: {{ grains\['cbr-cidr'\] }} ... grains: r
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -396,7 +350,7 @@ cbr0: container\_bridge.ensure: - cidr: {{ grains\['cbr-cidr'\] }} ... grains: r
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/">Google Kubernetes设计文档之服务篇</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/">Google Kubernetes设计文档之服务篇</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -405,28 +359,12 @@ cbr0: container\_bridge.ensure: - cidr: {{ grains\['cbr-cidr'\] }} ... grains: r
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-23</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-23</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">摘要：
-Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。 Pod是创建、调度和管理的最小部署单位，本文详细介绍这些Pod之间的通信和调度。
-概述 Kubernetes中 Pods 不是一成不变的。它们可以随着时间进行迁移，特别是当受到 ReplicationControllers支配时。虽然每个pod都有属于自己的IP地址，但是却不能保证每个Pod的IP地址随着时间的变化依然保持不变。这就导致了一个问题：如果在Kubernetes集群里，有一系列的pods（我们姑且称之为后端）为其他的pods（称为前端）提供功能，那前端该如何去找到后端？
-服务 Kubernetes中的服务是一种抽象概念，它定义了一个pods逻辑集合以及访问它们的策略，有时它也被称为微服务（Micro-service）。服务的目标是提供一种桥梁，使得非Kubernetes原生应用程序，在无需为Kubernetes编写特定代码的前提下，轻松访问后端。服务会为用户提供一对IP地址和port端口，用于在访问时重定向到相应的后端。服务里Pods集合的选定是由一个标签选择器（label selector）来完成的。 举个例子，首先假设一个“镜像处理”后端，它运行着三个可用的副本。这些副本是无状态的，前端根本不关心自己具体使用的是后端的哪个副本。因此，尽管组成后端集合的实际pods可能已经发生了改变，但是前端用户完全不需要知晓这些改变。这种服务的抽象性实现了前端访问与后端服务的解耦。
-定义服务 这里是一个使用服务的例子。在Kubernetes中，服务是REST对象，类似于pod。如pod一般，服务的定义，可以通过一个发给apiserver的POST请求，来完成创建一个新的实例。例如，假设你有一组pods，都暴露9376端口，并携带一个&quot;app=MyApp&quot;的标签。
-{ &ldquo;id&rdquo;: &ldquo;myapp&rdquo;, &ldquo;selector&rdquo;: { &ldquo;app&rdquo;: &ldquo;MyApp&rdquo; }, &ldquo;containerPort&rdquo;: 9376, &ldquo;protocol&rdquo;: &ldquo;TCP&rdquo;, &ldquo;port&rdquo;: 8765 }
-上述定义将创建一个名为&quot;myapp&quot;的新服务，它使得所有带有&quot;app=MyApp&quot;标签的pod都监听TCP协议上的端口9376。而客户可以通过端口$MYAPP_SERVICE_PORT连接到$MYAPP_SERVICE_HOST，从而访问该服务。
-服务是如何工作的？ 在Kubernetes集群中的每个节点（node）上都运行着一个服务代理（service proxy）。该代理应用监听Kubernetes Master，以此来添加和删除服务对象及端点（endpoints，即满足服务标签选择器的pods），同时该代理应用还存储一个服务到端点列表的映射。它为每个服务在本地节点上打开一个端口，并转发该端口上的所有流量到后端。名义上是依据策略来执行的，但现在唯一支持的策略是轮转调度（round-robin）。 当一个pod被编入，Master为每一个存活的服务增加一组环境变量。我们支持Docker-links-compatible变量（参见makeLinkVariables）以及更简单的{SVCNAME}_SERVICE_HOST和{SVCNAME}_SERVICE_PORT变量，其中的服务名要求大写，破折号将转换为下划线。具体的服务工作图如图1 。例如，服务&quot;redis-master&quot;监听TCP端口637，并分配IP地址10.0.0.11，将产生以下环境变量：
-REDIS\_MASTER\_SERVICE\_HOST=10.0.0.11 REDIS\_MASTER\_SERVICE\_PORT=6379 REDIS\_MASTER\_PORT=tcp://10.0.0.11:6379 REDIS\_MASTER\_PORT\_6379\_TCP=tcp://10.0.0.11:6379 REDIS\_MASTER\_PORT\_6379\_TCP\_PROTO=tcp REDIS\_MASTER\_PORT\_6379\_TCP\_PORT=6379 REDIS\_MASTER\_PORT\_6379\_TCP\_ADDR=10.0.0.11  这意味着要有先后次序，即一个pod希望访问的服务必须在pod本身创建之前被创建，否则环境变量不会被加载。不过支持DNS服务后，该限制将不再存在。 服务通过它的标签选择器，可以解析到0或多个端点。在服务的生命周期内，组成该服务的pods集合可以增加、缩减，或全部失效。用户只有在当他们正在使用的后端从服务中被移除时，才会遇到问题（即使如此，已经打开的连接也会因为某些协议的缘故，继续保持）。 
-图1.服务工作图
-细节明细 前文的内容对于大多数只是想要使用服务的人来说应该已经足够了。然而，有很多发生在这背后的事情也值得去深入了解。
-避免冲突 Kubernetes的一个主要理念是，用户不应该遭遇可能导致其操作失败的情景，尤其是用户本身并未引起错误。在此背景下，我们考虑网络端口的问题—不应该让用户选择一个可能与其他用户发生冲突的端口号。否则，将是隔离上的失败。 为了让用户能够选择他们的服务端口号，我们必须确保不会引起两个服务间的冲突。我们通过为每个服务分配自己的IP地址来做到这一点。
-IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际上并不是由单个Master响应的。相反的，我们用iptables（Linux中的数据包处理逻辑）来定义这些需要透明重定向的“虚拟”IP地址。我们将服务IP和服务端口的元组称为Portal。当用户连接到portal上，其访问会被自动转移到一个相应的端点上。实际上，服务的环境变量是依据portal的IP和端口来设定的。此外，我们将增加DNS来支撑服务的访问。 举例来说，考虑上图所展示的应用处理过程。在创建后端服务时，Kubernetes Master分配一个Portal的IP地址，例如10.0.0.1。假设服务端口是1234，portal即为是10.0.0.1:1234。Master将存储该信息，它也被集群中所有的服务代理实例所获取。当代理监测到一个新的portal，它会打开一个新的随机端口，建立一个从Portal到新端口的iptables重定向，然后开始接受对其的连接。 当用户使用portal端口连接MYAPP_SERVICE_HOST时（不论他们将其视为静态端口或视为MYAPP_SERVICE_PORT），iptables规则生效，重定向数据包到服务代理自身的端口上。服务代理选择一个后端，并开始从客户端到后端的代理通信流量。具体原理如图2。 最终的结果是，用户可以选择他们想要的任何服务端口，而没有冲突的危险。客户可以轻松连接IP和端口，而无需了解到他们正在访问哪个pods。 
-图2.服务中IP和portal原理图
-外部服务 对于用户应用程序的某些部分（如前端），用户希望在外部可访问的IP地址（公网IP）上暴露一个服务。 如果你希望你的服务暴露在一个公网IP地址上，你可以选择提供一个服务可以响应的&quot;publicIPs&quot;列表。这些IP地址将被绑定上服务端口，同时被映射到由服务选择的pods集合上。你随后需要负责确保到该公网IP地址的通信流量被发送到一个或多个kubernetes工作节点。与映射内部IP地址一致，每个主机上的每一条IPTables规则，将公网特定IP地址的数据包映射到内部的服务代理。 对于提供外部负载均衡设备的云服务提供商，还有一个更简单的方式来达到同样的效果。在这类供应商（如GCE）上，你可以让publicIPs为空，作为代替，你可以在服务上设置createExternalLoadBalancer标志。这会启动一个云服务提供商的特定负载均衡设备（假设它由你的云提供商支持），并用适当的值来填充这个公网IP值域。
-缺点 我们预计，portals使用的iptables将在小规模上可用，而无法扩展到有着成千上万服务的大型集群。查看 portals的原始设计方案 ，可了解更多详情。
-今后的工作 在将来，我们设想，代理策略可以变得比简单的轮循调度更加细致入微，比如master筛选或分片。我们还设想，一些服务将具有“真正的”负载均衡器，在这种情况下，portal将可以直接简单地传输数据包。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/" class="btn btn-template-main"></a>
+                                    <p class="intro">摘要：</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -436,7 +374,7 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -444,7 +382,7 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/">Google Kubernetes设计文档之Pod篇</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/">Google Kubernetes设计文档之Pod篇</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -453,20 +391,12 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-19</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-19</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。CSDN联合浙江大学SEL实验室共同翻译其设计文档，本文为系列的第二篇：Pod。 在Kubernetes中，创建、调度和管理的最小部署单位是Pod，而不是容器。
-1.什么是Pod 一个Pod对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。Pod主要是在容器化环境中建立了一个面向应用的“逻辑主机”模型，它可以包含一个或多个相互间紧密联系的容器。在没有容器化技术的场景里，同个Pod内的“容器”都在同一台物理或虚拟主机上运行。 Pod与容器一样都不是持续存在的，在容器的生命周期里，每个Pod被分配到节点上运行直至运行结束或被删除。当一个节点消失时，该节点上的Pod也随之被删除。每个Pod实体只会被调度一次，不会重复分配给别的节点，由replication controller负责创建新的Pod来替代旧的（在未来也可能有新的API用于Pod迁移）。
-2.开发Pod的原因 2.1 资源共享和通信 Pod的存在使同个Pod下的容器之间能更方便的共享数据和通信。 同个Pod下的容器使用相同的网络命名空间、IP地址和端口区间，相互之间能通过localhost来发现和通信。在一个无层次的共享网络中，每个Pod都有一个IP地址用于跟别的物理主机和容器通信，Pod的名字就用作容器通信时的主机名。（有关网络的内容，我们稍后会翻译） 在同个Pod内运行的容器还共享一块存储卷空间，存储卷内的数据不会在容器重启后丢失，同时能被同Pod下别的容器读取。 未来的开发计划是使Pod共享IPC命名空间，CPU和内存。(参加Google的lmctfy文档，lmctfy的意思是Let me Contain That For You)
-2.2 管理 相比原生的容器接口，Pod通过提供更高层次的抽象，简化了应用的部署和管理。Pods就像一个管理和横向部署/和管理的单元，主机托管、资源共享、协调复制和依赖管理都可以自动处理。
-3.Pod用例 Pod能应用于构建垂直集成应用栈，但它的主要为了集中管理一些辅助程序，如：
- 内容管理系统，文件和数据载入器，本地缓存管理等； - 日志和检查点备份，压缩，轮换，快照系统等； 数据变化监视，日志末端数据读取，日志和监控适配器，事件打印等； 代理，桥接和适配器； 控制器，管理器，配置编辑器和更新器。  Pod的设计并不是为了运行同一个应用的多个实例。
-4.其他考虑因素 为什么不直接在单个Docker容器中运行多个程序？主要是出于以下几个原因：
- 透明性：将Pod内的容器向基础设施可见，底层系统就能向容器提供如进程管理和资源监控等服务，这样能给用户带来极大便利； 解绑软件的依赖：这样单个的容器可以独立地重建和重新部署。未来有可能在Kubernetes上实现独立容器的实时更新； 易用性：用户不需要运行自己的进程管理器，也不需负责信号量和退出码的传递等； 高效性：因为底层设备负责更多了管理，容器因而能更轻量化。  为什么不直接将相近的容器集中管理呢？那种方法虽然提供了集中管理的功能，但却没有Pod所拥有的大部分便利之处，如不提供资源共享和进程间通信，无法保证容器同时开始和结束，不能简化管理等。
-原文链接：Pods（编译/叶瑞浩 审校/孙宏亮、张磊） [simple-author-box]</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/" class="btn btn-template-main"></a>
+                                    <p class="intro">摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。CSDN联合浙江大学SEL实验室共同翻译其设计文档，本文为系列的第二篇：Pod。 在Kubernetes中，创建、调度和管理的最小部署单位是Pod，而不是容器。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -476,7 +406,7 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -484,7 +414,7 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/">Google Kubernetes设计文档之安全篇</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/">Google Kubernetes设计文档之安全篇</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -493,15 +423,12 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-11</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/"><i class="far fa-calendar"></i> 2014-12-11</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文为其设计文档系列的第一篇：安全。
-1.设计目标 本文讲述了Kubernetes的容器、API和基础设施在安全方面的设计原则。
- 保证容器与其运行的宿主机之间有明确的隔离； 限制容器对基础设施或者其它容器造成不良影响的能力； 最小特权原则——限定每个组件只被赋予了执行操作所必需的最小特权，由此确保可能产生的损失达到最小； 通过清晰地划分组件的边界来减少需要加固和加以保护的系统组件数量。  2.设计要点 将etcd中的数据与minion节点和基础设施进行隔离 在Kubernetes的设计中，如果攻击者可以访问etcd中的数据，那么他就可以在宿主机上运行任意容器，获得存储在volumes或者pods的任何受保护信息（比如访问口令或者作为环境变量的共享密钥），通过中间人攻击来拦截和重定向运行中的服务流量，或者直接删除整个集群的历史信息。 **Kubernetes设计的基本原则是，对etcd中数据的访问权限应该只赋予某些特定的组件，这些组件或者需要对系统有完整的控制权，或者对系统服务变更请求能执行正确的授权和身份验证操作。**将来，etcd会提供粒度访问控制，但这样的粒度要求有一个管理员能够深刻理解etcd中存储数据的schema，并按照schema设置相应的安全策略。管理员必须能够在策略层面上保证Kubernetes的安全性，而非实现层面；另外，随着时间推移，数据的schema可能产生变化，这样的状况应该被预先考虑以免造成意外的安全泄漏。 Kubelet和Kube Proxy都需要与它们特定角色相关的信息——对于Kubelet，需要的是运行的pods集合的信息；对于Kube Proxy，需要用以负载均衡的服务与端点集合信息。Kubelet同样需要提供运行的pods和历史终止数据的相关信息。Kubelet和Kube Proxy用于加载配置的方式是“wait for changes”的HTTP请求。因此，限制Kubelet和Kube Proxy的权限使其只能访问对应角色所需的信息是可行的。 **Replication controller和其他future controller的controller manager经过用户授权可以代表其执行对Kubernetes资源的自动化维护。Controller manager访问或修改资源状态的权限应该被严格地限定在它们特定的职责范围之内，而不能访问其他无关角色的信息。**例如，一个replication controller只需要如下权限：创建已知pods配置的副本，设定已经存在的pods的运行状态，或者删除它创建的已存在的pods；而不需要知道pods的内容或者当前状态，亦不需要有访问挂载了volume的pods中的数据的权限。 Kubernetes pod scheduler负责从pod中读取数据并将其注入pod所在集群的minion节点中。它需要的最低限度的权限有，查看pod ID（用以生成binding）、pod当前状态、分配给pod的资源信息等。Pod scheduler不需要修改pods或查看其它资源的权限，只需要创建binding的权限。Pod scheduler不需要删除binding的权限，除非它接管了宕机机器上原有组件的重定位工作。在这样的情况下，scheduler可能需要对用户或者项目容器信息的读取权限来决定重定位pod的优先位置。
-原文链接：Security in Kubernetes（编译/何思玫 审校/孙宏亮） [simple-author-box]</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/" class="btn btn-template-main"></a>
+                                    <p class="intro">摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文为其设计文档系列的第一篇：安全。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -701,40 +628,40 @@ IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际�
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="《Docker容器与容器云》推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="Docker背后的标准化容器执行引擎——runC">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
                     </div>
                 </div>
                 

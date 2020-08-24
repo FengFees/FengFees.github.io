@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                                      <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -190,7 +190,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -199,24 +199,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/"><i class="far fa-calendar"></i> 2015-10-21</a>
+                                            <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/"><i class="far fa-calendar"></i> 2015-10-21</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">随着容器技术发展的愈发火热，Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，旨在围绕容器格式和运行时制定一个开放的工业化标准。该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。而runC就是Docker贡献出来的，按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现。
-1. 容器格式标准是什么？ 制定容器格式标准的宗旨概括来说就是不受上层结构的绑定，如特定的客户端、编排栈等，同时也不受特定的供应商或项目的绑定，即不限于某种特定操作系统、硬件、CPU架构、公有云等。 该标准目前由libcontainer和appc的项目负责人（maintainer）进行维护和制定，其规范文档就作为一个项目在Github上维护，地址为https://github.com/opencontainers/specs。
-1.1 容器标准化宗旨 标准化容器的宗旨具体分为如下五条。
-  操作标准化：容器的标准化操作包括使用标准容器感觉创建、启动、停止容器，使用标准文件系统工具复制和创建容器快照，使用标准化网络工具进行下载和上传。
-  内容无关：内容无关指不管针对的具体容器内容是什么，容器标准操作执行后都能产生同样的效果。如容器可以用同样的方式上传、启动，不管是php应用还是mysql数据库服务。
-  基础设施无关：无论是个人的笔记本电脑还是AWS S3，亦或是Openstack，或者其他基础设施，都应该对支持容器的各项操作。
-  为自动化量身定制：制定容器统一标准，是的操作内容无关化、平台无关化的根本目的之一，就是为了可以使容器操作全平台自动化。
-  工业级交付：制定容器标准一大目标，就是使软件分发可以达到工业级交付成为现实。
-  1.2 容器标准包（bundle）和配置 一个标准的容器包具体应该至少包含三块部分：
- config.json： 基本配置文件，包括与宿主机独立的和应用相关的特定信息，如安全权限、环境变量和参数等。具体如下：  容器格式版本 rootfs路径及是否只读 各类文件挂载点及相应容器内挂载目录（此配置信息必须与runtime.json配置中保持一致） 初始进程配置信息，包括是否绑定终端、运行可执行文件的工作目录、环境变量配置、可执行文件及执行参数、uid、gid以及额外需要加入的gid、hostname、低层操作系统及cpu架构信息。   runtime.json： 运行时配置文件，包含运行时与主机相关的信息，如内存限制、本地设备访问权限、挂载点等。除了上述配置信息以外，运行时配置文件还提供了“钩子(hooks)”的特性，这样可以在容器运行前和停止后各执行一些自定义脚本。hooks的配置包含执行脚本路径、参数、环境变量等。 rootfs/：根文件系统目录，包含了容器执行所需的必要环境依赖，如/bin、/var、/lib、/dev、/usr等目录及相应文件。rootfs目录必须与包含配置信息的config.json文件同时存在容器目录最顶层。  1.3 容器运行时和生命周期 容器标准格式也要求容器把自身运行时的状态持久化到磁盘中，这样便于外部的其他工具对此信息使用和演绎。该运行时状态以JSON格式编码存储。推荐把运行时状态的json文件存储在临时文件系统中以便系统重启后会自动移除。 基于Linux内核的操作系统，该信息应该统一地存储在/run/opencontainer/containers目录，该目录结构下以容器ID命名的文件夹（/run/opencontainer/containers/&lt;containerID&gt;/state.json）中存放容器的状态信息并实时更新。有了这样默认的容器状态信息存储位置以后，外部的应用程序就可以在系统上简便地找到所有运行着的容器了。 state.json文件中包含的具体信息需要有：
- 版本信息：存放OCI标准的具体版本号。 容器ID：通常是一个哈希值，也可以是一个易读的字符串。在state.json文件中加入容器ID是为了便于之前提到的运行时hooks只需载入state.json就可以定位到容器，然后检测state.json，发现文件不见了就认为容器关停，再执行相应预定义的脚本操作。 PID：容器中运行的首个进程在宿主机上的进程号。 容器文件目录：存放容器rootfs及相应配置的目录。外部程序只需读取state.json就可以定位到宿主机上的容器文件目录。  标准的容器生命周期应该包含三个基本过程。
- 容器创建：创建包括文件系统、namespaces、cgroups、用户权限在内的各项内容。 容器进程的启动：运行容器进程，进程的可执行文件定义在的config.json中，args项。 容器暂停：容器实际上作为进程可以被外部程序关停(kill)，然后容器标准规范应该包含对容器暂停信号的捕获，并做相应资源回收的处理，避免孤儿进程的出现。  1.4 基于开放容器格式（OCF）标准的具体实现 从上述几点中总结来看，开放容器规范的格式要求非常宽松，它并不限定具体的实现技术也不限定相应框架，目前已经有基于OCF的具体实现，相信不久后会有越来越多的项目出现。
- 容器运行时opencontainers/runc，即本文所讲的runc项目，是后来者的参照标准。 虚拟机运行时hyperhq/runv，基于Hypervisor技术的开放容器规范实现。 测试huawei-openlab/oct基于开放容器规范的测试框架。  2.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/" class="btn btn-template-main"></a>
+                                    <p class="intro">随着容器技术发展的愈发火热，Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，旨在围绕容器格式和运行时制定一个开放的工业化标准。该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。而runC就是Docker贡献出来的，按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -416,40 +404,40 @@
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="《Docker容器与容器云》推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="Docker背后的标准化容器执行引擎——runC">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
                     </div>
                 </div>
                 

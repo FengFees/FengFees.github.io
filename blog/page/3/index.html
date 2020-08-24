@@ -182,7 +182,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -190,7 +190,7 @@
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">Docker源码分析（五）：Docker Server的创建</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">Docker源码分析（五）：Docker Server的创建</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -199,19 +199,12 @@
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/"><i class="far fa-calendar"></i> 2014-12-09</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/"><i class="far fa-calendar"></i> 2014-12-09</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">本文为《Docker源码分析》系列的第五篇——Docker Server的创建。
-1. Docker Server简介 Docker架构中，Docker Server是Docker Daemon的重要组成部分。Docker Server最主要的功能是：接受用户通过Docker Client发送的请求，并按照相应的路由规则实现路由分发。 同时，Docker Server具备十分优秀的用户友好性，多种通信协议的支持大大降低Docker用户使用Docker的门槛。除此之外，Docker Server设计实现了详尽清晰的API接口，以供Docker用户选择使用。通信安全方面，Docker Server可以提供安全传输层协议（TLS），保证数据的加密传输。并发处理方面，Docker Daemon大量使用了Golang中的goroutine，大大提高了服务端的并发处理能力。 本文为《Docker源码分析》系列的第五篇——Docker Server的创建。
-2. Docker Server源码分析内容安排 本文将从源码的角度分析Docker Server的创建，分析内容的安排主要如下：
- “serveapi”这个job的创建并执行流程，代表Docker Server的创建； “serveapi”这个job的执行流程深入分析； Docker Server创建Listener并服务API的流程分析。  3. Docker Server创建流程 《Docker源码分析（三）：Docker Daemon启动》主要分析了Docker Daemon的启动，而在mainDaemon()运行的最后环节，实现了创建并运行名为”serveapi”的job。这一环节的作用是：让Docker Daemon提供API访问服务。实质上，这正是实现了Docker架构中Docker Server的创建与运行。 从流程的角度来说，Docker Server的创建并运行，代表了”serveapi”这个job的整个生命周期：创建Job实例job，配置job环境变量，以及最终执行该job。本章分三节具体分析这三个不同的阶段。
-3.1 创建名为”serveapi”的job Job是Docker架构中Engine内部最基本的任务执行单位，故创建Docker Server这一任务的执行也不例外，需要表示为一个可执行的Job。换言之，需要创建Docker Server，则必须创建一个相应的Job。具体的Job创建形式位于./docker/docker/daemon.go，如下：
-job := eng.Job(&quot;serveapi&quot;, flHosts...)  以上代码通过Engine实例eng创建一个Job类型的实例job，job名为”serveapi”，同时用flHost的值来初始化job.Args。flHost的作用是：配置Docker Server监听的协议与监听的地址。 需要注意的是，《Docker源码分析（三）：Docker Daemon启动》mainDaemon()具体实现过程中，在加载builtins环节已经向eng对象注册了key为”serveapi”的Handler，而该Handler的value为api.ServeApi。因此，在运行名为”serveapi”的job时，会执行该job的Handler，即api.ServeApi。
-3.2 配置job环境变量 创建完Job实例job之后，Docker Daemon为job配置环境参数。在Job实现过程中，为Job配置参数有两种方式：第一，创建Job实例时，用指定参数直接初始化Job的Args属性；第二，创建完Job后，给Job添加指定的环境变量。以下代码则实现了为创建的job配置环境变量：
-job.SetenvBool(&quot;Logging&quot;, true) job.SetenvBool(&quot;EnableCors&quot;, *flEnableCors) job.Setenv(&quot;Version&quot;, dockerversion.VERSION) job.Setenv(&quot;SocketGroup&quot;, *flSocketGroup) job.SetenvBool(&quot;Tls&quot;, *flTls) job.SetenvBool(&quot;TlsVerify&quot;, *flTlsVerify) job.Setenv(&quot;TlsCa&quot;, *flCa) job.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/" class="btn btn-template-main"></a>
+                                    <p class="intro">本文为《Docker源码分析》系列的第五篇——Docker Server的创建。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -221,7 +214,7 @@ job.SetenvBool(&quot;Logging&quot;, true) job.SetenvBool(&quot;EnableCors&quot;,
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -229,7 +222,7 @@ job.SetenvBool(&quot;Logging&quot;, true) job.SetenvBool(&quot;EnableCors&quot;,
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">Blue-Green Deployments on Cloud Foundry (利用CloudFoundry实现蓝绿发布)</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/">Blue-Green Deployments on Cloud Foundry (利用CloudFoundry实现蓝绿发布)</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -238,14 +231,12 @@ job.SetenvBool(&quot;Logging&quot;, true) job.SetenvBool(&quot;EnableCors&quot;,
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">利用CloudFoundry实现蓝绿发布
-前言 原文地址：Blue-Green Deployments on Cloud Foundry We’ll begin with a basic Spring application named ms-spr-demo. This app takes users to a simple web page announcing the ubiquitous “Hello World!” message. We’ll utilize the cf command-line interface to push the application: 这里先向CF PUSH一个很简单的打印“Hello World”的应用：
-$ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Memory Limit&gt; 512M Creating ms-spr-demo... OK 1: ms-spr-demo 2: none Subdomain&gt; ms-spr-demo 1: cfapps.io 2: mattstine.com 3: none Domain&gt; 1 Creating route ms-spr-demo.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/" class="btn btn-template-main"></a>
+                                    <p class="intro">利用CloudFoundry实现蓝绿发布</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -255,7 +246,7 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -263,7 +254,7 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">Cloud Foundry’s 新容器技术： A Garden Overview</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">Cloud Foundry’s 新容器技术： A Garden Overview</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -272,18 +263,12 @@ $ cf push --path build/libs/cf-demo.war Name&gt; ms-spr-demo Instances&gt; 1 Mem
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。
-Warden和Garden Warden背景： &ldquo;CloudFoundry’s container technology is provided by Warden,which was created by VMware’s Pieter Noorduis and others.Warden is a subtle combination of Ruby code, a core written inC, and shell scripts to configure the host and containers.&rdquo; 在此前的WardenDEA中，在每个安装好的DEA上都会运行Warden服务（Ruby写的，调用大量shell来配置host），用来管理Cgroup，Namespaces和以及进程管理。同时，Warden容器的感知和状态监控也由此服务来负责。作为一个C/S结构的服务，Warden使用了谷歌的protobuf协议来负责交互。每个容器内部都运行一个wshd daemon（C语言写的）来负责容器内的管理比如启动应用进程，输出日志和错误等等。这里需要注意的正是由于使用了protobuf，warden对外的交互部分强依赖于wardenprotocol，使得warden对开发者的易用性大打折扣。 
-Wardenstructure
-在CloudFoundry的下一代PaaS项目Diego中，Pivotal团队对于Warden进行了基于Golang的重构，并建立了一个独立的项目Garden。在Garden中，容器管理的功能被从server代码里分离出来，即server部分只负责接收协议请求，而原先的容器管理则交给backend组件，包括将接收到的请求映射成为Linux（假如是Linux backend的话）操作。值得注意的是：这样backend架构再次透露出了warden跨平台的野心，可以想象一旦Windowsbackend被社区（比如IronFoundry）贡献出来后的威力。更重要的是，RESTful风格的API终于被引入到了Garden里面，原作者说是为了实验和测试，但实际上Docker最成功的一点正是友好的API和以此为基础的扩展能力。 
-Gardenstructure
-Namespaces 容器化应用依然通过namespaces来定义它所能使用的资源。最简单的例子，应用的运行需要监听指定的端口，而传统方法中这个端口就必须在全局的host网络namespaces上可见。为了避免应用互相之间出现端口冲突，Garden服务就需要设置一组namepaces来隔离每个应用的IP和port（即网络namespace）。需要再次强调，容器化的应用资源隔离不同于传统的虚拟化技术，虽然我们在讲容器，但是我们并没有去创建“什么”，而是为实实在在运行着的应用进程划分属于它自己的“命名空间”。 Garden使用了除用户namespace之外的所有namespace技术。具体实现是使用挂载namespace的方法来用用户目录替换原host的root文件系统（使用pivot_root指令），然后unmount这个root文件系统使得从容器不会直接访问到该目录 备注：Linux在很早之前就支持了namespaces技术，从一开始为文件系统挂载点划分namespace，到最新的为用户添加namespace，具体演化参见：Articles on Linux namespaces
-ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿名的操作系统环境“中自由的使用类似于CPU和MEM这样的资源，但是应用仍然是直接访问系统设备的。Linux提供了一系列controlgroups来将进程划分为层级结构的组然后将它们限制到不同的约束中。这些约束由cgroup中的resourcecontrollers来实现并负责与kernel子系统进行交互。举个例子：memoryresource controller可以限制一个controlgroup中的进程能够在真实内存中使用的页数，从而确保这些进程在超出限制后被停止。 Garden使用了五种资源控制：cpuset(CPUs and memory nodes) , cpu (CPU bandwidth), cpuacct (CPUaccounting), devices (device access), and memory(memoryusage)，并通过这些资源控制堆每一个容器设置一个controlgroup。所以容器中的进程将被限制在resourcecontrollers指定的资源数下运行（严格地说cpuacct仅统计CPUusage，并不做出具体限制）。 此外，Garden还使用setrlimit系统调用来控制容器中进程的资源使用；使用setquota来为容器中的用户设置配额。这一点上也同Warden相同。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/" class="btn btn-template-main"></a>
+                                    <p class="intro">编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -293,7 +278,7 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -301,7 +286,7 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">Cloud Foundry中warden的架构与实现</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">Cloud Foundry中warden的架构与实现</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -310,21 +295,12 @@ ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：
- warden的功能介绍及框架实现 warden框架的对外接口及实现 warden框架的内部模块及实现 warden的运行示例  warden的功能介绍及框架实现 warden功能介绍 由于Cloud Foundry v1中DEA组件运行应用程序时，自身设计存在一定的缺陷，即同一个DEA上运行的应用不能很好的实现运行过程中资源的隔离与限制，故在Cloud Foundry v2中引入了warden这一模块。 warden专门接收DEA组件发送的关于应用的管理请求，在处理这部分管理请求时，借助轻量级虚拟化技术，将宿主机操作系统进行虚拟化，在容器内部执行请求的具体内容。warden的具体使用效果为应用程序之间互不感知，资源间完成隔离，各自的资源使用存在上限。假设Cloud Foundry不存在应用程序资源的隔离与限制机制，则在同一个DEA上运行的多个应用程序，在负载增加的时候，会出现竭力竞争资源的情况，当资源消耗殆尽时，大大降低应用程序的可用性与安全性。 在资源隔离与限制方面，warden主要提供3个维度的用户自定义隔离与限制：内存、磁盘、网络带宽；另外warden还提供以下维度的资源隔离与限制，但仅提供默认值，不提供用户自定义设置：CPU、CPUACCT、Devices。 同时，warden作为一个虚拟化容器，还提供众多的API命令，供用户完成对warden container的管理。主要的命令如下：copy in、copy out、create、destroy、echo、error 、info、limit_bandwidth、limit_disk、limit_memory、limit_cpu、link 、list、message、net in、net out、ping、run、spawn、stop和stream等 。这些命令的功能介绍可以简单参见：James Bayer对于warden与docker的比较文档。
-warden框架实现 在涉及warden框架的具体实现时，需要先申明和warden相关的多个概念：
- warden：在Cloud Foundry中实现应用资源隔离与控制的框架，其中包括，warden_client、warden_server、warden_protocol和warden container； warden server：warden框架中server端的实现，主要负责接收client端请求，以及请求的处理执行； warden client：warden框架中client端的实现，被Cloud Foundry中被dea_ng组件调用，实现给warden_server发送具体请求； warden protocol：warden框架中定义warden_client与warden_server通信时的消息请求协议； warden container：warden框架中管理与运行应用程序的容器，资源的隔离与限制以容器为单位。  warden框架的实现为典型的C/S架构，如下图：
-
-warden框架的对外接口及实现 虽然warden模块是Cloud Foundry中不可或缺的一部分，但是如果不借助Cloud Foundry的话，warden依然可以用来管理warden container，并在container内部运行应用程序等。 若warden运行在Cloud Foundry内部，则dea_ng组件内嵌warden_client，并以warden_client与warden_server建立通信，分发应用的管理请求；若warden单独存在，则可以通过warden的REPL（Read-Eval-Print Loop）命令行工具瑞与warden_server进行通信，用户通过命令行发起container的管理请求。本章将以以上两个方式阐述warden框架的对外接口及实现。
-warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea_ng一起捆绑使用。在部署dea_ng时，不论Cloud Foundry集群中安装了多个dea_ng组件，每个dea_ng组件所在的节点上都会安装一个warden，由此可见warden与dea_ng的存在为一一对应关系。 以下是warden与dea_ng的交互示意图：
-
-由以上示意图可知，从dea_ng接受请求，分发container请求，主要分为以下几个步骤：
- dea_ng通过消息中间件NATS获取app的管理请求； dea_ng根据请求类型，并通过Warden::Protocol协议创建出相对应的container请求； dea_ng通过已经和warden_server建立连接的waren_client发送container请求。  warden与REPL命令行交互 warden也可以单独安装在某个机器上，当需要管理warden时，可以通过REPL命令行的方式，启动一个进程，创建warden_client，并负责接收用户在命令行输入的warden container管理命令，然后通过warden_client给warden_server发送请求。 从上可知，REPL和dea_ng与warden的通信方式几乎相同，区别仅仅在两者的使用方式。以下是warden与repl命令行交互的示意图：</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -334,7 +310,7 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -342,7 +318,7 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">Cloud Foundry中DEA与warden通信完成应用端口监听</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/">Cloud Foundry中DEA与warden通信完成应用端口监听</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -351,16 +327,12 @@ warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。
-DEA在执行启动一个应用的时候，主要做到以下这些部分：promise_droplet, promise_container, 其中这两个部分并发完成；promise_extract_droplet, promise_exec_hook_script(“before_start”), promise_start等。代码如下：
-\[ promise\_droplet, promise\_container \].each(&amp;:run).each(&amp;:resolve) \[ promise\_extract\_droplet, promise\_exec\_hook\_script('before\_start'), promise\_start \].each(&amp;:resolve)  promise_droplet: 在这一个环节，DEA主要做的工作是将droplet下载本机，通过droplet_uri,其中基本的路径在/config/dea.yml中，为base_dir: /tmp/dea_ng, 因此最终DEA下载到的droplet存放于DEA组件所在的宿主机上。
-promise_container: 该环节的工作主要完成创建一个warden container，随后可以为应用的运行提供一个合适的环境。promise_container的源码实现如下：
-def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; droplet.droplet\_dirname, 'dst\_path' =&gt; droplet.droplet\_dirname}\] with\_network = true container.create\_container( bind\_mounts: bind\_mounts + config\['bind\_mounts'\], limit\_cpu: config\['instance'\]\['cpu\_limit\_shares'\], byte: disk\_limit\_in\_bytes, inode: config.instance\_disk\_inode\_limit, limit\_memory: memory\_limit\_in\_bytes, setup\_network: with\_network) attributes\['warden\_handle'\] = container.handle promise\_setup\_def create\_container(params) \[:bind\_mounts, :limit\_cpu, :byte, :inode, :limit\_memory, :setup\_network\].</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/" class="btn btn-template-main"></a>
+                                    <p class="intro">在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -370,7 +342,7 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -378,7 +350,7 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">Docker源码分析（四）：Docker Daemon之NewDaemon实现</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">Docker源码分析（四）：Docker Daemon之NewDaemon实现</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -387,19 +359,12 @@ def promise\_container Promise.new do |p| bind\_mounts = \[{'src\_path' =&gt; dr
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。
-1. 前言 Docker的生态系统日趋完善，开发者群体也在日趋庞大，这让业界对Docker持续抱有极其乐观的态度。然而，对于广大开发者而言，使用Docker这项技术已然不是门槛，享受Docker带来的技术福利已不是困难。如今，如何探寻Docker适应的场景，如何发展Docker周边的技术，以及如何弥合Docker新技术与传统物理机或VM技术的鸿沟，已经占据Docker研究者们的思考与实践。 本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。
-2. NewDaemon作用简介 在Docker架构中有很多重要的概念，如：graph，graphdriver，execdriver，networkdriver，volumes，Docker containers等。Docker的实现过程中，需要将以上实体进行统一化管理，而Docker Daemon中的daemon实例就是设计来完成这一任务。 从源码的角度，NewDaemon函数的执行出色的完成了Docker Daemon创建并加载daemon的任务，最终实现统一管理Docker Daemon的资源。
-3. NewDaemon源码分析内容安排 本文从源码角度，分析Docker Daemon加载过程中NewDaemon的实现，整个分析过程如下图： 
-4. NewDaemon具体实现 在《Docker源码分析》系列第三篇中，有一个重要的环节为：使用goroutine加载daemon对象并运行。在加载并运行daemon对象时，所做的第一个工作即为：
-d, err := daemon.NewDaemon(daemonCfg, eng)  该部分代码分析如下：
- 函数名：NewDaemon； 函数调用具体实现所处的包位置：./docker/daemon； 函数具体实现源文件：./docker/daemon/daemon.go； 函数传入实参：daemonCfg，定义了Docker Daemon运行过程中所需的众多配置信息；eng，在mainDaemon中创建的engine对象实例； 函数返回类型：d，具体的Daemon对象实例；err，错误状态。  进入./docker/daemon/daemon.go中NewDaemon的具体实现，代码如下
-func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon, err := NewDaemonFromDirectory(config, eng) if err != nil { return nil, err } return daemon, nil }  可见，在实现NewDaemon的过程中，主要依靠NewDaemonFromDirectory函数来实现创建Daemon的运行环境。该函数的实现，传入参数以及返回类型与NewDaemon相同。下文将大篇幅分析其实现细节。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
+                                    <p class="intro">本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -409,7 +374,7 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -417,7 +382,7 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">Docker源码分析（三）：Docker Daemon启动</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">Docker源码分析（三）：Docker Daemon启动</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -426,19 +391,12 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。
-【摘要】 【Docker源码分析（三）：Docker Daemon启动】Docker作为业界备受推崇的轻量级虚拟化容器管理引擎，其强大的后台能力全凭Docker Daemon。本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。
-1 前言 Docker诞生以来，便引领了轻量级虚拟化容器领域的技术热潮。在这一潮流下，Google、IBM、Redhat等业界翘楚纷纷加入Docker阵营。虽然目前Docker仍然主要基于Linux平台，但是Microsoft却多次宣布对Docker的支持，从先前宣布的Azure支持Docker与Kubernetes，到如今宣布的下一代Windows Server原生态支持Docker。Microsoft的这一系列举措多少喻示着向Linux世界的妥协，当然这也不得不让世人对Docker的巨大影响力有重新的认识。 Docker的影响力不言而喻，但如果需要深入学习Docker的内部实现，笔者认为最重要的是理解Docker Daemon。在Docker架构中，Docker Client通过特定的协议与Docker Daemon进行通信，而Docker Daemon主要承载了Docker运行过程中的大部分工作。本文即为《Docker源码分析》系列的第三篇­——Docker Daemon篇。
-2 Docker Daemon简介 Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型，创建出指定的Job并运行，运行过程的作用有以下几种可能：向Docker Registry获取镜像，通过graphdriver执行容器镜像的本地化操作，通过networkdriver执行容器网络环境的配置，通过execdriver执行容器内部运行的执行工作等。 以下为Docker Daemon的架构示意图： 
-3 Docker Daemon源码分析内容安排 本文从源码的角度，主要分析Docker Daemon的启动流程。由于Docker Daemon和Docker Client的启动流程有很大的相似之处，故在介绍启动流程之后，本文着重分析启动流程中最为重要的环节：创建daemon过程中mainDaemon()的实现。
-4 Docker Daemon的启动流程 由于Docker Daemon和Docker Client的启动都是通过可执行文件docker来完成的，因此两者的启动流程非常相似。Docker可执行文件运行时，运行代码通过不同的命令行flag参数，区分两者，并最终运行两者各自相应的部分。 启动Docker Daemon时，一般可以使用以下命令：docker &ndash;daemon=true; docker –d; docker –d=true等。接着由docker的main()函数来解析以上命令的相应flag参数，并最终完成Docker Daemon的启动。 首先，附上Docker Daemon的启动流程图：  由于《Docker源码分析》系列之Docker Client篇中，已经涉及了关于Docker中main()函数运行的很多前续工作（可参见Docker Client篇），并且Docker Daemon的启动也会涉及这些工作，故本文略去相同部分，而主要针对后续仅和Docker Daemon相关的内容进行深入分析，即mainDaemon()的具体源码实现。
-5 mainDaemon( )的具体实现 通过Docker Daemon的流程图，可以得出一个这样的结论：有关Docker Daemon的所有的工作，都被包含在mainDaemon()方法的实现中。 宏观来讲，mainDaemon()完成创建一个daemon进程，并使其正常运行。 从功能的角度来说，mainDaemon()实现了两部分内容：第一，创建Docker运行环境；第二，服务于Docker Client，接收并处理相应请求。 从实现细节来讲，mainDaemon()的实现过程主要包含以下步骤：
- daemon的配置初始化（这部分在init()函数中实现，即在mainDaemon()运行前就执行，但由于这部分内容和mainDaemon()的运行息息相关，故可认为是mainDaemon()运行的先决条件）； 命令行flag参数检查； 创建engine对象； 设置engine的信号捕获及处理方法； 加载builtins； 使用goroutine加载daemon对象并运行； 打印Docker版本及驱动信息； Job之”serveapi”的创建与运行。  下文将一一深入分析以上步骤。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/" class="btn btn-template-main"></a>
+                                    <p class="intro">本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -448,7 +406,7 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -456,7 +414,7 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">Docker源码分析（二）：Docker Client创建与命令执行</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">Docker源码分析（二）：Docker Client创建与命令执行</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -465,17 +423,12 @@ func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon,
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">本文从源码层面介绍docker client的创建和执行过程。
-1. 前言 如今，Docker作为业界领先的轻量级虚拟化容器管理引擎，给全球开发者提供了一种新颖、便捷的软件集成测试与部署之道。在团队开发软件时，Docker可以提供可复用的运行环境、灵活的资源配置、便捷的集成测试方法以及一键式的部署方式。可以说，Docker的优势在简化持续集成、运维部署方面体现得淋漓尽致，它完全让开发者从前者中解放出来，把精力真正地倾注在开发上。 然而，把Docker的功能发挥到极致，并非一件易事。在深刻理解Docker架构的情况下，熟练掌握Docker Client的使用也非常有必要。前者可以参阅《Docker源码分析》系列之Docker架构篇，而本文主要针对后者，从源码的角度分析Docker Client，力求帮助开发者更深刻的理解Docker Client的具体实现，最终更好的掌握Docker Client的使用方法。即本文为《Docker源码分析》系列的第二篇——Docker Client篇。
-2. Docker Client源码分析章节安排 本文从源码的角度，主要分析Docker Client的两个方面：创建与命令执行。前四章安排如下： 第一章为前言，介绍Docker的作用以及研究Docker Client的必要性。 第二章介绍部分章节安排。 第三章从Docker Client的创建入手，进行源码分析，主要分为三小节。 在3.1节中，分析如何通过docker命令，解析出命令行flag参数，以及docker命令中的请求参数。 在3.2节中，分析如何处理具体的flag参数信息，并收集Docker Client所需的配置信息。 在3.3节中，分析如何创建一个Docker Client。 第四章在已有Docker Client的基础上，分析如何执行docker命令，分为两小节。 在4.1节中，分析如何解析docker命令中的请求参数，获取请求的类型。 在4.2节中，分析Docker Client如何将执行具体的请求命令，最终将请求发送至Docker Server。
-3. Docker Client的创建 Docker Client的创建，实质上是Docker用户通过可执行文件docker，与Docker Server建立联系的客户端。以下分三个小节分别阐述Docker Client的创建流程。 以下为整个docker源代码运行的流程图：  上图通过流程图的方式，使得读者更为清晰的了解Docker Client创建及执行请求的过程。其中涉及了诸多源代码中的特有名词，在下文中会一一解释与分析。
-3.1. Docker命令的flag参数解析 众所周知，在Docker的具体实现中，Docker Server与Docker Client均由可执行文件docker来完成创建并启动。那么，了解docker可执行文件通过何种方式区分两者，就显得尤为重要。 对于两者，首先举例说明其中的区别。Docker Server的启动，命令为docker -d或docker &ndash;daemon=true；而Docker Client的启动则体现为docker &ndash;daemon=false ps、docker pull NAME等。 可以把以上Docker请求中的参数分为两类：第一类为命令行参数，即docker程序运行时所需提供的参数，如: -D、&ndash;daemon=true、&ndash;daemon=false等；第二类为docker发送给Docker Server的实际请求参数，如：ps、pull NAME等。 对于第一类，我们习惯将其称为flag参数，在go语言的标准库中，同时还提供了一个flag包，方便进行命令行参数的解析。 交待以上背景之后，随即进入实现Docker Client创建的源码，位于./docker/docker/docker.go，在该go文件中，包含了整个Docker的main函数，也就是整个Docker（不论Docker Daemon还是Docker Client）的运行入口。部分main函数代码如下：
-func main() { if reexec.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="btn btn-template-main"></a>
+                                    <p class="intro">本文从源码层面介绍docker client的创建和执行过程。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -485,7 +438,7 @@ func main() { if reexec.</p>
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">
+                                      <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -493,7 +446,7 @@ func main() { if reexec.</p>
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">Docker源码分析（一）：Docker架构</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">Docker源码分析（一）：Docker架构</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -502,19 +455,12 @@ func main() { if reexec.</p>
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/"><i class="far fa-calendar"></i> 2014-12-02</a>
+                                            <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/"><i class="far fa-calendar"></i> 2014-12-02</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">本文对docker的整体架构进行介绍。
-1 背景 1.1 Docker简介 Docker是Docker公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache 2.0协议。目前，Docker可以在容器内部快速自动化部署应用，并可以通过内核虚拟化技术（namespaces及cgroups等）来提供容器的资源隔离与安全保障等。由于Docker通过操作系统层的虚拟化实现隔离，所以Docker容器在运行时，不需要类似虚拟机（VM）额外的操作系统开销，提高资源利用率，并且提升诸如IO等方面的性能。 由于众多新颖的特性以及项目本身的开放性，Docker在不到两年的时间里迅速获得诸多厂商的青睐，其中更是包括Google、Microsoft、VMware等业界行业领导者。Google在今年六月份推出了Kubernetes，提供Docker容器的调度服务，而今年8月Microsoft宣布Azure上支持Kubernetes，随后传统虚拟化巨头VMware宣布与Docker强强合作。今年9月中旬，Docker更是获得4000万美元的C轮融资，以推动分布式应用方面的发展。 从目前的形势来看，Docker的前景一片大好。本系列文章从源码的角度出发，详细介绍Docker的架构、Docker的运行以及Docker的卓越特性。本文是Docker源码分析系列的第一篇———Docker架构篇。
-1.2 Docker版本信息 本文关于Docker架构的分析都是基于Docker的源码与Docker相应版本的运行结果，其中Docker为最新的1.2版本。
-2 Docker架构分析内容安排 本文的目的是：在理解Docker源代码的基础上，分析Docker架构。分析过程中主要按照以下三个步骤进行：
- Docker的总架构图展示 Docker架构图内部各模块功能与实现分析 以Docker命令的执行为例，进行Docker运行流程阐述  3 Docker总架构图 学习Docker的源码并不是一个枯燥的过程，反而可以从中理解Docker架构的设计原理。Docker对使用者来讲是一个C/S模式的架构，而Docker的后端是一个非常松耦合的架构，模块各司其职，并有机组合，支撑Docker的运行。 在此，先附上Docker总架构，如图3.1。  图3.1 Docker总架构图 如图3.1，不难看出，用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。 而Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；而后Engine执行Docker内部的一系列工作，每一项工作都是以一个Job的形式的存在。 Job的运行过程中，当需要容器镜像时，则从Docker Registry中下载镜像，并通过镜像管理驱动graphdriver将下载镜像以Graph的形式存储；当需要为Docker创建网络环境时，通过网络管理驱动networkdriver创建并配置Docker容器网络环境；当需要限制Docker容器运行资源或执行用户指令等操作时，则通过execdriver来完成。 而libcontainer是一项独立的容器管理包，networkdriver以及execdriver都是通过libcontainer来实现具体对容器进行的操作。 当执行完运行容器的命令后，一个实际的Docker容器就处于运行状态，该容器拥有独立的文件系统，独立并且安全的运行环境等。
-4 Docker架构内各模块的功能与实现分析 接下来，我们将从Docker总架构图入手，抽离出架构内各个模块，并对各个模块进行更为细化的架构分析与功能阐述。主要的模块有：Docker Client、Docker Daemon、Docker Registry、Graph、Driver、libcontainer以及Docker container。
-4.1 Docker Client Docker Client是Docker架构中用户用来和Docker Daemon建立通信的客户端。用户使用的可执行文件为docker，通过docker命令行工具可以发起众多管理container的请求。 Docker Client可以通过以下三种方式和Docker Daemon建立通信：tcp://host:port，unix://path_to_socket和fd://socketfd。为了简单起见，本文一律使用第一种方式作为讲述两者通信的原型。与此同时，与Docker Daemon建立连接并传输请求的时候，Docker Client可以通过设置命令行flag参数的形式设置安全传输层协议(TLS)的有关参数，保证传输的安全性。 Docker Client发送容器管理请求后，由Docker Daemon接受并处理请求，当Docker Client接收到返回的请求相应并简单处理后，Docker Client一次完整的生命周期就结束了。当需要继续发送容器管理请求时，用户必须再次通过docker可执行文件创建Docker Client。
-4.2 Docker Daemon Docker Daemon是Docker架构中一个常驻在后台的系统进程，功能是：接受并处理Docker Client发送的请求。该守护进程在后台启动了一个Server，Server负责接受Docker Client发送的请求；接受请求后，Server通过路由与分发调度，找到相应的Handler来执行请求。 Docker Daemon启动所使用的可执行文件也为docker，与Docker Client启动所使用的可执行文件docker相同。在docker命令执行时，通过传入的参数来判别Docker Daemon与Docker Client。 Docker Daemon的架构，大致可以分为以下三部分：Docker Server、Engine和Job。Daemon架构如图4.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/" class="btn btn-template-main"></a>
+                                    <p class="intro">本文对docker的整体架构进行介绍。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -524,7 +470,7 @@ func main() { if reexec.</p>
                             <div class="row">
                                 <div class="col-md-4">
                                   <div class="image">
-                                      <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">
+                                      <a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">
                                           
                                           <img src="/img/placeholder.png" class="img-responsive" alt="">
                                           
@@ -532,7 +478,7 @@ func main() { if reexec.</p>
                                   </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h2><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">Cloud Foundry中gorouter对StickySession的支持</a></h2>
+                                    <h2><a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/">Cloud Foundry中gorouter对StickySession的支持</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
                                           
@@ -541,16 +487,12 @@ func main() { if reexec.</p>
                                         </p>
                                         
                                         <p class="date-comments">
-                                            <a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/"><i class="far fa-calendar"></i> 2014-11-21</a>
+                                            <a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/"><i class="far fa-calendar"></i> 2014-11-21</a>
                                         </p>
                                         
                                     </div>
-                                    <p class="intro">Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。
-本文即分析Cloud Foundry中gorouter关于StickySession的实现方式。 该部分内容需要对gorouter有一定的了解，可以参见笔者之前的博文：Cloud Foundry中gorouter源码分析 关于StickySession的信息，gorouter所做的工作，主要分为两个部分：如何给HTTP请求添加StickySession、如何通过StickySession辨别应用的具体实例。
-如何给HTTP请求添加StickySession 在分析这个问题的时候，首先我们需要提出另一个问题：什么情况下需要给HTTP请求添加StickySession？ 首先，来看这样的一个方法setupStickySession的go语言实现：
-func (h \*RequestHandler) setupStickySession(endpointResponse \*http.Response, endpoint \*route.Endpoint) { needSticky := false for \_, v := range endpointResponse.Cookies() { if v.Name == StickyCookieKey { needSticky = true break } } if needSticky &amp;&amp; endpoint.PrivateInstanceId != &quot;&quot; { cookie := &amp;http.Cookie{ Name: VcapCookieId, Value: endpoint.PrivateInstanceId, Path: &quot;/&quot;, } http.SetCookie(h.response, cookie) } }  紧接着，查看setupStickySession方法何时被调用的代码：
-func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/" class="btn btn-template-main"></a>
+                                    <p class="intro">Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。</p>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/" class="btn btn-template-main"></a>
                                     </p>
                                 </div>
                             </div>
@@ -750,40 +692,40 @@ func (h \*RequestHandler) HandleHttpRequest(transport \*http.</p>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》第2版推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="《Docker容器与容器云》推荐">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h5>
                     </div>
                 </div>
                 
                 <div class="item same-height-row clearfix">
                     <div class="image same-height-always">
-                        <a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
+                        <a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">
                           
                             <img src="/img/placeholder.png" class="img-responsive" alt="Docker背后的标准化容器执行引擎——runC">
                           
                         </a>
                     </div>
                     <div class="name same-height-always">
-                        <h5><a href="https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
+                        <h5><a href="https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/">Docker背后的标准化容器执行引擎——runC</a></h5>
                     </div>
                 </div>
                 

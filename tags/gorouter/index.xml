@@ -13,30 +13,20 @@
     
     <item>
       <title>Cloud Foundry中gorouter对StickySession的支持</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</link>
+      <link>https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</link>
       <pubDate>Fri, 21 Nov 2014 13:04:13 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</guid>
-      <description>Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。
-本文即分析Cloud Foundry中gorouter关于StickySession的实现方式。 该部分内容需要对gorouter有一定的了解，可以参见笔者之前的博文：Cloud Foundry中gorouter源码分析 关于StickySession的信息，gorouter所做的工作，主要分为两个部分：如何给HTTP请求添加StickySession、如何通过StickySession辨别应用的具体实例。
-如何给HTTP请求添加StickySession 在分析这个问题的时候，首先我们需要提出另一个问题：什么情况下需要给HTTP请求添加StickySession？ 首先，来看这样的一个方法setupStickySession的go语言实现：
-func (h \*RequestHandler) setupStickySession(endpointResponse \*http.Response, endpoint \*route.Endpoint) { needSticky := false for \_, v := range endpointResponse.Cookies() { if v.Name == StickyCookieKey { needSticky = true break } } if needSticky &amp;amp;&amp;amp; endpoint.PrivateInstanceId != &amp;quot;&amp;quot; { cookie := &amp;amp;http.Cookie{ Name: VcapCookieId, Value: endpoint.PrivateInstanceId, Path: &amp;quot;/&amp;quot;, } http.SetCookie(h.response, cookie) } }  紧接着，查看setupStickySession方法何时被调用的代码：
-func (h \*RequestHandler) HandleHttpRequest(transport \*http.</description>
+      <guid>https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</guid>
+      <description>Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中gorouter源码分析</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
       <pubDate>Wed, 07 May 2014 10:20:09 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
-      <description>在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意. 为了提高Cloud Foundry router的可用性，Cloud Foundry开源社区不久前推出了gorouter。gorouter采用现阶段比较新颖的go作为编程语言，并重新设计了原有的组件架构。由于go语言本身的特性，gorouter处理并发请求的能力大大超过了router，甚至在同种实验环境下，性能是原先router的20倍左右。 由于gorouter的高性能，笔者也抱着期待的心态去接触go，当然还有gorouter。本文不会从go语言语法的角度入手gorouter，所以有一些go语言的基础再来看本文，是有必要的。本文主要是对gorouter的源码的简单解读，另外还包含一些笔者对gorouter的看法。
-gorouter的程序组织形式 首先，先从gorouter的程序组织形式入手，可见下图：
-
-以下简单介绍其中一些重要文件的功能：
- common：common意指通用，所以该文件夹中也是一些比较通识的概念定义，比如varz，healthz，component等，以及关于项目过程的一些基本操作定义。 config：顾名思义，该文件夹中的文件为gorouter组件的配置文件。 log：定义gorouter的log形式定义。 proxy：作为一个代理处理外界进入Cloud Foundry的所有请求。 registry：处理组件或者DEA中应用到gorouter来注册uri的事件，另外还负责请求访问应用时查找应用真实IP，port。 route：主要定义在rigistry中需要使用到的三个数据结构：endpoint，pool和uris。 router：程序的主入口，main函数所在处。 stats：主要负责一些应用记录的状态，还有一些其他零碎的东西，比如定义一个堆。 util：其中一般是工具源码，在这里只负责给gorouter进程写pid这件事。 varz：主要涉及varz信息的处理，其实就是gorouter组件状态的查阅。 router.go: 主要定义了router的数据结构，及其实例初始化的过程，还有最终运行的流程。  gorouter的功能：gorouter的功能主要可以分为三个部分：负责接收Cloud Foundry内部组件及应用uri注册以及注销的请求，负责转发所有外部对Cloud Foundry的访问请求，负责提供gorouter作为一个组件的状态监控。
- 接受uri注册及注销请求 当Cloud Foundry内一个组件需要提供HTTP服务的时候，那么这个组件则必须将自己的uri和IP一起注册到gorouter处，典型的有，Cloud Foundry中Service Gateway与Cloud Controller通过HTTP建立连接的，另外Cloud Controller也需要对外提供HTTP服务，所以这些组件必须在gorouter中进行注册，以便可以顺利通信或访问。 除了平台级的组件uri注册，最常见的是应用级的应用uri注册，也就是在Cloud Foundry中新部署应用时，应用所在的DEA会向gorouter发送一个uri，IP和port的注册请求。gorouter收到这个请求后，会添加该记录，并保证可以解析外部的URL访问形式。当然，反过来，当一个应用被删除的时候，为了不浪费Cloud Foundry内部的uri资源，Cloud Foundry会将该uri从gorouter中注销，随即gorouter在节点处删除这条记录。 转发对Cloud Foundry的访问请求 gorouter接受到的访问请求大致可以分为三种：外部请求有：用户对应用的访问请求，用户对Cloud Foundry内部资源的管理请求；内部的请求有：内部组件之间通过HTTP的各类通信。 虽然说请求的类型可以分为三种，但是gorouter对于这些请求的操作都是一致的，找到相应的uri，提取出相应的IP和port，然后进行转发。需要注意的是，在原先版本的router中，router只能接收HTTP请求，然而现在gorouter中，已经考虑了TCP连接，以及websocket。 提供组件监控 Cloud Foundry都有自己的状态监控，可以通过HTTP访问。这主要是每个组件在启动的时候，都作为一个component向Cloud Foundry进行注册，注册的时候带有很多关于自身组件的信息，同时也启动了一个HTTP server。  gorouter的初始化及启动流程和Router对象实例的创建与初始化 gorouter的启动过程主要在router.go文件中，在该文件中，首先定义创建一个Router实例的操作并进行初始化，另外还定义了Router实例的开始运行所做的操作。 在router.go文件中，首先需要是Router结构体的定义： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-type Router struct { config *config.Config …… }  随后又定义了Router实例的初始化： [plain] view plaincopy在CODE上查看代码片派生到我的代码片</description>
+      <guid>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意.</description>
     </item>
     
   </channel>

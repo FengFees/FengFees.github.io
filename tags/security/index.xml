@@ -13,15 +13,11 @@
     
     <item>
       <title>4S: Services Account, Secret, Security Context and Security in Kubernetes</title>
-      <link>https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/</link>
+      <link>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</link>
       <pubDate>Thu, 30 Jul 2015 13:41:07 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/</guid>
-      <description>Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。
-1. 集群安全（Security in Kubernetes) 众所周知，集群安全的首要关注点无疑是隔离性。进程之间的相互隔离，进程与集群基础设施的严格界限，用户与管理员之前的天然角色区分，都应该被考虑到隔离性的范畴内。 统而言之，集群安全性必须考虑如下几个目标： (1) 保证容器与其运行的宿主机的隔离。 (2) 限制容器对于基础设施及其它容器的影响权限，运行拥有特权模式的容器是不被推荐的行为。 (3) 最小权限原则——对所有组件权限的合理限制。 (4) 通过清晰地划分组件的边界来减少需要加固和加以保护的系统组件数量。 (5) 普通用户和管理员的角色区分，同时允许在必要的时候将管理员权限委派给普通用户。 (6) 允许集群上运行的应用拥有secret data。 涉及安全，authentication和authorization是不能绕过的两个话题。下面我们就先来了解一下k8s在这两个issue所提供的支持。
-2. Authentication k8s目前支持三种认证方式，包括certificates/tokens/http basic auth。 client certificate authentication是双向认证的方式，可以经由easyrsa等证书生成工具生成服务器端并客户端证书。 Token authentication：单向认证方式，为kube-apiserver提供- -token_ auth_file，格式为一个有3columns的csv file：token,user name,user id。此处为使用该认证方法的常见的elasticsearch case。 Basic authentication：传入明文用户名密码作为apiserver的启动参数，不支持在不重启apiserver的前提下进行用户名/密码修改。 更多细节详见官方相关文档。
-3. Authorization --authorization-mode，apiserver的参数，用于定义对secure port设置何种authorization policy，包括三种AlwaysAllow/AlwayDeny/ABAC，第一种policy允许所有对apiserver的API request，与之相反，第二种则会block所有的API request，第三种则为Attribute-Based Access Control，即对于不同request attribute，有不同的access control。 下面我们着重讨论ABAC mode。
-3.1 Request Attributes 在考虑authorization时，一个request有5种attribute需要考虑： - user - group - readOnly - resource（如只访问API endpoint，如/api/v1/namesapces/default/pods，或者其它杂项endpoint，如/version，此时的resource是空字符串） - namespace</description>
+      <guid>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</guid>
+      <description>Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。</description>
     </item>
     
   </channel>

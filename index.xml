@@ -13,619 +13,317 @@
     
     <item>
       <title>《Docker容器与容器云》第2版推荐</title>
-      <link>https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/</link>
+      <link>https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Wed, 30 Nov 2016 17:41:43 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/</guid>
-      <description>自Docker容器与容器云第1版出版以来，销量达到10000多本，得到了广大技术人员的认可，并且翻译成繁体，进入台湾市场。本书对Docker和Kubernetes的源码解析深入细致，是国内Docker界的良心之作。 经过作者们多年的实践经验积累及近一年的精心准备，浙江大学SEL实验室出版的《Docker容器与容器云》第2版，终于与我们见面了。
-本书根据Docker 1.10版和Kubernetes 1.2版对第1版进行了全面更新，从实践者的角度出发，以Docker和Kubernetes为重点，沿着“基本用法介绍”到“核心原理解读”到“高级实践技巧”的思路，一本书讲透当前主流的容器和容器云技术，有助于读者在实际场景中利用Docker容器和容器云解决问题并启发新的思考。
-全书包括两部分，第一部分深入解读Docker容器技术，包括Docker架构与设计、核心源码解读和高级实践技巧；第二部分归纳和比较了三类基于Docker的主流容器云项目，包括专注Docker容器编排与部署的容器云、专注应用支撑的容器云以及一切皆容器的Kubernetes，进而详细解读了Kubernetes核心源码的设计与实现，最后介绍了几种典型场景下的Kubernetes最佳实践。 自本书第1版出版以来，容器生态圈已经发生了翻天覆地的变化。新的开源项目层出不穷，各个开源项目都在快速迭代演进。
-Docker已经从本书第1版里的1.6.2发展为当前的1.10。Kubernetes也从本书第1版里的0.16发展到了现在的1.2，并且在1.0.1版本时宣布其已经正式进入可投入生产环境（production ready）的状态。 第3章是本书第一部分的重点。Docker 1.10版相对于本书第1版中的1.6.2版，主要的更新包括如下几个方面：
- 1、Docker在架构方面不断将自身解耦，逐步发展成容器运行时（runtime）、镜像构建（builder）、镜像分发（distribution）、网络（networking）、数据卷（volume）等独立的功能组件，提供daemon来管理，并通过Engine暴露一组标准的API来操作这些组件（详见本书3.2节）； 2、将网络和数据卷提升为“一等公民”，提供了独立子命令进行操作，网络和数据卷具备独立的生命周期，不再依赖容器的生命周期（详见本书3.7节、3.8节）； 3、网络实现方面，Docker将网络相关的实现解耦为独立的组件libnetwork，抽象出一个通用的容器网络模型（CNM），功能上也终于原生支持了跨主机通信（详见本书3.8节）； 4、在扩展性方面，在1.7.0版本后就开始支持网络、volume和存储驱动（仍处于实验阶段）的插件化，开发者可以通过实现Docker提供的插件标准来定制自己的插件（详见本书3.6节、3.7节、3.8节）； 5、在Docker安全方面，Docker支持了user namespace和seccomp来提高容器运行时的安全，在全新的镜像分发组件中引入可信赖的分发和基于内容存储的机制，从而提高镜像的安全性（详见本书3.5节、3.6节、3.9节）。  需要特别指出的一点是，随着容器如火如荼的发展，为了推动容器生态的健康发展，促进生态系统内各组织间的协同合作，容器的标准化也显得越来越重要。Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，并针对容器格式和运行时制定了一个开放的工业化标准，即OCI标准。Docker公司率先贡献出满足OCI标准的容器运行时runC，HyperHQ公司也开源了自己的OCI容器运行时runV，相信业界会有越来越多的公司加入这个标准化浪潮中。Docker公司虽然没有在Docker 1.10版本中直接使用runC作为容器的运行时，但是已经将“修改Docker engine来直接调用runC的二进制文件为Docker提供容器引擎”写入到了1.10版本的roadmap中。本书在3.4.3节中对runC的构建和使用进行了介绍。 第8章是本书第二部分的重点。由于Kubernetes的代码始终处于积极更新之中，自本书第1版截稿以来，Kubernetes又相继发布了0.17、0.18、0.19、0.20、0.21、1.0、1.1与1.2等几个版本。主要的更新包括如下几个方面：
- 1、大大丰富了支撑的应用运行场景。从全面重构的long-running service的replicaSet，到呼声渐高的支持batch job的Job、可类比为守护进程的DaemonSet、负责进行应用更新的Deployment、具备自动扩展能力的HPA（Horizontal Pod Autoscaler），乃至于有状态服务的petSet，都已经或者即将涵盖在Kubernetes的支撑场景中（详见本书8.2节）。 2、加强各个组件的功能扩展或者性能调优。apiserver和controller manager为应对全新的resource和API有显著的扩展；scheduler也在丰富调度策略和多调度器协同调度上有积极的动作；kubelet在性能上也有长足的进步，使得目前单个节点上支持的pod从原来的30个增长到了110个，集群工作节点的规模也从100个跃升为1000个；多为人诟病的kube-proxy如今也鸟枪换炮，默认升级为iptables模式，在吞吐量上也更为乐观；在可以预期的未来，rescheduler将成为Kubernetes家庭中的新成员，使得重调度成为可能（详见本书8.3节）； 3、兼容更多的容器后端模型、网络及存储方案。从Docker到rkt，Kubernetes展示了对容器后端开放姿态，同时它还准备以C/S模式实现对其他容器的支撑。在网络方面，Kubernetes引入了网络插件，其中最为瞩目的当属CNI；存储上的解决方案更是层出不穷，flocker、Cinder、CephFS不一而足，还增加了许多特殊用途的volume，如secret、configmap等（详见本书8.4节、8.5节）； 4、增加了OpenID、Keystone等认证机制、Webhook等授权机制，以及更为丰富的多维资源管理机制admissioncontroller（详见本书8.6节）； 5、另外，作为Kubernetes社区的积极参与者，我们还专门增加了8.8节，讨论当前社区正在酝酿中的一些新特性，如Ubernetes、petSet、rescheduler。我们还讨论了Kubernetes性能优化，以及Kubernetes与OCI的关系等话题。   除了全面更新这两个重点章节之外，我们还在第1章中更新了Docker近期的“大事记”并重新整理了容器生态圈，加入了许多重要的容器云技术开源项目，以及OCI、CNCF等国际标准化组织；在第2章中，我们将Docker命令行工具的基础用法更新到了Docker 1.10版；在第4章中完善了对时下火热的“容器化思维”和“微服务”的讨论；在第6章中更新了对Docker“三剑客”——Compose、Swarm和Machine的讨论；在附录中以Docker 1.10版为标准更新了附录A的Docker安装指南，以Kubernetes 1.2为标准，更新了附录F中Kubernetes的安装指南。 如果你是初级程序员，本书可以帮助你熟悉Docker与kubernetes的基本使用；如果你正在IT领域进行高级进阶修炼，那本书也可以与你一起探索Docker与kubernetes的工作原理。无论是架构师、开发者、运维人员，还是对Docker比较好奇的读者，本书都是一本不可多得的带你从入门向高级进阶的精品书，值得大家选择！
- 最后，摘录一些读者的推荐如下—— —— 许式伟，七牛云存储CEO ： “虽然在此之前已经有了由Docker团队出的第一本Docker书，但是这是国内第一本深入解读Docker与Kubernetes原理的原创图书，这一点意义重大。本书比较完整地介绍了Docker与Kubernetes的工作原理和生态，非常有借鉴意义。” ——肖德时，数人科技CTO： “Docker容器技术已经在国内如火如荼地流行起来，浙江大学SEL实验室目前是国内掌握Docker技术最熟练的技术团队之一，他们在国内Docker技术界一直产生着重要影响。这次他们把Docker的实战经验汇编成书，可以帮助更多的Docker爱好者学习到一手的实战经验。”
-——程显峰，火币网CTO ： “本书非常细致地讲解了Docker技术的来龙去脉和技术细节，更为难得是还加入了Docker生态当中的其他技术。Docker这项技术本身就是将多种思想和技术融合的产物，从生态的视角去解读技术的来龙去脉将极大地促进读者对云计算和容器技术的重新思考。”
-—— 刘俊，百度运维部高级架构师，两次百度最高奖获得者 ： “本书宏观上描绘了容器和容器云技术发展的浪潮和生态系统，微观上以Docker和Kubernetes为典型进行了深度分析。无论是Docker技术爱好者，还是系统架构师、云端开发者、系统管理和运维人员，都能在本书中找到适合自己阅读的要点。浙江大学SEL实验室云计算团队是一支非常优秀的云计算研究团队，很多85后、90后人才活跃在顶级社区前沿，感谢他们能将多年的知识和智慧积累分享出来！”
-——郝林，微影时代架构师，《Go并发编程实战》作者 ： “本书是浙江大学SEL实验室云计算团队多年深耕Docker及背后的容器技术的结晶。最大的特点就是深入，并且有各种实用案例和细致讲解。另外，这本书在怎样真正地把Docker及周边产品落地以构建灵活多变的云平台方面也进行了生动的阐释。” ——网友 Monster-Z： “自本书第一版出版以来，Docker社区又经过了如火如荼的发展，特别是网络部分的实现已经发生了翻天覆地的变化，而本书在第一版的基础之上及时地对网络部分的内容进行了更新。本书对于docker网络最新内容深入透彻的分析，让我们这些急于想要对Docker网络部分实现原理有所了解的开发人员如醍醐灌顶。相信对Docker技术感兴趣的读者在读完本书之后会与我有相同的感受。”
-——网友 XiaoYu： “之前对于浙江大学的SEL实验室早有耳闻，也深知他们在云计算领域有着深厚的积淀。这次对他们著作的第二版进行了深入的研读，可以看得出，在保持了第一版架构的同时，对各个章节的内容又进行了大量的扩充，紧紧跟随着Docker以及k8s社区的发展步伐。相信不论是对于初涉容器领域的新人，还是希望深入理解Docker容器实现原理的开发人员，这都是一本不可多得的好书。” ——网友 Mongo： “在学习了本书的第一版之后，就一直期待着本书第二版的出版。于是当得到第二版出版的消息之后，就迫不及待入手了一本。捧读之后，发现在内容上与第一版有了较大的变化，这应该与Docker本身快速的发展有关，当然也从侧面反应了容器技术在时下的热度。相信对于像我这样Docker技术的一线使用者来说，本书固有的深度以及第二版的时效性都将让我们对Docker的使用和理解都更上一层楼。”</description>
+      <guid>https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/</guid>
+      <description>自Docker容器与容器云第1版出版以来，销量达到10000多本，得到了广大技术人员的认可，并且翻译成繁体，进入台湾市场。本书对Docker和Kubernetes的源码解析深入细致，是国内Docker界的良心之作。 经过作者们多年的实践经验积累及近一年的精心准备，浙江大学SEL实验室出版的《Docker容器与容器云》第2版，终于与我们见面了。</description>
     </item>
     
     <item>
       <title>《Docker容器与容器云》推荐</title>
-      <link>https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</link>
+      <link>https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Wed, 21 Oct 2015 20:26:10 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</guid>
-      <description>《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。
-该书从2014年12月开始写作到2015年9月正式出版发行，期间数易其稿，从最初的对源码进行逐字逐句的分析，转变为带着问题去思考，最后再回到源码去理解问题背后的本质，书的每一章每一节都是实验室智慧与汗水的结晶。 出版发行以来，我们几乎没有对本书进行特别的宣传，凭着少数几次活动以及朋友圈里朋友们的口口相传，逐渐被广大云计算爱好者们发现，并受到了业内外读者的一致好评。从九月初至今，不到两个月的时间，第一次印刷的三千五百册就已接近全部售罄，准备进行第二次印刷。我们也会尽可能多的根据读者的反馈，对第一次印刷中存在的问题进行勘误。 我们自己没有太多权利评判书本本身的好坏，但是我们看到了业内外读者的评价，让我们感受到了深深的肯定，非常感谢大家的支持！同时也向更多朋友推荐我们这本《Docker容器与容器云》，这绝对是您在容器技术方面最值得一读的书！
-
-最后，摘录一些读者的推荐如下：
-  “虽然在此之前已经有了由Docker团队出的第一本Docker书，但是这是国内第一本深入解读Docker与Kubernetes原理的原创图书，这一点意义重大。本书比较完整地介绍了Docker与Kubernetes的工作原理和生态，非常有借鉴意义。” ——许式伟，七牛云存储CEO
-  “Docker容器技术已经在国内如火如荼地流行起来，浙江大学SEL实验室目前是国内掌握Docker技术最熟练的技术团队之一，他们在国内Docker技术界一直产生着重要影响。这次他们把Docker的实战经验汇编成书，可以帮助更多的Docker爱好者学习到一手的实战经验。”——肖德时，数人科技CTO
-  “本书非常细致地讲解了Docker技术的来龙去脉和技术细节，更为难得是还加入了Docker生态当中的其他技术。Docker这项技术本身就是将多种思想和技术融合的产物，从生态的视角去解读技术的来龙去脉将极大地促进读者对云计算和容器技术的重新思考。”——程显峰，OneAPM首席运营官
-  “本书宏观上描绘了容器和容器云技术发展的浪潮和生态系统，微观上以Docker和Kubernetes为典型进行了深度分析。无论是Docker技术爱好者，还是系统架构师、云端开发者、系统管理和运维人员，都能在本书中找到适合自己阅读的要点。浙江大学SEL实验室云计算团队是一支非常优秀的云计算研究团队，很多85后、90后人才活跃在顶级社区前沿，感谢他们能将多年的知识和智慧积累分享出来！”——刘俊，百度运维部高级架构师，百度最高奖获得者
-  “本书是浙江大学SEL实验室云计算团队多年深耕Docker及背后的容器技术的结晶。最大的特点就是深入，并且有各种实用案例和细致讲解。另外，这本书在怎样真正地把Docker及周边产品落地以构建灵活多变的云平台方面也进行了生动的阐释。”——郝林，微影时代架构师，《Go并发编程实战》作者
-  “Docker颠覆了容器技术，也将容器技术带到了新的高度。InfoQ从2014年初就开始密切关注容器技术，见证并切身参与了容器技术的发展。作为我们的优秀作者，浙江大学SEL实验室在InfoQ撰写了很多与Docker、Kubernetes相关的技术文章，得到了广大读者的肯定。希望这本书能推动容器技术在中国的落地。”——郭蕾，InfoQ主编
-  “浙江大学SEL实验室属于国内较早接触并研究开源PaaS技术的团队之一，从传统PaaS的开源代表CloudFoundry、OpenShift，到新一代基于Docker的PaaS平台如DEIS、Flynn等，他们均有深入的研究和实践经验。更为难得的是，他们不仅参与开源贡献，而且笔耕不辍，通过博客、论坛等方式积极分享有深度、有内涵的技术文章，并广泛参与国内PaaS届各种技术交流会议。华为PaaS团队也在与之交流中汲取了不少营养。此次，他们将近年来对Docker容器和Kubernetes、DEIS、Flynn等PaaS开源平台的研究成果结集成册，内容详尽且深入浅出。我相信，无论是入门者还是老手，都能够从中获益。”——刘赫伟，华为中央软件院
-  “容器技术在大型互联网企业中已广泛应用，而Docker是容器技术中的杰出代表。本书不仅介绍了Docker基础知识，而且进行了代码级的深入分析，并通过对Kubernetes等技术的讲解延伸至集群操作系统以及对Docker生态领域的思考，同时结合了大量实践，内容丰富，值得拥有。”——王炜煜，百度运维部高级架构师，JPaaS项目负责人
-  “Docker作为操作系统层面轻量级的虚拟化技术，凭借简易的使用、快速的部署以及灵活敏捷的集成支持等优势，奠定了Docker如今在PaaS领域的江湖地位。 浙江大学SEL实验室在云计算和 PaaS领域耕耘多年， 积累了丰富的经验。本书既有对Docker源代码层面的深度解读，也有实战经验的分享，希望这本书能够帮助Docker开发者在技术上更上一层楼。”——李三红，蚂蚁金服基础技术部JVM Architect
-  本书覆盖面非常广，从docker的使用、核心原理、高级实践再到编排工具以及著名的集群调度工具kubernetes均有涉及，很好的把握了技术人员的痛点。而且架构原理方面均是用docker1.7和部分1.6作为依据，非常有时效性。《Docker源码分析》的作者也是出于该团队，容器云方面功底很深厚啊。 ——网友Crazykev
-  比较专业的书，书中的内容远远高于这本书的物理容量，希望好好研究Docker和Linux某些虚拟化机制的同学，可以以这本书入门去不断扩充自己的知识。不过这边毕竟是一Docker为主线的书，主要还是为了深入帮助大家理解Docker，以及Docker生态圈内的应用和服务。一句话：国内不可多得的一本Docker相关知识的书，此书讲解深入，排版合理，内容紧凑，值得好好看。 ——网友RHMAN
-  其实之前不太了解SEL实验室的背景是什么，不过从此书的内容来看，团队的研究能力和文字能力都相当不错。好久没有读过让人“爽快”的技术书籍了。在Docker应用中各领域的知识要点都能提纲挈领的进行讲解，而且对于生产环境的挑战也有深刻的理解，算得上是既有广度又有深度的佳作。 ——网友jerryshang
-  </description>
+      <guid>https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</guid>
+      <description>《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。</description>
     </item>
     
     <item>
       <title>Docker背后的标准化容器执行引擎——runC</title>
-      <link>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/</link>
+      <link>https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/</link>
       <pubDate>Wed, 21 Oct 2015 19:44:38 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/</guid>
-      <description>随着容器技术发展的愈发火热，Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，旨在围绕容器格式和运行时制定一个开放的工业化标准。该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。而runC就是Docker贡献出来的，按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现。
-1. 容器格式标准是什么？ 制定容器格式标准的宗旨概括来说就是不受上层结构的绑定，如特定的客户端、编排栈等，同时也不受特定的供应商或项目的绑定，即不限于某种特定操作系统、硬件、CPU架构、公有云等。 该标准目前由libcontainer和appc的项目负责人（maintainer）进行维护和制定，其规范文档就作为一个项目在Github上维护，地址为https://github.com/opencontainers/specs。
-1.1 容器标准化宗旨 标准化容器的宗旨具体分为如下五条。
-  操作标准化：容器的标准化操作包括使用标准容器感觉创建、启动、停止容器，使用标准文件系统工具复制和创建容器快照，使用标准化网络工具进行下载和上传。
-  内容无关：内容无关指不管针对的具体容器内容是什么，容器标准操作执行后都能产生同样的效果。如容器可以用同样的方式上传、启动，不管是php应用还是mysql数据库服务。
-  基础设施无关：无论是个人的笔记本电脑还是AWS S3，亦或是Openstack，或者其他基础设施，都应该对支持容器的各项操作。
-  为自动化量身定制：制定容器统一标准，是的操作内容无关化、平台无关化的根本目的之一，就是为了可以使容器操作全平台自动化。
-  工业级交付：制定容器标准一大目标，就是使软件分发可以达到工业级交付成为现实。
-  1.2 容器标准包（bundle）和配置 一个标准的容器包具体应该至少包含三块部分：
- config.json： 基本配置文件，包括与宿主机独立的和应用相关的特定信息，如安全权限、环境变量和参数等。具体如下：  容器格式版本 rootfs路径及是否只读 各类文件挂载点及相应容器内挂载目录（此配置信息必须与runtime.json配置中保持一致） 初始进程配置信息，包括是否绑定终端、运行可执行文件的工作目录、环境变量配置、可执行文件及执行参数、uid、gid以及额外需要加入的gid、hostname、低层操作系统及cpu架构信息。   runtime.json： 运行时配置文件，包含运行时与主机相关的信息，如内存限制、本地设备访问权限、挂载点等。除了上述配置信息以外，运行时配置文件还提供了“钩子(hooks)”的特性，这样可以在容器运行前和停止后各执行一些自定义脚本。hooks的配置包含执行脚本路径、参数、环境变量等。 rootfs/：根文件系统目录，包含了容器执行所需的必要环境依赖，如/bin、/var、/lib、/dev、/usr等目录及相应文件。rootfs目录必须与包含配置信息的config.json文件同时存在容器目录最顶层。  1.3 容器运行时和生命周期 容器标准格式也要求容器把自身运行时的状态持久化到磁盘中，这样便于外部的其他工具对此信息使用和演绎。该运行时状态以JSON格式编码存储。推荐把运行时状态的json文件存储在临时文件系统中以便系统重启后会自动移除。 基于Linux内核的操作系统，该信息应该统一地存储在/run/opencontainer/containers目录，该目录结构下以容器ID命名的文件夹（/run/opencontainer/containers/&amp;lt;containerID&amp;gt;/state.json）中存放容器的状态信息并实时更新。有了这样默认的容器状态信息存储位置以后，外部的应用程序就可以在系统上简便地找到所有运行着的容器了。 state.json文件中包含的具体信息需要有：
- 版本信息：存放OCI标准的具体版本号。 容器ID：通常是一个哈希值，也可以是一个易读的字符串。在state.json文件中加入容器ID是为了便于之前提到的运行时hooks只需载入state.json就可以定位到容器，然后检测state.json，发现文件不见了就认为容器关停，再执行相应预定义的脚本操作。 PID：容器中运行的首个进程在宿主机上的进程号。 容器文件目录：存放容器rootfs及相应配置的目录。外部程序只需读取state.json就可以定位到宿主机上的容器文件目录。  标准的容器生命周期应该包含三个基本过程。
- 容器创建：创建包括文件系统、namespaces、cgroups、用户权限在内的各项内容。 容器进程的启动：运行容器进程，进程的可执行文件定义在的config.json中，args项。 容器暂停：容器实际上作为进程可以被外部程序关停(kill)，然后容器标准规范应该包含对容器暂停信号的捕获，并做相应资源回收的处理，避免孤儿进程的出现。  1.4 基于开放容器格式（OCF）标准的具体实现 从上述几点中总结来看，开放容器规范的格式要求非常宽松，它并不限定具体的实现技术也不限定相应框架，目前已经有基于OCF的具体实现，相信不久后会有越来越多的项目出现。
- 容器运行时opencontainers/runc，即本文所讲的runc项目，是后来者的参照标准。 虚拟机运行时hyperhq/runv，基于Hypervisor技术的开放容器规范实现。 测试huawei-openlab/oct基于开放容器规范的测试框架。  2.</description>
+      <guid>https://fengfees.github.io/blog/2015/10/21/docker%E8%83%8C%E5%90%8E%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%AE%B9%E5%99%A8%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E-runc/</guid>
+      <description>随着容器技术发展的愈发火热，Linux基金会于2015年6月成立OCI（Open Container Initiative）组织，旨在围绕容器格式和运行时制定一个开放的工业化标准。该组织一成立便得到了包括谷歌、微软、亚马逊、华为等一系列云计算厂商的支持。而runC就是Docker贡献出来的，按照该开放容器格式标准（OCF, Open Container Format）制定的一种具体实现。</description>
     </item>
     
     <item>
       <title>4S: Services Account, Secret, Security Context and Security in Kubernetes</title>
-      <link>https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/</link>
+      <link>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</link>
       <pubDate>Thu, 30 Jul 2015 13:41:07 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/4s-services-account-secret-security-context-and-security-in-kubernetes/</guid>
-      <description>Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。
-1. 集群安全（Security in Kubernetes) 众所周知，集群安全的首要关注点无疑是隔离性。进程之间的相互隔离，进程与集群基础设施的严格界限，用户与管理员之前的天然角色区分，都应该被考虑到隔离性的范畴内。 统而言之，集群安全性必须考虑如下几个目标： (1) 保证容器与其运行的宿主机的隔离。 (2) 限制容器对于基础设施及其它容器的影响权限，运行拥有特权模式的容器是不被推荐的行为。 (3) 最小权限原则——对所有组件权限的合理限制。 (4) 通过清晰地划分组件的边界来减少需要加固和加以保护的系统组件数量。 (5) 普通用户和管理员的角色区分，同时允许在必要的时候将管理员权限委派给普通用户。 (6) 允许集群上运行的应用拥有secret data。 涉及安全，authentication和authorization是不能绕过的两个话题。下面我们就先来了解一下k8s在这两个issue所提供的支持。
-2. Authentication k8s目前支持三种认证方式，包括certificates/tokens/http basic auth。 client certificate authentication是双向认证的方式，可以经由easyrsa等证书生成工具生成服务器端并客户端证书。 Token authentication：单向认证方式，为kube-apiserver提供- -token_ auth_file，格式为一个有3columns的csv file：token,user name,user id。此处为使用该认证方法的常见的elasticsearch case。 Basic authentication：传入明文用户名密码作为apiserver的启动参数，不支持在不重启apiserver的前提下进行用户名/密码修改。 更多细节详见官方相关文档。
-3. Authorization --authorization-mode，apiserver的参数，用于定义对secure port设置何种authorization policy，包括三种AlwaysAllow/AlwayDeny/ABAC，第一种policy允许所有对apiserver的API request，与之相反，第二种则会block所有的API request，第三种则为Attribute-Based Access Control，即对于不同request attribute，有不同的access control。 下面我们着重讨论ABAC mode。
-3.1 Request Attributes 在考虑authorization时，一个request有5种attribute需要考虑： - user - group - readOnly - resource（如只访问API endpoint，如/api/v1/namesapces/default/pods，或者其它杂项endpoint，如/version，此时的resource是空字符串） - namespace</description>
+      <guid>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</guid>
+      <description>Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。</description>
     </item>
     
     <item>
       <title>Docker背后的容器管理——libcontainer深度解析</title>
-      <link>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86-libcontainer%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2015/06/03/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86-libcontainer%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Wed, 03 Jun 2015 13:29:26 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86-libcontainer%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
-      <description>libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理namespaces、cgroups、capabilities以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。
- 容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。
- 在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。
-1. libcontainer 特性 目前版本的libcontainer，功能实现上涵盖了包括namespaces使用、cgroups管理、Rootfs的配置启动、默认的Linux capability权限集、以及进程运行的环境变量配置。内核版本最低要求为2.6，最好是3.8，这与内核对namespace的支持有关。 目前除user namespace不完全支持以外，其他五个namespace都是默认开启的，通过clone系统调用进行创建。
-1.1 建立文件系统 文件系统方面，容器运行需要rootfs。所有容器中要执行的指令，都需要包含在rootfs（在Docker中指令包含在其上叠加的镜像层也可以执行）所有挂载在容器销毁时都会被卸载，因为mount namespace会在容器销毁时一同消失。为了容器可以正常执行命令，以下文件系统必须在容器运行时挂载到rootfs中。
-路径
-类型
-参数
-权限及数据
-/proc
-proc
-MS_NOEXEC,MS_NOSUID,MS_NODEV
-/dev
-tmpfs
-MS_NOEXEC,MS_STRICTATIME
-mode=755
-/dev/shm
-shm
-MS_NOEXEC,MS_NOSUID,MS_NODEV
-mode=1777,size=65536k
-/dev/mqueue
-mqueue
-MS_NOEXEC,MS_NOSUID,MS_NODEV
-/dev/pts
-devpts
-MS_NOEXEC,MS_NOSUID
-newinstance,ptmxmode=0666,mode=620,gid5
-/sys
-sysfs
-MS_NOEXEC,MS_NOSUID,MS_NODEV,MS_RDONLY
-当容器的文件系统刚挂载完毕时，/dev文件系统会被一系列设备节点所填充，所以rootfs不应该管理/dev文件系统下的设备节点，libcontainer会负责处理并正确启动这些设备。设备及其权限模式如下。
-路径
-模式
-权限
-/dev/null
-0666
-rwm
-/dev/zero
-0666
-rwm
-/dev/full
-0666
-rwm
-/dev/tty
-0666
-rwm
-/dev/random
-0666
-rwm
-/dev/urandom
-0666
-rwm
-/dev/fuse
-0666
-rwm
-容器支持伪终端TTY，当用户使用时，就会建立/dev/console设备。其他终端支持设备，如/dev/ptmx则是宿主机的/dev/ptmx 链接。容器中指向宿主机 /dev/null的IO也会被重定向到容器内的 /dev/null设备。当/proc挂载完成后，/dev/中与IO相关的链接也会建立，如下表。</description>
+      <guid>https://fengfees.github.io/blog/2015/06/03/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86-libcontainer%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</guid>
+      <description>libcontainer 是Docker中用于容器管理的包，它基于Go语言实现，通过管理namespaces、cgroups、capabilities以及文件系统来进行容器控制。你可以使用libcontainer创建容器，并对容器进行生命周期管理。</description>
     </item>
     
     <item>
       <title>Docker背后的内核知识——cgroups资源限制</title>
-      <link>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-cgroups%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6/</link>
+      <link>https://fengfees.github.io/blog/2015/04/22/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-cgroups%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6/</link>
       <pubDate>Wed, 22 Apr 2015 10:03:07 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-cgroups%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6/</guid>
-      <description>摘要 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。本文在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助
-正文 上一篇中，我们了解了Docker背后使用的资源隔离技术namespace，通过系统调用构建一个相对隔离的shell环境，也可以称之为一个简单的“容器”。本文我们则要开始讲解另一个强大的内核工具——cgroups。他不仅可以限制被namespace隔离起来的资源，还可以为资源设置权重、计算使用量、操控进程启停等等。在介绍完基本概念后，我们将详细讲解Docker中使用到的cgroups内容。希望通过本文，让读者对Docker有更深入的了解。
-1. cgroups是什么 cgroups（Control Groups）最初叫Process Container，由Google工程师（Paul Menage和Rohit Seth）于2006年提出，后来因为Container有多重含义容易引起误解，就在2007年更名为Control Groups，并被整合进Linux内核。顾名思义就是把进程放到一个组里面统一加以控制。官方的定义如下{![引自：https://www.kernel.org/doc/Documentation/cgroups/cgroups.txt]}。
- cgroups是Linux内核提供的一种机制，这种机制可以根据特定的行为，把一系列系统任务及其子任务整合（或分隔）到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。
- 通俗的来说，cgroups可以限制、记录、隔离进程组所使用的物理资源（包括：CPU、memory、IO等），为容器实现虚拟化提供了基本保证，是构建Docker等一系列虚拟化管理工具的基石。 对开发者来说，cgroups有如下四个有趣的特点： * cgroups的API以一个伪文件系统的方式实现，即用户可以通过文件操作实现cgroups的组织管理。 * cgroups的组织管理操作单元可以细粒度到线程级别，用户态代码也可以针对系统分配的资源创建和销毁cgroups，从而实现资源再分配和管理。 * 所有资源管理的功能都以“subsystem（子系统）”的方式实现，接口统一。 * 子进程创建之初与其父进程处于同一个cgroups的控制组。 本质上来说，cgroups是内核附加在程序上的一系列钩子（hooks），通过程序运行时对资源的调度触发相应的钩子以达到资源追踪和限制的目的。
-2. cgroups的作用 实现cgroups的主要目的是为不同用户层面的资源管理，提供一个统一化的接口。从单个进程的资源控制到操作系统层面的虚拟化。Cgroups提供了以下四大功能{![参照自：http://en.wikipedia.org/wiki/Cgroups]}。
- 资源限制（Resource Limitation）：cgroups可以对进程组使用的资源总额进行限制。如设定应用运行时使用内存的上限，一旦超过这个配额就发出OOM（Out of Memory）。 优先级分配（Prioritization）：通过分配的CPU时间片数量及硬盘IO带宽大小，实际上就相当于控制了进程运行的优先级。 资源统计（Accounting）： cgroups可以统计系统的资源使用量，如CPU使用时长、内存用量等等，这个功能非常适用于计费。 进程控制（Control）：cgroups可以对进程组执行挂起、恢复等操作。  过去有一段时间，内核开发者甚至把namespace也作为一个cgroups的subsystem加入进来，也就是说cgroups曾经甚至还包含了资源隔离的能力。但是资源隔离会给cgroups带来许多问题，如PID在循环出现的时候cgroup却出现了命名冲突、cgroup创建后进入新的namespace导致脱离了控制等等{![详见：https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=a77aea92010acf54ad785047234418d5d68772e2]}，所以在2011年就被移除了。
-3. 术语表  task（任务）：cgroups的术语中，task就表示系统的一个进程。 cgroup（控制组）：cgroups 中的资源控制都以cgroup为单位实现。cgroup表示按某种资源控制标准划分而成的任务组，包含一个或多个子系统。一个任务可以加入某个cgroup，也可以从某个cgroup迁移到另外一个cgroup。 subsystem（子系统）：cgroups中的subsystem就是一个资源调度控制器（Resource Controller）。比如CPU子系统可以控制CPU时间分配，内存子系统可以限制cgroup内存使用量。 hierarchy（层级树）：hierarchy由一系列cgroup以一个树状结构排列而成，每个hierarchy通过绑定对应的subsystem进行资源调度。hierarchy中的cgroup节点可以包含零或多个子节点，子节点继承父节点的属性。整个系统可以有多个hierarchy。  4. 组织结构与基本规则 大家在namespace技术的讲解中已经了解到，传统的Unix进程管理，实际上是先启动init进程作为根节点，再由init节点创建子进程作为子节点，而每个子节点由可以创建新的子节点，如此往复，形成一个树状结构。而cgroups也是类似的树状结构，子节点都从父节点继承属性。 它们最大的不同在于，系统中cgroup构成的hierarchy可以允许存在多个。如果进程模型是由init作为根节点构成的一棵树的话，那么cgroups的模型则是由多个hierarchy构成的森林。这样做的目的也很好理解，如果只有一个hierarchy，那么所有的task都要受到绑定其上的subsystem的限制，会给那些不需要这些限制的task造成麻烦。 了解了cgroups的组织结构，我们再来了解cgroup、task、subsystem以及hierarchy四者间的相互关系及其基本规则{![参照自：https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/sec-Relationships_Between_Subsystems_Hierarchies_Control_Groups_and_Tasks.html]}。
-  规则1： 同一个hierarchy可以附加一个或多个subsystem。如下图1，cpu和memory的subsystem附加到了一个hierarchy。 图1 同一个hierarchy可以附加一个或多个subsystem
-  规则2： 一个subsystem可以附加到多个hierarchy，当且仅当这些hierarchy只有这唯一一个subsystem。如下图2，小圈中的数字表示subsystem附加的时间顺序，CPU subsystem附加到hierarchy A的同时不能再附加到hierarchy B，因为hierarchy B已经附加了memory subsystem。如果hierarchy B与hierarchy A状态相同，没有附加过memory subsystem，那么CPU subsystem同时附加到两个hierarchy是可以的。 图2 一个已经附加在某个hierarchy上的subsystem不能附加到其他含有别的subsystem的hierarchy上</description>
+      <guid>https://fengfees.github.io/blog/2015/04/22/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-cgroups%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6/</guid>
+      <description>摘要 当我们谈论Docker时，我们常常会聊到Docker的实现方式。很多开发者都会知道，Docker的本质实际上是宿主机上的一个进程，通过namespace实现了资源隔离，通过cgroup实现了资源限制，通过UnionFS实现了Copy on Write的文件操作。但是当我们再深入一步的提出，namespace和cgroup实现细节时，知道的人可能就所剩无几了。本文在docker基础研究工作中着重对内核的cgroup技术做了细致的分析和梳理，希望能对读者深入理解Docker有所帮助</description>
     </item>
     
     <item>
       <title>Docker背后的内核知识——Namespace资源隔离</title>
-      <link>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-namespace%E8%B5%84%E6%BA%90%E9%9A%94%E7%A6%BB/</link>
+      <link>https://fengfees.github.io/blog/2015/03/13/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-namespace%E8%B5%84%E6%BA%90%E9%9A%94%E7%A6%BB/</link>
       <pubDate>Fri, 13 Mar 2015 13:54:32 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-namespace%E8%B5%84%E6%BA%90%E9%9A%94%E7%A6%BB/</guid>
-      <description>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是chroot命令，这条命令给用户最直观的感觉就是使用后根目录/的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的PID,自然也需要与宿主机中的PID进行隔离。 由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。
-
-表1 namespace六项隔离
-实际上，Linux内核实现namespace的主要目的就是为了实现轻量级虚拟化（容器）服务。在同一个namespace下的进程可以感知彼此的变化，而对外界的进程一无所知。这样就可以让容器中的进程产生错觉，仿佛自己置身于一个独立的系统环境中，以此达到独立和隔离的目的。 需要说明的是，本文所讨论的namespace实现针对的均是Linux内核3.8及其以后的版本。接下来，我们将首先介绍使用namespace的API，然后针对这六种namespace进行逐一讲解，并通过程序让你亲身感受一下这些隔离效果参考自http://lwn.net/Articles/531114/。
-1. 调用namespace的API namespace的API包括clone()、setns()以及unshare()，还有/proc下的部分文件。为了确定隔离的到底是哪种namespace，在使用这些API时，通常需要指定以下六个常数的一个或多个，通过|（位或）操作来实现。你可能已经在上面的表格中注意到，这六个参数分别是CLONE_NEWIPC、CLONE_NEWNS、CLONE_NEWNET、CLONE_NEWPID、 CLONE_NEWUSER和CLONE_NEWUTS。
-（1）通过clone()创建新进程的同时创建namespace 使用clone()来创建一个独立namespace的进程是最常见做法，它的调用方式如下，使用效果类似下图1。
-int clone(int (*child_func)(void *), void *child_stack, int flags, void *arg);
-clone()实际上是传统UNIX系统调用fork()的一种更通用的实现方式，它可以通过flags来控制使用多少功能。一共有二十多种CLONE_*的flag（标志位）参数用来控制clone进程的方方面面（如是否与父进程共享虚拟内存等等），下面外面逐一讲解clone函数传入的参数。
- 参数child_func传入子进程运行的程序主函数。 参数child_stack传入子进程使用的栈空间 参数flags表示使用哪些CLONE_*标志位 参数args则可用于传入用户参数  在后续的内容中将会有使用clone()的实际程序可供大家参考。
-（2）查看/proc/[pid]/ns文件 从3.8版本的内核开始，用户就可以在/proc/[pid]/ns文件下看到指向不同namespace号的文件，效果如下所示，形如[4026531839]者即为namespace号。
-$ ls -l /proc/$$/ns &amp;laquo;&amp;ndash; $$ 表示应用的PID total 0 lrwxrwxrwx. 1 mtk mtk 0 Jan 8 04:12 ipc -&amp;gt; ipc:[4026531839] lrwxrwxrwx. 1 mtk mtk 0 Jan 8 04:12 mnt -&amp;gt; mnt:[4026531840] lrwxrwxrwx. 1 mtk mtk 0 Jan 8 04:12 net -&amp;gt; net:[4026531956] lrwxrwxrwx.</description>
+      <guid>https://fengfees.github.io/blog/2015/03/13/docker%E8%83%8C%E5%90%8E%E7%9A%84%E5%86%85%E6%A0%B8%E7%9F%A5%E8%AF%86-namespace%E8%B5%84%E6%BA%90%E9%9A%94%E7%A6%BB/</guid>
+      <description>Docker这么火，喜欢技术的朋友可能也会想，如果要自己实现一个资源隔离的容器，应该从哪些方面下手呢？也许你第一反应可能就是chroot命令，这条命令给用户最直观的感觉就是使用后根目录/的挂载点切换了，即文件系统被隔离了。然后，为了在分布式的环境下进行通信和定位，容器必然需要一个独立的IP、端口、路由等等，自然就想到了网络的隔离。同时，你的容器还需要一个独立的主机名以便在网络中标识自己。想到网络，顺其自然就想到通信，也就想到了进程间通信的隔离。可能你也想到了权限的问题，对用户和用户组的隔离就实现了用户权限的隔离。最后，运行在容器中的应用需要有自己的PID,自然也需要与宿主机中的PID进行隔离。 由此，我们基本上完成了一个容器所需要做的六项隔离，Linux内核中就提供了这六种namespace隔离的系统调用，如下表所示。</description>
     </item>
     
     <item>
       <title>Docker源码分析（九）：Docker镜像</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%9Ddocker%E9%95%9C%E5%83%8F/</link>
+      <link>https://fengfees.github.io/blog/2015/03/12/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%9Ddocker%E9%95%9C%E5%83%8F/</link>
       <pubDate>Thu, 12 Mar 2015 20:16:14 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%9Ddocker%E9%95%9C%E5%83%8F/</guid>
-      <description>本文介绍docker架构中的镜像。
-1.前言 回首过去的2014年，大家可以看到Docker在全球刮起了一阵又一阵的“容器风”，工业界对Docker的探索与实践更是一波高过一波。在如今的2015年以及未来，Docker似乎并不会像其他昙花一现的技术一样，在历史的舞台上热潮褪去，反而在工业界实践与评估之后，显现了前所未有的发展潜力。 究其本质，“Docker提供容器服务”这句话，相信很少有人会有异议。那么，既然Docker提供的服务属于“容器”技术，那么反观“容器”技术的本质与历史，我们又可以发现什么呢？正如前文所提到的，Docker使用的“容器”技术，主要是以Linux的cgroup、namespace等内核特性为基础，保障进程或者进程组处于一个隔离、安全的环境。Docker发行第一个版本是在2013年的3月，而cgroup的正式亮相可以追溯到2007年下半年，当时cgroup被合并至Linux内核2.6.24版本。期间6年时间，并不是“容器”技术发展的真空期，2008年LXC（Linux Container）诞生，其简化了容器的创建与管理；之后业界一些PaaS平台也初步尝试采用容器技术作为其云应用的运行环境；而与Docker发布同年，Google也发布了开源容器管理工具lmctfy。除此之外，若抛开Linux操作系统，其他操作系统如FreeBSD、Solaris等，同样诞生了作用相类似的“容器”技术，其发展历史更是需要追溯至千禧年初期。 可见，“容器”技术的发展不可谓短暂，然而论同时代的影响力，却鲜有Docker的媲美者。不论是云计算大潮催生了Docker技术，抑或是Docker技术赶上了云计算的大时代，毋庸置疑的是，Docker作为领域内的新宠儿，必然会继续受到业界的广泛青睐。云计算时代，分布式应用逐渐流行，并对其自身的构建、交付与运行有着与传统不一样的要求。借助Linux内核的cgroup与namespace特性，自然可以做到应用运行环境的资源隔离与应用部署的快速等；然而，cgroup和namespace等内核特性却无法为容器的运行环境做全盘打包。而Docker的设计则很好得考虑到了这一点，除cgroup和namespace之外，另外采用了神奇的“镜像”技术作为Docker管理文件系统以及运行环境的强有力补充。Docker灵活的“镜像”技术，在笔者看来，也是其大红大紫最重要的因素之一。
-2.Docker镜像介绍 大家看到这，第一个问题肯定是“什么是Docker镜像”？ 据Docker官网的技术文档描述，Image（镜像）是Docker术语的一种，代表一个只读的layer。而layer则具体代表Docker Container文件系统中可叠加的一部分。 笔者如此介绍Docker镜像，相信众多Docker爱好者理解起来依旧是云里雾里。那么理解之前，先让我们来认识一下与Docker镜像相关的4个概念：rootfs、Union mount、image以及layer。
-2.1 rootfs Rootfs：代表一个Docker Container在启动时（而非运行后）其内部进程可见的文件系统视角，或者是Docker Container的根目录。当然，该目录下含有Docker Container所需要的系统文件、工具、容器文件等。 传统来说，Linux操作系统内核启动时，内核首先会挂载一个只读（read-only）的rootfs，当系统检测其完整性之后，决定是否将其切换为读写（read-write）模式，或者最后在rootfs之上另行挂载一种文件系统并忽略rootfs。Docker架构下，依然沿用Linux中rootfs的思想。当Docker Daemon为Docker Container挂载rootfs的时候，与传统Linux内核类似，将其设定为只读（read-only）模式。在rootfs挂载完毕之后，和Linux内核不一样的是，Docker Daemon没有将Docker Container的文件系统设为读写（read-write）模式，而是利用Union mount的技术，在这个只读的rootfs之上再挂载一个读写（read-write）的文件系统，挂载时该读写（read-write）文件系统内空无一物。 举一个Ubuntu容器启动的例子。假设用户已经通过Docker Registry下拉了Ubuntu:14.04的镜像，并通过命令docker run –it ubuntu:14.04 /bin/bash将其启动运行。则Docker Daemon为其创建的rootfs以及容器可读写的文件系统可参见图2.1： 
-图2.1 Ubuntu 14.04容器rootfs示意图
-正如read-only和read-write的含义那样，该容器中的进程对rootfs中的内容只拥有读权限，对于read-write读写文件系统中的内容既拥有读权限也拥有写权限。通过观察图2.1可以发现：容器虽然只有一个文件系统，但该文件系统由“两层”组成，分别为读写文件系统和只读文件系统。这样的理解已然有些层级（layer）的意味。 简单来讲，可以将Docker Container的文件系统分为两部分，而上文提到是Docker Daemon利用Union Mount的技术，将两者挂载。那么Union mount又是一种怎样的技术？
-2.2 Union mount Union mount：代表一种文件系统挂载的方式，允许同一时刻多种文件系统挂载在一起，并以一种文件系统的形式，呈现多种文件系统内容合并后的目录。 一般情况下，通过某种文件系统挂载内容至挂载点的话，挂载点目录中原先的内容将会被隐藏。而Union mount则不会将挂载点目录中的内容隐藏，反而是将挂载点目录中的内容和被挂载的内容合并，并为合并后的内容提供一个统一独立的文件系统视角。通常来讲，被合并的文件系统中只有一个会以读写（read-write）模式挂载，而其他的文件系统的挂载模式均为只读（read-only）。实现这种Union mount技术的文件系统一般被称为Union Filesystem，较为常见的有UnionFS、AUFS、OverlayFS等。 Docker实现容器文件系统Union mount时，提供多种具体的文件系统解决方案，如Docker早版本沿用至今的的AUFS，还有在docker 1.4.0版本中开始支持的OverlayFS等。 更深入的了解Union mount，可以使用AUFS文件系统来进一步阐述上文中ubuntu:14.04容器文件系统的例子。如图2.2： 
-图2.2 AUFS挂载Ubuntu 14.04文件系统示意图
-使用镜像ubuntu:14.04创建的容器中，可以暂且将该容器整个rootfs当成是一个文件系统。上文也提到，挂载时读写（read-write）文件系统中空无一物。既然如此，从用户视角来看，容器内文件系统和rootfs完全一样，用户完全可以按照往常习惯，无差别的使用自身视角下文件系统中的所有内容；然而，从内核的角度来看，两者在有着非常大的区别。追溯区别存在的根本原因，那就不得不提及AUFS等文件系统的COW（copy-on-write）特性。 COW文件系统和其他文件系统最大的区别就是：从不覆写已有文件系统中已有的内容。由于通过COW文件系统将两个文件系统（rootfs和read-write filesystem）合并，最终用户视角为合并后的含有所有内容的文件系统，然而在Linux内核逻辑上依然可以区别两者，那就是用户对原先rootfs中的内容拥有只读权限，而对read-write filesystem中的内容拥有读写权限。 既然对用户而言，全然不知哪些内容只读，哪些内容可读写，这些信息只有内核在接管，那么假设用户需要更新其视角下的文件/etc/hosts，而该文件又恰巧是rootfs只读文件系统中的内容，内核是否会抛出异常或者驳回用户请求呢？答案是否定的。当此情形发生时，COW文件系统首先不会覆写read-only文件系统中的文件，即不会覆写rootfs中/etc/hosts，其次反而会将该文件拷贝至读写文件系统中，即拷贝至读写文件系统中的/etc/hosts，最后再对后者进行更新操作。如此一来，纵使rootfs与read-write filesystem中均由/etc/ hosts，诸如AUFS类型的COW文件系统也能保证用户视角中只能看到read-write filesystem中的/etc/hosts，即更新后的内容。 当然，这样的特性同样支持rootfs中文件的删除等其他操作。例如：用户通过apt-get软件包管理工具安装Golang，所有与Golang相关的内容都会被安装在读写文件系统中，而不会安装在rootfs。此时用户又希望通过apt-get软件包管理工具删除所有关于MySQL的内容，恰巧这部分内容又都存在于rootfs中时，删除操作执行时同样不会删除rootfs实际存在的MySQL，而是在read-write filesystem中删除该部分内容，导致最终rootfs中的MySQL对容器用户不可见，也不可访。 掌握Docker中rootfs以及Union mount的概念之后，再来理解Docker镜像，就会变得水到渠成。</description>
+      <guid>https://fengfees.github.io/blog/2015/03/12/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%9Ddocker%E9%95%9C%E5%83%8F/</guid>
+      <description>本文介绍docker架构中的镜像。</description>
     </item>
     
     <item>
       <title>Docker源码分析（八）：Docker Container网络（下）</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ABdocker-container%E7%BD%91%E7%BB%9C%E4%B8%8B/</link>
+      <link>https://fengfees.github.io/blog/2015/03/12/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ABdocker-container%E7%BD%91%E7%BB%9C%E4%B8%8B/</link>
       <pubDate>Thu, 12 Mar 2015 20:03:21 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ABdocker-container%E7%BD%91%E7%BB%9C%E4%B8%8B/</guid>
-      <description>本文介绍docker container的网络模式。
-1.Docker Client配置容器网络模式 Docker目前支持4种网络模式，分别是bridge、host、container、none，Docker开发者可以根据自己的需求来确定最适合自己应用场景的网络模式。 从Docker Container网络创建流程图中可以看到，创建流程第一个涉及的Docker模块即为Docker Client。当然，这也十分好理解，毕竟Docker Container网络环境的创建需要由用户发起，用户根据自身对容器的需求，选择网络模式，并将其通过Docker Client传递给Docker Daemon。本节，即从Docker Client源码的角度，分析如何配置Docker Container的网络模式，以及Docker Client内部如何处理这些网络模式参数。 需要注意的是：配置Docker Container网络环境与创建Docker Container网络环境有一些区别。区别是：配置网络环境指用户通过向Docker Client传递网络参数，实现Docker Container网络环境参数的配置，这部分配置由Docker Client传递至Docker Daemon，并由Docker Daemon保存；创建网络环境指，用户通过Docker Client向Docker Daemon发送容器启动命令之后，Docker Daemon根据之前保存的网络参数，实现Docker Container的启动，并在启动过程中完成Docker Container网络环境的创建。 以上的基本知识，理解下文的Docker Container网络环境创建流程。
-1.1 Docker Client使用 Docker架构中，用户可以通过Docker Client来配置Docker Container的网络模式。配置过程主要通过docker run命令来完成，实现配置的方式是在docker run命令中添加网络参数。使用方式如下（其中NETWORKMODE为四种网络模式之一，ubuntu为镜像名称，/bin/bash为执行指令）:
-docker run -d &amp;ndash;net NETWORKMODE ubuntu /bin/bash
-运行以上命令时，首先创建一个Docker Client，然后Docker Client会解析整条命令的请求内容，接着解析出为run请求，意为运行一个Docker Container，最终通过Docker Client端的API接口，调用CmdRun函数完成run请求执行。（详情可以查阅《Docker源码分析》系列的第二篇——Docker Client篇）。 Docker Client解析出run命令之后，立即调用相应的处理函数CmdRun进行处理关于run请求的具体内容。CmdRun的作用主要可以归纳为三点：
- 解析Docker Client传入的参数，解析出config、hostconfig和cmd对象等； 发送请求至Docker Daemon，创建一个container对象，完成Docker Container启动前的准备工作； 发送请求至Docker Daemon，启动相应的Docker Container（包含创建Docker Container网络环境创建）。  1.2 runconfig包解析 CmdRun函数的实现位于./docker/api/client/commands.go。CmdRun执行的第一个步骤为：通过runconfig包中ParseSubcommand函数解析Docker Client传入的参数，并从中解析出相应的config，hostConfig以及cmd对象，实现代码如下:
-config, hostConfig, cmd, err := runconfig.</description>
+      <guid>https://fengfees.github.io/blog/2015/03/12/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ABdocker-container%E7%BD%91%E7%BB%9C%E4%B8%8B/</guid>
+      <description>本文介绍docker container的网络模式。</description>
     </item>
     
     <item>
       <title>etcd：从应用场景到实现原理的全方位解读</title>
-      <link>https://fengfees.github.io/blog/etcd%E4%BB%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%B0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%9A%84%E5%85%A8%E6%96%B9%E4%BD%8D%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://fengfees.github.io/blog/2015/02/01/etcd%E4%BB%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%B0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%9A%84%E5%85%A8%E6%96%B9%E4%BD%8D%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Sun, 01 Feb 2015 15:27:24 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/etcd%E4%BB%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%B0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%9A%84%E5%85%A8%E6%96%B9%E4%BD%8D%E8%A7%A3%E8%AF%BB/</guid>
-      <description>随着CoreOS和Kubernetes等项目在开源社区日益火热，它们项目中都用到的etcd组件作为一个高可用、强一致性的服务发现存储仓库，渐渐为开发人员所关注。在云计算时代，如何让服务快速透明地接入到计算集群中，如何让共享配置信息快速被集群中的所有机器发现，更为重要的是，如何构建这样一套高可用、安全、易于部署以及响应快速的服务集群，已经成为了迫切需要解决的问题。etcd为解决这类问题带来了福音，本章将从etcd的应用场景开始，深入解读etcd的实现方式，以供开发者们更为充分地享用etcd所带来的便利。
-1 etcd经典应用场景 etcd是什么？很多人对这个问题的第一反应可能是，它是一个键值存储仓库，却没有重视官方定义的后半句，用于配置共享和服务发现。
- A highly-available key value store for shared configuration and service discovery.
- 实际上，etcd作为一个受到Zookeeper与doozer启发而催生的项目，除了拥有与之类似的功能外，更具有以下4个特点{![引自Docker官方文档]}。
- 简单：基于HTTP+JSON的API让你用curl命令就可以轻松使用。 安全：可选SSL客户认证机制。 快速：每个实例每秒支持一千次写操作。 可信：使用Raft算法充分实现了分布式。  随着云计算的不断发展，分布式系统中涉及的问题越来越受到人们重视。受阿里中间件团队对ZooKeeper典型应用场景一览一文的启发{![部分案例引自此文。]}，我根据自己的理解也总结了一些etcd的经典使用场景。值得注意的是，分布式系统中的数据分为控制数据和应用数据。使用etcd的场景处理的数据默认为控制数据，对于应用数据，只推荐处理数据量很小，但是更新访问频繁的情况。
-1.1 场景一：服务发现 服务发现（Service Discovery）要解决的是分布式系统中最常见的问题之一，即在同一个分布式集群中的进程或服务如何才能找到对方并建立连接。从本质上说，服务发现就是想要了解集群中是否有进程在监听udp或tcp端口，并且通过名字就可以进行查找和连接。要解决服务发现的问题，需要有下面三大支柱，缺一不可。
- 一个强一致性、高可用的服务存储目录。基于Raft算法的etcd天生就是这样一个强一致性高可用的服务存储目录。 一种注册服务和监控服务健康状态的机制。用户可以在etcd中注册服务，并且对注册的服务设置key TTL，定时保持服务的心跳以达到监控健康状态的效果。 一种查找和连接服务的机制。通过在etcd指定的主题下注册的服务也能在对应的主题下查找到。为了确保连接，我们可以在每个服务机器上都部署一个proxy模式的etcd，这样就可以确保能访问etcd集群的服务都能互相连接。  图1所示为服务发现示意图。 图1 服务发现示意图 下面我们来看一下服务发现对应的具体应用场景。
- 微服务协同工作架构中，服务动态添加。随着Docker容器的流行，多种微服务共同协作，构成一个功能相对强大的架构的案例越来越多。透明化的动态添加这些服务的需求也日益强烈。通过服务发现机制，在etcd中注册某个服务名字的目录，在该目录下存储可用的服务节点的IP。在使用服务的过程中，只要从服务目录下查找可用的服务节点进行使用即可。 微服务协同工作如图2所示。   图2 微服务协同工作
- PaaS平台中应用多实例与实例故障重启透明化。PaaS平台中的应用一般都有多个实例，通过域名，不仅可以透明地对多个实例进行访问，而且还可以实现负载均衡。但是应用的某个实例随时都有可能故障重启，这时就需要动态地配置域名解析（路由）中的信息。通过etcd的服务发现功能就可以轻松解决这个动态配置的问题，如图33所示。  图3 云平台多实例透明化
-1.2 场景二：消息发布与订阅 在分布式系统中，最为适用的组件间通信方式是消息发布与订阅机制。具体而言，即构建一个配置共享中心，数据提供者在这个配置中心发布消息，而消息使用者则订阅他们关心的主题，一旦相关主题有消息发布，就会实时通知订阅者。通过这种方式可以实现分布式系统配置的集中式管理与实时动态更新。
- 应用中用到的一些配置信息存放在etcd上进行集中管理。这类场景的使用方式通常是这样的：应用在启动的时候主动从etcd获取一次配置信息，同时，在etcd节点上注册一个Watcher并等待，以后每次配置有更新的时候，etcd都会实时通知订阅者，以此达到获取最新配置信息的目的。 分布式搜索服务中，索引的元信息和服务器集群机器的节点状态信息存放在etcd中，供各个客户端订阅使用。使用etcd的key TTL功能可以确保机器状态是实时更新的。 分布式日志收集系统。这个系统的核心工作是收集分布在不同机器上的日志。收集器通常按照应用（或主题）来分配收集任务单元，因此可以在etcd上创建一个以应用（或主题）命名的目录P，并将这个应用（或主题）相关的所有机器ip，以子目录的形式存储在目录P下，然后设置一个递归的etcd Watcher，递归式地监控应用（或主题）目录下所有信息的变动。这样就实现了在机器IP（消息）发生变动时，能够实时通知收集器调整任务分配。 **系统中信息需要动态自动获取与人工干预修改信息请求内容的情况。**通常的解决方案是对外暴露接口，例如JMX接口，来获取一些运行时的信息或提交修改的请求。而引入etcd之后，只需要将这些信息存放到指定的etcd目录中，即可通过HTTP接口直接被外部访问。  图4 消息发布与订阅
-1.3 场景三：负载均衡 在场景一中也提到了负载均衡，本文提及的负载均衡均指软负载均衡。在分布式系统中，为了保证服务的高可用以及数据的一致性，通常都会把数据和服务部署多份，以此达到对等服务，即使其中的某一个服务失效了，也不影响使用。这样的实现虽然会导致一定程度上数据写入性能的下降，但是却能实现数据访问时的负载均衡。因为每个对等服务节点上都存有完整的数据，所以用户的访问流量就可以分流到不同的机器上。
- etcd本身分布式架构存储的信息访问支持负载均衡。etcd集群化以后，每个etcd的核心节点都可以处理用户的请求。所以，把数据量小但是访问频繁的消息数据直接存储到etcd中也是个不错的选择，如业务系统中常用的二级代码表。二级代码表的工作过程一般是这样，在表中存储代码，在etcd中存储代码所代表的具体含义，业务系统调用查表的过程，就需要查找表中代码的含义。所以如果把二级代码表中的小量数据存储到etcd中，不仅方便修改，也易于大量访问。 利用etcd维护一个负载均衡节点表。etcd可以监控一个集群中多个节点的状态，当有一个请求发过来后，可以轮询式地把请求转发给存活着的多个节点。类似KafkaMQ，通过Zookeeper来维护生产者和消费者的负载均衡。同样也可以用etcd来做Zookeeper的工作。  图5 负载均衡</description>
+      <guid>https://fengfees.github.io/blog/2015/02/01/etcd%E4%BB%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%B0%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%9A%84%E5%85%A8%E6%96%B9%E4%BD%8D%E8%A7%A3%E8%AF%BB/</guid>
+      <description>随着CoreOS和Kubernetes等项目在开源社区日益火热，它们项目中都用到的etcd组件作为一个高可用、强一致性的服务发现存储仓库，渐渐为开发人员所关注。在云计算时代，如何让服务快速透明地接入到计算集群中，如何让共享配置信息快速被集群中的所有机器发现，更为重要的是，如何构建这样一套高可用、安全、易于部署以及响应快速的服务集群，已经成为了迫切需要解决的问题。etcd为解决这类问题带来了福音，本章将从etcd的应用场景开始，深入解读etcd的实现方式，以供开发者们更为充分地享用etcd所带来的便利。</description>
     </item>
     
     <item>
       <title>Docker源码分析（七）：Docker Container网络 （上）</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%83docker-container%E7%BD%91%E7%BB%9C-%E4%B8%8A/</link>
+      <link>https://fengfees.github.io/blog/2015/01/26/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%83docker-container%E7%BD%91%E7%BB%9C-%E4%B8%8A/</link>
       <pubDate>Mon, 26 Jan 2015 10:31:13 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%83docker-container%E7%BD%91%E7%BB%9C-%E4%B8%8A/</guid>
-      <description>本文开始介绍docker container的网络模型。
-1. 前言(什么是Docker Container) 如今，Docker技术大行其道，大家在尝试以及玩转Docker的同时，肯定离不开一个概念，那就是“容器”或者“Docker Container”。那么我们首先从实现的角度来看看“容器”或者“Docker Container”到底为何物。 逐渐熟悉Docker之后，大家肯定会深深得感受到：应用程序在Docker Container内部的部署与运行非常便捷，只要有Dockerfile，应用一键式的部署运行绝对不是天方夜谭； Docker Container内运行的应用程序可以受到资源的控制与隔离，大大满足云计算时代应用的要求。毋庸置疑，Docker的这些特性，传统模式下应用是完全不具备的。然而，这些令人眼前一亮的特性背后，到底是谁在“作祟”，到底是谁可以支撑Docker的这些特性？不知道这个时候，大家是否会联想到强大的Linux内核。 其实，这很大一部分功能都需要归功于Linux内核。那我们就从Linux内核的角度来看看Docker到底为何物，先从Docker Container入手。关于Docker Container，体验过的开发者第一感觉肯定有两点：内部可以跑应用（进程），以及提供隔离的环境。当然，后者肯定也是工业界称之为“容器”的原因之一。 既然Docker Container内部可以运行进程，那么我们先来看Docker Container与进程的关系，或者容器与进程的关系。首先，我提出这样一个问题供大家思考“容器是否可以脱离进程而存在”。换句话说，能否创建一个容器，而这个容器内部没有任何进程。 可以说答案是否定的。既然答案是否定的，那说明不可能先有容器，然后再有进程，那么问题又来了，“容器和进程是一起诞生，还是先有进程再有容器呢？”可以说答案是后者。以下将慢慢阐述其中的原因。 阐述问题“容器是否可以脱离进程而存在”的原因前，相信大家对于以下的一段话不会持有异议：通过Docker创建出的一个Docker Container是一个容器，而这个容器提供了进程组隔离的运行环境。那么问题在于，容器到底是通过何种途径来实现进程组运行环境的“隔离”。这时，就轮到Linux内核技术隆重登场了。 说到运行环境的“隔离”，相信大家肯定对Linux的内核特性namespace和cgroup不会陌生。namespace主要负责命名空间的隔离，而cgroup主要负责资源使用的限制。其实，正是这两个神奇的内核特性联合使用，才保证了Docker Container的“隔离”。那么，namespace和cgroup又和进程有什么关系呢？问题的答案可以用以下的次序来说明：
- 父进程通过fork创建子进程时，使用namespace技术，实现子进程与其他进程（包含父进程）的命名空间隔离； 子进程创建完毕之后，使用cgroup技术来处理子进程，实现进程的资源使用限制； 系统在子进程所处namespace内部，创建需要的隔离环境，如隔离的网络栈等； namespace和cgroup两种技术都用上之后，进程所处的“隔离”环境才真正建立，这时“容器”才真正诞生！  从Linux内核的角度分析容器的诞生，精简的流程即如以上4步，而这4个步骤也恰好巧妙的阐述了namespace和cgroup这两种技术和进程的关系，以及进程与容器的关系。进程与容器的关系，自然是：容器不能脱离进程而存在，先有进程，后有容器。然而，大家往往会说到“使用Docker创建Docker Container（容器），然后在容器内部运行进程”。对此，从通俗易懂的角度来讲，这完全可以理解，因为“容器”一词的存在，本身就较为抽象。如果需要更为准确的表述，那么可以是：“使用Docker创建一个进程，为这个进程创建隔离的环境，这样的环境可以称为Docker Container（容器），然后再在容器内部运行用户应用进程。”当然，笔者的本意不是想否定很多人对于Docker Container或者容器的认识，而是希望和读者一起探讨Docker Container底层技术实现的原理。 对于Docker Container或者容器有了更加具体的认识之后，相信大家的眼球肯定会很快定位到namespace和cgroup这两种技术。Linux内核的这两种技术，竟然能起到如此重大的作用，不禁为之赞叹。那么下面我们就从Docker Container实现流程的角度简要介绍这两者。 首先讲述一下namespace在容器创建时的用法，首先从用户创建并启动容器开始。当用户创建并启动容器时，Docker Daemon 会fork出容器中的第一个进程A（暂且称为进程A，也就是Docker Daemon的子进程）。Docker Daemon执行fork时，在clone系统调用阶段会传入5个参数标志CLONE_NEWNS、CLONE_NEWUTS、CLONE_NEWIPC、CLONE_NEWPID和CLONE_NEWNET（目前Docker 1.2.0还没有完全支持user namespace）。Clone系统调用一旦传入了这些参数标志，子进程将不再与父进程共享相同的命名空间（namespace），而是由Linux为其创建新的命名空间（namespace），从而保证子进程与父进程使用隔离的环境。另外，如果子进程A再次fork出子进程B和C，而fork时没有传入相应的namespace参数标志，那么此时子进程B和C将会与A共享同一个命令空间（namespace）。如果Docker Daemon再次创建一个Docker Container，容器内第一个进程为D，而D又fork出子进程E和F，那么这三个进程也会处于另外一个新的namespace。两个容器的namespace均与Docker Daemon所在的namespace不同。Docker关于namespace的简易示意图如下： 
-图1.1 Docker中namespace示意图
-再说起cgroup，大家都知道可以使用cgroup为进程组做资源的控制。与namespace不同的是，cgroup的使用并不是在创建容器内进程时完成的，而是在创建容器内进程之后再使用cgroup，使得容器进程处于资源控制的状态。换言之，cgroup的运用必须要等到容器内第一个进程被真正创建出来之后才能实现。当容器内进程被创建完毕，Docker Daemon可以获知容器内进程的PID信息，随后将该PID放置在cgroup文件系统的指定位置，做相应的资源限制。 可以说Linux内核的namespace和cgroup技术，实现了资源的隔离与限制。那么对于这种隔离与受限的环境，是否还需要配置其他必需的资源呢。这回答案是肯定的，网络栈资源就是在此时为容器添加。当为容器进程创建完隔离的运行环境时，发现容器虽然已经处于一个隔离的网络环境（即新的network namespace），但是进程并没有独立的网络栈可以使用，如独立的网络接口设备等。此时，Docker Daemon会将Docker Container所需要的资源一一为其配备齐全。网络方面，则需要按照用户指定的网络模式，配置Docker Container相应的网络资源。
-2. Docker Container网络分析内容安排 Docker Container网络篇将从源码的角度，分析Docker Container从无到有的过程中，Docker Container网络创建的来龙去脉。Docker Container网络创建流程可以简化如下图： 
-图2.1 Docker Container网络创建流程图
-Docker Container网络篇分析的主要内容有以下5部分：</description>
+      <guid>https://fengfees.github.io/blog/2015/01/26/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%83docker-container%E7%BD%91%E7%BB%9C-%E4%B8%8A/</guid>
+      <description>本文开始介绍docker container的网络模型。</description>
     </item>
     
     <item>
       <title>Docker网络详解及pipework源码解读与实践</title>
-      <link>https://fengfees.github.io/blog/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
+      <link>https://fengfees.github.io/blog/2015/01/16/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Fri, 16 Jan 2015 14:20:20 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
-      <description>Docker作为目前最火的轻量级容器技术，有很多令人称道的功能，如Docker的镜像管理。然而，Docker同样有着很多不完善的地方，网络方面就是Docker比较薄弱的部分。因此，我们有必要深入了解Docker的网络知识，以满足更高的网络需求。本文首先介绍了Docker自身的4种网络工作方式，然后通过3个样例 —— 将Docker容器配置到本地网络环境中、单主机Docker容器的VLAN划分、多主机Docker容器的VLAN划分，演示了如何使用pipework帮助我们进行复杂的网络设置，以及pipework是如何工作的。
-1. Docker的4种网络模式 我们在使用docker run创建Docker容器时，可以用--net选项指定容器的网络模式，Docker有以下4种网络模式：
- host模式，使用--net=host指定。 container模式，使用--net=container:NAME_or_ID指定。 none模式，使用--net=none指定。 bridge模式，使用--net=bridge指定，默认设置。  下面分别介绍一下Docker的各个网络模式。
-1.1 host模式 众所周知，Docker使用了Linux的Namespaces技术来进行资源隔离，如PID Namespace隔离进程，Mount Namespace隔离文件系统，Network Namespace隔离网络等。一个Network Namespace提供了一份独立的网络环境，包括网卡、路由、Iptable规则等都与其他的Network Namespace隔离。一个Docker容器一般会分配一个独立的Network Namespace。但如果启动容器的时候使用host模式，那么这个容器将不会获得一个独立的Network Namespace，而是和宿主机共用一个Network Namespace。容器将不会虚拟出自己的网卡，配置自己的IP等，而是使用宿主机的IP和端口。 例如，我们在10.10.101.105/24的机器上用host模式启动一个含有web应用的Docker容器，监听tcp80端口。当我们在容器中执行任何类似ifconfig命令查看网络环境时，看到的都是宿主机上的信息。而外界访问容器中的应用，则直接使用10.10.101.105:80即可，不用任何NAT转换，就如直接跑在宿主机中一样。但是，容器的其他方面，如文件系统、进程列表等还是和宿主机隔离的。
-1.2 container模式 在理解了host模式后，这个模式也就好理解了。这个模式指定新创建的容器和已经存在的一个容器共享一个Network Namespace，而不是和宿主机共享。新创建的容器不会创建自己的网卡，配置自己的IP，而是和一个指定的容器共享IP、端口范围等。同样，两个容器除了网络方面，其他的如文件系统、进程列表等还是隔离的。两个容器的进程可以通过lo网卡设备通信。
-1.3 none模式 这个模式和前两个不同。在这种模式下，Docker容器拥有自己的Network Namespace，但是，并不为Docker容器进行任何网络配置。也就是说，这个Docker容器没有网卡、IP、路由等信息。需要我们自己为Docker容器添加网卡、配置IP等。
-1.4 bridge模式 bridge模式是Docker默认的网络设置，此模式会为每一个容器分配Network Namespace、设置IP等，并将一个主机上的Docker容器连接到一个虚拟网桥上。下面着重介绍一下此模式。
-1.4.1 bridge模式的拓扑
-当Docker server启动时，会在主机上创建一个名为docker0的虚拟网桥，此主机上启动的Docker容器会连接到这个虚拟网桥上。虚拟网桥的工作方式和物理交换机类似，这样主机上的所有容器就通过交换机连在了一个二层网络中。接下来就要为容器分配IP了，Docker会从RFC1918所定义的私有IP网段中，选择一个和宿主机不同的IP地址和子网分配给docker0，连接到docker0的容器就从这个子网中选择一个未占用的IP使用。如一般Docker会使用172.17.0.0/16这个网段，并将172.17.42.1/16分配给docker0网桥（在主机上使用ifconfig命令是可以看到docker0的，可以认为它是网桥的管理接口，在宿主机上作为一块虚拟网卡使用）。单机环境下的网络拓扑如下，主机地址为10.10.101.105/24。  Docker完成以上网络配置的过程大致是这样的：
- 在主机上创建一对虚拟网卡veth pair设备。veth设备总是成对出现的，它们组成了一个数据的通道，数据从一个设备进入，就会从另一个设备出来。因此，veth设备常用来连接两个网络设备。 Docker将veth pair设备的一端放在新创建的容器中，并命名为eth0。另一端放在主机中，以veth65f9这样类似的名字命名，并将这个网络设备加入到docker0网桥中，可以通过brctl show命令查看。  从docker0子网中分配一个IP给容器使用，并设置docker0的IP地址为容器的默认网关。  网络拓扑介绍完后，接着介绍一下bridge模式下容器是如何通信的。
-1.4.2 bridge模式下容器的通信
-在bridge模式下，连在同一网桥上的容器可以相互通信（若出于安全考虑，也可以禁止它们之间通信，方法是在DOCKER_OPTS变量中设置--icc=false，这样只有使用--link才能使两个容器通信）。 容器也可以与外部通信，我们看一下主机上的Iptable规则，可以看到这么一条
-\-A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE  这条规则会将源地址为172.17.0.0/16的包（也就是从Docker容器产生的包），并且不是从docker0网卡发出的，进行源地址转换，转换成主机网卡的地址。这么说可能不太好理解，举一个例子说明一下。假设主机有一块网卡为eth0，IP地址为10.10.101.105/24，网关为10.10.101.254。从主机上一个IP为172.17.0.1/16的容器中ping百度（180.76.3.151）。IP包首先从容器发往自己的默认网关docker0，包到达docker0后，也就到达了主机上。然后会查询主机的路由表，发现包应该从主机的eth0发往主机的网关10.10.105.254/24。接着包会转发给eth0，并从eth0发出去（主机的ip_forward转发应该已经打开）。这时候，上面的Iptable规则就会起作用，对包做SNAT转换，将源地址换为eth0的地址。这样，在外界看来，这个包就是从10.10.101.105上发出来的，Docker容器对外是不可见的。 那么，外面的机器是如何访问Docker容器的服务呢？我们首先用下面命令创建一个含有web应用的容器，将容器的80端口映射到主机的80端口。</description>
+      <guid>https://fengfees.github.io/blog/2015/01/16/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
+      <description>Docker作为目前最火的轻量级容器技术，有很多令人称道的功能，如Docker的镜像管理。然而，Docker同样有着很多不完善的地方，网络方面就是Docker比较薄弱的部分。因此，我们有必要深入了解Docker的网络知识，以满足更高的网络需求。本文首先介绍了Docker自身的4种网络工作方式，然后通过3个样例 —— 将Docker容器配置到本地网络环境中、单主机Docker容器的VLAN划分、多主机Docker容器的VLAN划分，演示了如何使用pipework帮助我们进行复杂的网络设置，以及pipework是如何工作的。</description>
     </item>
     
     <item>
       <title>Docker源码分析（六）：Docker Daemon网络</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ADdocker-daemon%E7%BD%91%E7%BB%9C/</link>
+      <link>https://fengfees.github.io/blog/2015/01/05/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ADdocker-daemon%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 05 Jan 2015 10:52:28 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ADdocker-daemon%E7%BD%91%E7%BB%9C/</guid>
-      <description>本文介绍docker daemon的网络模型。
-摘要: Docker的容器特性和镜像特性已然为Docker实践者带来了诸多效益，然而Docker的网络特性却不能让用户满意。本文从Docker的网络模式入手，分析了Docker Daemon创建网络环境的详细流程，其中着重于分析Docker桥接模式的创建，为之后Docker Container创建网络环境做铺垫。
-前言 Docker作为一个开源的轻量级虚拟化容器引擎技术，已然给云计算领域带来了新的发展模式。Docker借助容器技术彻底释放了轻量级虚拟化技术的威力，让容器的伸缩、应用的运行都变得前所未有的方便与高效。同时，Docker借助强大的镜像技术，让应用的分发、部署与管理变得史无前例的便捷。然而，Docker毕竟是一项较为新颖的技术，在Docker的世界中，用户并非一劳永逸，其中最为典型的便是Docker的网络问题。 毋庸置疑，对于Docker管理者和开发者而言，如何有效、高效的管理Docker容器之间的交互以及Docker容器的网络一直是一个巨大的挑战。目前，云计算领域中，绝大多数系统都采取分布式技术来设计并实现。然而，在原生态的Docker世界中，Docker的网络却是不具备跨宿主机能力的，这也或多或少滞后了Docker在云计算领域的高速发展。 工业界中，Docker的网络问题的解决势在必行，在此环境下，很多IT企业都开发了各自的新产品来帮助完善Docker的网络。这些企业中不乏像Google一样的互联网翘楚企业，同时也有不少初创企业率先出击，在最前沿不懈探索。这些新产品中有，Google推出的容器管理和编排开源项目Kubernetes，Zett.io公司开发的通过虚拟网络连接跨宿主机容器的工具Weave，CoreOS团队针对Kubernetes设计的网络覆盖工具Flannel，Docker官方的工程师Jérôme Petazzoni自己设计的SDN网络解决方案Pipework，以及SocketPlane项目等。 对于Docker管理者与开发者而言，Docker的跨宿主机通信能力固然重要，但Docker自身的网络架构也同样重要。只有深入了解Docker自身的网络设计与实现，才能在这基础上扩展Docker的跨宿主机能力。 Docker自身的网络主要包含两部分：Docker Daemon的网络配置，Docker Container的网络配置。本文主要分析Docker Daemon的网络。
-Docker Daemon网络分析内容安排 本文从源码的角度，分析Docker Daemon在启动过程中，为Docker配置的网络环境，章节安排如下：
- Docker Daemon网络配置； 运行Docker Daemon网络初始化任务； 创建Docker网桥。  本文为《Docker源码分析系列》第六篇——Docker Daemon网络篇，第七篇将安排Docker Container网络篇。
-Docker Daemon网络配置 Docker环境中，Docker管理员完全有权限配置Docker Daemon运行过程中的网络模式。 关于Docker的网络模式，大家最熟知的应该就是“桥接”的模式。下图为桥接模式下，Docker的网络环境拓扑图（包括Docker Daemon网络环境和Docker Container网络环境）： 
-图3.1 Docker网络桥接示意图
-然而，“桥接”是Docker网络模式中最为常用的模式。除此之外，Docker还为用户提供了更多的可选项，下文将对此一一说来。
-Docker Daemon网络配置接口 Docker Daemon每次启动的过程中，都会初始化自身的网络环境，这样的网络环境最终为Docker Container提供网络通信服务。 Docker管理员配置Docker的网络环境，可以在Docker Daemon启动时，通过Docker提供的接口来完成。换言之，可以使用docker二进制可执行文件，运行docker -d并添加相应的flag参数来完成。 其中涉及的flag参数有EnableIptables、EnableIpForward、BridgeIface、BridgeIP以及InterContainerCommunication。该五个参数的定义位于./docker/daemon/config.go，具体代码如下：
-flag.BoolVar(&amp;amp;config.EnableIptables, []string{&amp;quot;#iptables&amp;rdquo;, &amp;ldquo;-iptables&amp;rdquo;}, true, &amp;ldquo;Enable Docker&amp;rsquo;s addition of iptables rules&amp;rdquo;) flag.BoolVar(&amp;amp;config.EnableIpForward, []string{&amp;quot;#ip-forward&amp;rdquo;, &amp;ldquo;-ip-forward&amp;rdquo;}, true, &amp;ldquo;Enable net.ipv4.ip_forward&amp;rdquo;) flag.StringVar(&amp;amp;config.BridgeIP, []string{&amp;quot;#bip&amp;rdquo;, &amp;ldquo;-bip&amp;rdquo;}, &amp;ldquo;&amp;rdquo;, &amp;ldquo;Use this CIDR notation address for the network bridge&amp;rsquo;s IP, not compatible with -b&amp;rdquo;) flag.</description>
+      <guid>https://fengfees.github.io/blog/2015/01/05/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%85%ADdocker-daemon%E7%BD%91%E7%BB%9C/</guid>
+      <description>本文介绍docker daemon的网络模型。</description>
     </item>
     
     <item>
       <title>Google Kubernetes设计文档之Volumes</title>
-      <link>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/</link>
+      <link>https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/</link>
       <pubDate>Fri, 02 Jan 2015 10:56:38 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/</guid>
-      <description>摘要：
-Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文描述了Kubernetes中Volumes的使用情况，Volume是一个能够被容器访问的目录。
-Volumes 本文描述了Kubernetes中Volumes的使用情况，建议在阅读本文前，首先熟悉pods。 Volume是一个能够被容器访问的目录，它可能还会包含一些数据。Kubernetes Volumes与Docker Volumes类似，但并不完全相同。 一个Pod会在它的ContainerManifest 属性中指明其容器需要哪些Volumes。 容器中的进程可见的文件系统视图由两个源组成：一个单独的Docker image和零个或多个Volumes。Docker image位于文件层次结构的根部。所有的Volumes都挂载在Docker image的节点上。Volumes不能挂载在其他的Volumes上，也没有连接其他Volumes的硬链接。Pod中的每个容器都单独地指明了其image挂载的Volume。这会通过VolumeMount属性来确定。
-资源 Volume的存储介质(如硬盘、固态硬盘或内存)是由保存kubelet根目录(一般为/var/lib/kubelet)的文件系统的存储介质决定的。一个EmptyDir或者PersistentDir类型的Volume可以使用多少空间是没有限制的，同时在容器或者pods间也不存在隔离。 将来，我们预计一个Volume将能够通过使用资源规范来请求一个确定大小的空间；同时，对于包含多种存储介质的集群，将可以选择Volume使用的介质类型。
-Volumes的类型 Kubernetes现在支持三种类型的Volumes，但将来会支持更多的类型。
-EmptyDir 一个EmptyDir Volume是在Pod绑定到Node时创建的。当第一条容器命令启动时，它的初始状态为空。在同一个Pod上的容器可以读写EmptyDir中的相同文件。当一个Pod被解绑，在EmptyDir中的数据将永久性删除。 EmptyDir的一些用途如下：
- 暂存空间，例如用于基于磁盘的归并排序或者长计算的检查点； 一个目录，由一个内容管理容器填充数据，同时由一个网络服务器容器供应数据。  目前，用户无法控制EmptyDir使用的介质种类。如果Kubelet的配置是使用硬盘，那么所有的EmptyDirectories都将创建在该硬盘上。将来，可以预料的是Pods将可以控制EmptyDir是位于硬盘、固态硬盘还是基于内存的tmpfs上。
-HostDir 一个HostDir的Volume将可以访问当前宿主机节点上的文件。 HostDir的一些用途如下：
- 运行一个需要访问Docker内部结构的容器；可以访问/var/lib/docker这个HostDir ；在容器中运行cAdvisor；可以访问/dev/cgroups这个HostDir。  当使用该类型的Volume时，需要格外小心，因为：
- 具有相同配置的pods(例如由同一个podTemplate创建的pods)可能在不同宿主节点上由于宿主机上的目录和文件不同而有着不同的访问结果； 当Kubernetes增加资源敏感调度，按其计划，它将不能考虑到HostDir使用的资源。  GCEPersistentDisk 重要提示：必须创建并格式化一个永久磁盘(PD)才能使用GCEPersistentDisk。 拥有GCEPersistentDisk的Volume可以访问谷歌计算引擎（Google Compute Engine, GCE）的永久磁盘上的文件。 使用GCEPersistentDisk时，有一些限制条件：
- 节点(运行kubelet的节点)需要是GCE虚拟机； 这些虚拟机需要在相同的GCE项目中，同时被划作PD； 避免使用相同Volume来创建多个pods  如果多个pods引用相同的Volume，并且都部署在同一台机器上，不论它们是只读还是可读写的，那么第二个pod的部署都将失败； 只有使用只读加载的文件系统的pod才能创建复制控制器。    创建一个PD 在你能够在pod上使用GCE PD前，你需要先创建并格式化它。 我们正在积极努力得使这个过程更加精简容易。
-DISK\_NAME=my-data-disk DISK\_SIZE=500GB ZONE=us-central1-a gcloud compute disks create --size=$DISK\_SIZE --zone=$ZONE $DISK\_NAME gcloud compute instances attach-disk --zone=$ZONE --disk=$DISK\_NAME --device-name temp-data kubernetes-master gcloud compute ssh --zone=$ZONE kubernetes-master \\ --command &amp;quot;sudo mkdir /mnt/tmp &amp;amp;&amp;amp; sudo /usr/share/google/safe\_format\_and\_mount /dev/disk/by-id/google-temp-data /mnt/tmp&amp;quot; gcloud compute instances detach-disk --zone=$ZONE --disk $DISK\_NAME kubernetes-master  GCE PD的配置实例：</description>
+      <guid>https://fengfees.github.io/blog/2015/01/02/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bvolumes/</guid>
+      <description>摘要：</description>
     </item>
     
     <item>
       <title>Google Kubernetes设计文档之网络篇</title>
-      <link>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/</link>
+      <link>https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/</link>
       <pubDate>Mon, 29 Dec 2014 15:32:24 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/</guid>
-      <description>摘要： Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。其从Docker默认网络模型中独立出来形成了一套自己的网络模型，本文将详细介绍。
-模型和动机 Kubernetes从Docker默认的网络模型中独立出来形成一套自己的网络模型。该网络模型的目标是：每一个pod都拥有一个扁平化共享网络命名空间的IP，通过该IP，pod就能够跨网络与其它物理机和容器进行通信。一个pod一个IP模型创建了一个干净、反向兼容的模型，在该模型中，从端口分配、网络、域名解析、服务发现、负载均衡、应用配置和迁移等角度，pod都能够被看成虚拟机或物理机。 另一方面，动态端口分配需要以下方面的支持： 1，固定端口（例如：用于外部可访问服务）和动态分配端口； 2，分割集中分配和本地获取的动态端口； 不过，这不但使调度复杂化（因为端口是一种稀缺资源），而且应用程序的配置也将变得复杂，具体表现为端口冲突、重用和耗尽。 3，使用非标准方法进行域名解析（例如：etcd而不是DNS）； 4，对使用标准域名/地址解析机制的程序（例如：web浏览器）使用代理和/或重定向。 5，除了监控和缓存实例的非法地址/端口变化外，还要监控用户组成员变化以及阻止容器/pod迁移（例如：使用CRIU）。 NAT将地址空间分段的做法引入了额外的复杂性，这将带来诸如破坏自注册机制等问题。 在一个pod一个IP模型中，从网络角度看，在一个pod中的所有用户容器都像是在同一台宿主机中那样。它们能够在本地访问其它用户容器的端口。暴露给主机网卡的端口是通过普通Docker方式实现的。所有pod中的容器能够通过他们“10”网段（10.x.x.x）的IP地址进行通信。
-除了能够避免上述动态端口分配带来的问题，该方案还能使应用平滑地从非容器环境（物理机或虚拟机）迁移到同一个pod内的容器环境。在同一台宿主机上运行应用程序栈这种场景已经找到避免端口冲突的方法（例如：通过配置环境变量）并使客户端能够找到这些端口。 该方案确实降低了pod中容器之间的隔离性&amp;ndash;尽管端口可能存在冲突而且也不存在pod内跨容器的私有端口，但是对于需要自己的端口范围的应用程序可以运行在不同的pod中，而对于需要进行私有通信的进程则可以运行在同一个容器内。另外，该方案假定的前提条件是：在同一个pod中的容器共享一些资源（例如：磁盘卷、处理器、内存等），因此损失部分隔离性也在可接受范围之内。此外，尽管用户能够指定不同容器归属到同一个pod，但一般情况下不能指定不同pod归属于同一台主机。 当任意一个容器调用SIOCGIFADDR（发起一个获取网卡IP地址的请求）时，它所获得的IP和与之通信的容器看到的IP是一样的&amp;ndash;每个pod都有一个能够被其它pod识别的IP。通过无差别地对待容器和pdo内外部的IP和端口，我们创建了一个非NAT的扁平化地址空间。&amp;ldquo;ip addr show&amp;quot;能够像预期那样正常工作。该方案能够使所有现有的域名解析/服务发现机制：包括自注册机制和分配IP地址的应用程序在容器外能够正常运行（我们应该用etcd、Euraka（用于Acme Air）或Consul等软件测试该方案）。对pod之间的网络通信，我们应该持乐观态度。在同一个pod中的容器之间更倾向于通过内存卷（例如：tmpfs）或IPC（进程间通信）的方式进行通信。 该模型与标准Docker模型不同。在该模型中，每个容器会得到一个“172”网段（172.x.x.x）的IP地址，而且通过SIOCGIFADDR也只能看到一个“172”网段（172.x.x.x）的IP地址。如果这些容器与其它容器连接，对方容器看到的IP地址与该容器自己通过SIOCGIFADDR请求获取的IP地址不同。简单地说，你永远无法在容器中注册任何东西或服务，因为一个容器不可能通过其私有IP地址被外界访问到。 我们想到的一个解决方案是增加额外的地址层：以pod为中心的一个容器一个IP模式。每个容器只拥有一个本地IP地址，且只在pod内可见。这将使得容器化应用程序能够更加容易地从物理/虚拟机迁移到pod，但实现起来很复杂（例如：要求为每个pod创建网桥，水平分割/虚拟私有的 DNS），而且可以预见的是，由于新增了额外的地址转换层，将破坏现有的自注册和IP分配机制。
-当前实现 Google计算引擎（GCE）集群配置了高级路由，使得每个虚拟机都有额外的256个可路由IP地址。这些是除了分配给虚拟机的通过NAT用于访问互联网的“主”IP之外的IP。该实现在Docker外部创建了一个叫做cbr0的网桥（为了与docker0网桥区别开），该网桥只负责对从容器内部流向外部的网络流量进行NAT转发。 目前，从“主”IP（即互联网，如果制定了正确的防火墙规则的话）发到映射端口的流量由Docker的用户模式进行代理转发。未来，端口转发应该由Kubelet或Docker通过iptables进行：Issue #15。 启动Docker时附加参数：DOCKER_OPTS=&amp;rdquo;&amp;ndash;bridge cbr0 &amp;ndash;iptables=false&amp;rdquo;。 并用SaltStack在每个node中创建一个网桥，代码见container_bridge.py：
-cbr0: container\_bridge.ensure: - cidr: {{ grains\[&#39;cbr-cidr&#39;\] }} ... grains: roles: - kubernetes-pool cbr-cidr: $MINION\_IP\_RANGE\`  在GCE中，我们让以下IP地址可路由：
-\`gcloud compute routes add &amp;quot;${MINION\_NAMES\[$i\]}&amp;quot; \\ --project &amp;quot;${PROJECT}&amp;quot; \\ --destination-range &amp;quot;${MINION\_IP\_RANGES\[$i\]}&amp;quot; \\ --network &amp;quot;${NETWORK}&amp;quot; \\ --next-hop-instance &amp;quot;${MINION\_NAMES\[$i\]}&amp;quot; \\ --next-hop-instance-zone &amp;quot;${ZONE}&amp;quot; &amp;amp;  以上代码中的MINION_IP_RANGES是以10.开头的24位网络号IP地址空间（10.x.x.x/24）。 尽管如此，GCE本身并不知道这些IP地址的任何信息。 这些IP地址不是外部可路由的，因此，那些有与外界通信需求的容器需要使用宿主机的网络。如果外部流量要转发给虚拟机，它只会被转发给虚拟机的主IP（该IP不会被分配给任何一个pod），因此我们使用docker的-p标记把暴露的端口映射到主网卡上。该方案的带来的副作用是不允许两个不同的pod暴露同一个端口（更多相关讨论见Issue #390）。 我们创建了一个容器用于管理pod的网络命名空间，该网络容器内有一个本地回环设备和一块虚拟以太网卡。所有的用户容器从该pod的网络容器那里获取他们的网络命名空间。 Docker在它的“container”网络模式下从网桥（我们为每个节点上创建了一个网桥）那里分配IP地址，具体步骤如下： 1，使用最小镜像创建一个普通容器（从网络角度）并运行一条永远阻塞的命令。这不是一个用户定义的容器，给它一个特别的众所周知的名字。</description>
+      <guid>https://fengfees.github.io/blog/2014/12/29/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E7%BD%91%E7%BB%9C%E7%AF%87/</guid>
+      <description>摘要： Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。其从Docker默认网络模型中独立出来形成了一套自己的网络模型，本文将详细介绍。</description>
     </item>
     
     <item>
       <title>Google Kubernetes设计文档之服务篇</title>
-      <link>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/</link>
+      <link>https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/</link>
       <pubDate>Tue, 23 Dec 2014 10:20:47 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/</guid>
-      <description>摘要：
-Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。 Pod是创建、调度和管理的最小部署单位，本文详细介绍这些Pod之间的通信和调度。
-概述 Kubernetes中 Pods 不是一成不变的。它们可以随着时间进行迁移，特别是当受到 ReplicationControllers支配时。虽然每个pod都有属于自己的IP地址，但是却不能保证每个Pod的IP地址随着时间的变化依然保持不变。这就导致了一个问题：如果在Kubernetes集群里，有一系列的pods（我们姑且称之为后端）为其他的pods（称为前端）提供功能，那前端该如何去找到后端？
-服务 Kubernetes中的服务是一种抽象概念，它定义了一个pods逻辑集合以及访问它们的策略，有时它也被称为微服务（Micro-service）。服务的目标是提供一种桥梁，使得非Kubernetes原生应用程序，在无需为Kubernetes编写特定代码的前提下，轻松访问后端。服务会为用户提供一对IP地址和port端口，用于在访问时重定向到相应的后端。服务里Pods集合的选定是由一个标签选择器（label selector）来完成的。 举个例子，首先假设一个“镜像处理”后端，它运行着三个可用的副本。这些副本是无状态的，前端根本不关心自己具体使用的是后端的哪个副本。因此，尽管组成后端集合的实际pods可能已经发生了改变，但是前端用户完全不需要知晓这些改变。这种服务的抽象性实现了前端访问与后端服务的解耦。
-定义服务 这里是一个使用服务的例子。在Kubernetes中，服务是REST对象，类似于pod。如pod一般，服务的定义，可以通过一个发给apiserver的POST请求，来完成创建一个新的实例。例如，假设你有一组pods，都暴露9376端口，并携带一个&amp;quot;app=MyApp&amp;quot;的标签。
-{ &amp;ldquo;id&amp;rdquo;: &amp;ldquo;myapp&amp;rdquo;, &amp;ldquo;selector&amp;rdquo;: { &amp;ldquo;app&amp;rdquo;: &amp;ldquo;MyApp&amp;rdquo; }, &amp;ldquo;containerPort&amp;rdquo;: 9376, &amp;ldquo;protocol&amp;rdquo;: &amp;ldquo;TCP&amp;rdquo;, &amp;ldquo;port&amp;rdquo;: 8765 }
-上述定义将创建一个名为&amp;quot;myapp&amp;quot;的新服务，它使得所有带有&amp;quot;app=MyApp&amp;quot;标签的pod都监听TCP协议上的端口9376。而客户可以通过端口$MYAPP_SERVICE_PORT连接到$MYAPP_SERVICE_HOST，从而访问该服务。
-服务是如何工作的？ 在Kubernetes集群中的每个节点（node）上都运行着一个服务代理（service proxy）。该代理应用监听Kubernetes Master，以此来添加和删除服务对象及端点（endpoints，即满足服务标签选择器的pods），同时该代理应用还存储一个服务到端点列表的映射。它为每个服务在本地节点上打开一个端口，并转发该端口上的所有流量到后端。名义上是依据策略来执行的，但现在唯一支持的策略是轮转调度（round-robin）。 当一个pod被编入，Master为每一个存活的服务增加一组环境变量。我们支持Docker-links-compatible变量（参见makeLinkVariables）以及更简单的{SVCNAME}_SERVICE_HOST和{SVCNAME}_SERVICE_PORT变量，其中的服务名要求大写，破折号将转换为下划线。具体的服务工作图如图1 。例如，服务&amp;quot;redis-master&amp;quot;监听TCP端口637，并分配IP地址10.0.0.11，将产生以下环境变量：
-REDIS\_MASTER\_SERVICE\_HOST=10.0.0.11 REDIS\_MASTER\_SERVICE\_PORT=6379 REDIS\_MASTER\_PORT=tcp://10.0.0.11:6379 REDIS\_MASTER\_PORT\_6379\_TCP=tcp://10.0.0.11:6379 REDIS\_MASTER\_PORT\_6379\_TCP\_PROTO=tcp REDIS\_MASTER\_PORT\_6379\_TCP\_PORT=6379 REDIS\_MASTER\_PORT\_6379\_TCP\_ADDR=10.0.0.11  这意味着要有先后次序，即一个pod希望访问的服务必须在pod本身创建之前被创建，否则环境变量不会被加载。不过支持DNS服务后，该限制将不再存在。 服务通过它的标签选择器，可以解析到0或多个端点。在服务的生命周期内，组成该服务的pods集合可以增加、缩减，或全部失效。用户只有在当他们正在使用的后端从服务中被移除时，才会遇到问题（即使如此，已经打开的连接也会因为某些协议的缘故，继续保持）。 
-图1.服务工作图
-细节明细 前文的内容对于大多数只是想要使用服务的人来说应该已经足够了。然而，有很多发生在这背后的事情也值得去深入了解。
-避免冲突 Kubernetes的一个主要理念是，用户不应该遭遇可能导致其操作失败的情景，尤其是用户本身并未引起错误。在此背景下，我们考虑网络端口的问题—不应该让用户选择一个可能与其他用户发生冲突的端口号。否则，将是隔离上的失败。 为了让用户能够选择他们的服务端口号，我们必须确保不会引起两个服务间的冲突。我们通过为每个服务分配自己的IP地址来做到这一点。
-IP和Portal 不同于路由到一个固定的pod的IP地址，服务的IP实际上并不是由单个Master响应的。相反的，我们用iptables（Linux中的数据包处理逻辑）来定义这些需要透明重定向的“虚拟”IP地址。我们将服务IP和服务端口的元组称为Portal。当用户连接到portal上，其访问会被自动转移到一个相应的端点上。实际上，服务的环境变量是依据portal的IP和端口来设定的。此外，我们将增加DNS来支撑服务的访问。 举例来说，考虑上图所展示的应用处理过程。在创建后端服务时，Kubernetes Master分配一个Portal的IP地址，例如10.0.0.1。假设服务端口是1234，portal即为是10.0.0.1:1234。Master将存储该信息，它也被集群中所有的服务代理实例所获取。当代理监测到一个新的portal，它会打开一个新的随机端口，建立一个从Portal到新端口的iptables重定向，然后开始接受对其的连接。 当用户使用portal端口连接MYAPP_SERVICE_HOST时（不论他们将其视为静态端口或视为MYAPP_SERVICE_PORT），iptables规则生效，重定向数据包到服务代理自身的端口上。服务代理选择一个后端，并开始从客户端到后端的代理通信流量。具体原理如图2。 最终的结果是，用户可以选择他们想要的任何服务端口，而没有冲突的危险。客户可以轻松连接IP和端口，而无需了解到他们正在访问哪个pods。 
-图2.服务中IP和portal原理图
-外部服务 对于用户应用程序的某些部分（如前端），用户希望在外部可访问的IP地址（公网IP）上暴露一个服务。 如果你希望你的服务暴露在一个公网IP地址上，你可以选择提供一个服务可以响应的&amp;quot;publicIPs&amp;quot;列表。这些IP地址将被绑定上服务端口，同时被映射到由服务选择的pods集合上。你随后需要负责确保到该公网IP地址的通信流量被发送到一个或多个kubernetes工作节点。与映射内部IP地址一致，每个主机上的每一条IPTables规则，将公网特定IP地址的数据包映射到内部的服务代理。 对于提供外部负载均衡设备的云服务提供商，还有一个更简单的方式来达到同样的效果。在这类供应商（如GCE）上，你可以让publicIPs为空，作为代替，你可以在服务上设置createExternalLoadBalancer标志。这会启动一个云服务提供商的特定负载均衡设备（假设它由你的云提供商支持），并用适当的值来填充这个公网IP值域。
-缺点 我们预计，portals使用的iptables将在小规模上可用，而无法扩展到有着成千上万服务的大型集群。查看 portals的原始设计方案 ，可了解更多详情。
-今后的工作 在将来，我们设想，代理策略可以变得比简单的轮循调度更加细致入微，比如master筛选或分片。我们还设想，一些服务将具有“真正的”负载均衡器，在这种情况下，portal将可以直接简单地传输数据包。</description>
+      <guid>https://fengfees.github.io/blog/2014/12/23/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E6%9C%8D%E5%8A%A1%E7%AF%87/</guid>
+      <description>摘要：</description>
     </item>
     
     <item>
       <title>Google Kubernetes设计文档之Pod篇</title>
-      <link>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/</link>
+      <link>https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/</link>
       <pubDate>Fri, 19 Dec 2014 10:46:07 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/</guid>
-      <description>摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。CSDN联合浙江大学SEL实验室共同翻译其设计文档，本文为系列的第二篇：Pod。 在Kubernetes中，创建、调度和管理的最小部署单位是Pod，而不是容器。
-1.什么是Pod 一个Pod对应于由若干容器组成的一个容器组，同个组内的容器共享一个存储卷(volume)。Pod主要是在容器化环境中建立了一个面向应用的“逻辑主机”模型，它可以包含一个或多个相互间紧密联系的容器。在没有容器化技术的场景里，同个Pod内的“容器”都在同一台物理或虚拟主机上运行。 Pod与容器一样都不是持续存在的，在容器的生命周期里，每个Pod被分配到节点上运行直至运行结束或被删除。当一个节点消失时，该节点上的Pod也随之被删除。每个Pod实体只会被调度一次，不会重复分配给别的节点，由replication controller负责创建新的Pod来替代旧的（在未来也可能有新的API用于Pod迁移）。
-2.开发Pod的原因 2.1 资源共享和通信 Pod的存在使同个Pod下的容器之间能更方便的共享数据和通信。 同个Pod下的容器使用相同的网络命名空间、IP地址和端口区间，相互之间能通过localhost来发现和通信。在一个无层次的共享网络中，每个Pod都有一个IP地址用于跟别的物理主机和容器通信，Pod的名字就用作容器通信时的主机名。（有关网络的内容，我们稍后会翻译） 在同个Pod内运行的容器还共享一块存储卷空间，存储卷内的数据不会在容器重启后丢失，同时能被同Pod下别的容器读取。 未来的开发计划是使Pod共享IPC命名空间，CPU和内存。(参加Google的lmctfy文档，lmctfy的意思是Let me Contain That For You)
-2.2 管理 相比原生的容器接口，Pod通过提供更高层次的抽象，简化了应用的部署和管理。Pods就像一个管理和横向部署/和管理的单元，主机托管、资源共享、协调复制和依赖管理都可以自动处理。
-3.Pod用例 Pod能应用于构建垂直集成应用栈，但它的主要为了集中管理一些辅助程序，如：
- 内容管理系统，文件和数据载入器，本地缓存管理等； - 日志和检查点备份，压缩，轮换，快照系统等； 数据变化监视，日志末端数据读取，日志和监控适配器，事件打印等； 代理，桥接和适配器； 控制器，管理器，配置编辑器和更新器。  Pod的设计并不是为了运行同一个应用的多个实例。
-4.其他考虑因素 为什么不直接在单个Docker容器中运行多个程序？主要是出于以下几个原因：
- 透明性：将Pod内的容器向基础设施可见，底层系统就能向容器提供如进程管理和资源监控等服务，这样能给用户带来极大便利； 解绑软件的依赖：这样单个的容器可以独立地重建和重新部署。未来有可能在Kubernetes上实现独立容器的实时更新； 易用性：用户不需要运行自己的进程管理器，也不需负责信号量和退出码的传递等； 高效性：因为底层设备负责更多了管理，容器因而能更轻量化。  为什么不直接将相近的容器集中管理呢？那种方法虽然提供了集中管理的功能，但却没有Pod所拥有的大部分便利之处，如不提供资源共享和进程间通信，无法保证容器同时开始和结束，不能简化管理等。
-原文链接：Pods（编译/叶瑞浩 审校/孙宏亮、张磊） [simple-author-box]</description>
+      <guid>https://fengfees.github.io/blog/2014/12/19/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8Bpod%E7%AF%87/</guid>
+      <description>摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。CSDN联合浙江大学SEL实验室共同翻译其设计文档，本文为系列的第二篇：Pod。 在Kubernetes中，创建、调度和管理的最小部署单位是Pod，而不是容器。</description>
     </item>
     
     <item>
       <title>cf-release结构解析</title>
-      <link>https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Wed, 17 Dec 2014 16:03:01 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</guid>
-      <description>cf-release结构解析
-1. 制作时的cf-release结构解析 此处指的release统一为CloudFoundry官方给出的cf-release，不做修改。 1.1. 通过载入cf-release文件夹下config/final.yml文件，获得需要下载release文件的远程服务器网址，默认使用的提供商是s3，地址是：blob.cfblob.com  1.2. 通过config/blobs.yml，可以得到所有blobs的object_id，通过服务器地址+object_id拼接的字符串即可下载到相对应的blob内容。 1.3. 默认存储的位置为cf-release/.blobs，存储的文件名为sha1值，下载完成后会在cf-release/blobs文件夹下创建以package真实名字命名的软链接到.blobs里面各个具体的包。  1.4. 下载完所有的blobs后，开始对照cf-release/packages文件夹下各个包的spec文件逐个在blobs文件夹下找到，然后拷贝到.final_builds或者.dev_builds，根据是否加了&amp;ndash;final参数决定。拷贝前会执行预安装脚本prepackaging，检查文件是否都存在，做一些单元测试等。执行完后把prepackaging脚本删除后压缩文件夹。 (TIPS：有时候某些不需要部署的组件，却因为过不了prepacking脚本的执行导致release做不出来，可以把prepackaging脚本删掉再制作，会自动跳过这个执行过程。) 1.5. 对所有cf-release/jobs进行的操作相对简单，除了拷贝到.final_builds或者.dev_builds以外，通过spec文件检查template等文件是否齐全。 1.6. 最后生成releases/cf-#{version}.yml文件,在dev_releases文件夹下生成cf-{version}.dev.yml release就算初步制作完成了。
-2. 部署时的cf-release结构解析  2.1. 获得cf-release的配置文件： 扫描./releases以及./dev_releases文件夹，对其中的release配置文件进行排序，排序规则为数字大的优先，相同大小的数字以小数点后大的优先，两个数字都相同取没有dev标记的。 194 &amp;gt; 193 194.1 &amp;gt; 194 194.1 &amp;gt; 194.1-dev 这里得到的最新的文件，就是定义当前release包所有版本的配置文件，称之为@release。 2.2. 获取部署配置文件manifest/cf.yml中，要部署的job构成的所有template。部署时定义的job在配置文件中包含多个template，每个template由多个package组成。
---- deployment: cf jobs: - name: nats template: - nats - nats_stream_forwarder - name: nfs_server template: - debian_nfs_server  2.3. 对于2.2中找出的每个template，找到其在@release文件中的version编号以及sha1值（jobs属性下），然后找到.final_builds/jobs下对应的index.yml和.dev_builds/jobs下对应的index.yml，比对两个文件中的sha1，找到对应的版本。此时我们就获得了template的全部具体信息，称之为@template。 2.4. @template下有个压缩包，后缀为.tgz，解压缩后得到job.MF文件，可获得该template的所有配置文件，配置文件需要的属性以及依赖的packages。也就是这里，我们获得了构成这个template的所有packages名字。然后我们对照之前的@release文件，又可以得到具体每个package需要的版本。 2.5. 值得注意的是，每个template由一个或多个packages构成，而每个package，由零个或多个其他packages构成，而每个package依赖哪些其它package，也在@release文件中的packages栏目下。 2.6. 通过类似的方法，我们在.final_builds和.dev_builds中的packages对应的package中可以对比出具体的package版本信息，找到需要部署的包，我们命名为@package。 至此，部署所需要的cf-release结构就已经全部解析出来了。
-3. 部署 3.1. 默认的部署目录为/var/vcap，部署之前会在该目录下创建目录bosh,data,jobs,monit,packages,shared,store,sys这几个目录。 3.</description>
+      <guid>https://fengfees.github.io/blog/2014/12/17/cf-release%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90/</guid>
+      <description>cf-release结构解析</description>
     </item>
     
     <item>
       <title>玩转Docker镜像</title>
-      <link>https://fengfees.github.io/blog/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/</link>
+      <link>https://fengfees.github.io/blog/2014/12/16/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/</link>
       <pubDate>Tue, 16 Dec 2014 16:15:36 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/</guid>
-      <description>**摘要：**Docker是基于Go语言开发，通过分层镜像标准化和内核虚拟化技术，使得应用开发者和运维工程师可以以统一的方式跨平台发布应用。镜像是Docker最核心的技术之一，也是应用发布的标准格式。
-前言 Docker是Docker.Inc公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache 2.0协议。通过分层镜像标准化和内核虚拟化技术，Docker使得应用开发者和运维工程师可以以统一的方式跨平台发布应用，并且以几乎没有额外开销的情况下提供资源隔离的应用运行环境。由于众多新颖的特性以及项目本身的开放性，Docker在不到两年的时间里迅速获得诸多IT厂商的参与，其中更是包括Google、Microsoft、VMware等业界行业领导者。同时，Docker在开发者社区也是一石激起千层浪，许多如我之码农纷纷开始关注、学习和使用Docker，许多企业，尤其是互联网企业，也在不断加大对Docker的投入，大有掀起一场容器革命之势。
-Docker镜像命名解析 镜像是Docker最核心的技术之一，也是应用发布的标准格式。无论你是用docker pull image，或者是在Dockerfile里面写FROM image，从Docker官方Registry下载镜像应该是Docker操作里面最频繁的动作之一了。那么在我们执行docker pull image时背后到底发生了什么呢？在回答这个问题前，我们需要先了解下docker镜像是如何命名的，这也是Docker里面比较容易令人混淆的一块概念：Registry，Repository, Tag and Image。 下面是在本地机器运行docker images的输出结果：  我们可以发现我们常说的“ubuntu”镜像其实不是一个镜像名称，而是代表了一个名为ubuntu的Repository，同时在这个Repository下面有一系列打了tag的Image，Image的标记是一个GUID，为了方便也可以通过Repository:tag来引用。 那么Registry又是什么呢？Registry存储镜像数据，并且提供拉取和上传镜像的功能。Registry中镜像是通过Repository来组织的，而每个Repository又包含了若干个Image。
- Registry包含一个或多个Repository Repository包含一个或多个Image Image用GUID表示，有一个或多个Tag与之关联  那么在哪里指定Registry呢？让我们再拉取一个更完整命名的镜像吧：  上面我试图去拉取一个ubuntu镜像，并且指定了Registry为我本机搭建的私有Registry。下面是Docker CLI中pull命令的代码片段 (docker/api/client/command.go中的CmdPull函数)  在运行时，上面的taglessRemote变量会被传入localhost:5000/ubuntu。上面代码试图从taglessRemote变量中解析出Registry的地址，在我们的例子中，它是localhost:5000。 那我们回过头再来看看下面这个耳熟能详的pull命令背后的故事吧：  我们跟着上面的示例代码，进一步进入解析函数ResolveRepositoryName的定义代码片段(docker/registry/registry.go)  我们发现，Docker CLI会判断传入的taglessRemote参数的第一部分中是否包含’.’或者&amp;rsquo;:’，如果存在则认为第一部分是Registry地址，否则会使用Docker官方默认的Registry（即index.docker.io其实这里是一个Index Server，和Registry的区别留在后面再去深究吧），即上面代码中高亮的部分。背后的故事还没有结束，如果你向DockerHub上传过镜像，应该记得你上传的镜像名称格式为user-name/repository:tag，这样用户Bob和用户Alice可以有相同名称的Repository，通过用户名前缀作为命名空间隔离，比如Bob/ubuntu和Alice/ubuntu。官方镜像是通过用户名library来区分的，具体代码片段如下(docker/api/client/command.go中的CmdPull函数)  我们回过头再去看Docker命令行中解析Tag的逻辑吧(docker/api/client/command.go中的CmdPull函数)：  代码会试着在用户输入的Image名称中找’ : ‘后面的tag,如果不存在，会使用默认的‘DEFAULTTAG’，即‘latest’。 也就是说在我们的例子里面，命令会被解析为下面这样（注意，下面的命令不能直接运行，因为Docker CLI不允许明确指定官方Registry地址） 
-配置Registry Mirror Docker之所以这么吸引人，除了它的新颖的技术外，围绕官方Registry（Docker Hub）的生态圈也是相当吸引人眼球的地方。在Docker Hub上你可以很轻松下载到大量已经容器化好的应用镜像，即拉即用。这些镜像中，有些是Docker官方维护的，更多的是众多开发者自发上传分享的。而且你还可以在Docker Hub中绑定你的代码托管系统（目前支持Github和Bitbucket）配置自动生成镜像功能，这样Docker Hub会在你代码更新时自动生成对应的Docker镜像，是不是很方便？ 不幸的是Docker Hub并没有在国内放服务器或者用国内的CDN，下载个镜像20分钟最起码，我等码农可耗不起这么长时间，老板正站在身后催着我们搬运代码呢。为了克服跨洋网络延迟，一般有两个解决方案：一是使用私有Registry，另外是使用Registry Mirror，我们下面一一展开聊聊. 方案一就是搭建或者使用现有的私有Registry，通过定期和Docker Hub同步热门的镜像，私有Registry上保存了一些镜像的副本，然后大家可以通过docker pull private-registry.com/user-name/ubuntu:latest，从这个私有Registry上拉取镜像。因为这个方案需要定期同步Docker Hub镜像，因此它比较适合于使用的镜像相对稳定，或者都是私有镜像的场景。而且用户需要显式的映射官方镜像名称到私有镜像名称，私有Registry更多被大家应用在企业内部场景。私有Registry部署也很方便，可以直接在Docker Hub上下载Registry镜像，即拉即用，具体部署可以参考官方文档。 方案二是使用Registry Mirror，它的原理类似于缓存，如果镜像在Mirror中命中则直接返回给客户端，否则从存放镜像的Registry上拉取并自动缓存在Mirror中。最酷的是，是否使用Mirror对Docker使用者来讲是透明的，也就是说在配置Mirror以后，大家可以仍然输入docker pull ubuntu来拉取Docker Hub镜像，除了速度变快了，和以前没有任何区别。 了以更便捷的方式对接Docker Hub生态圈，使用Registry Mirror自然成为我的首选。接下来我就和大家一起看看Docker使用Mirror来拉取镜像的过程。下面的例子，我使用的是由**DaoCloud**提供的Registry Mirror服务，在申请开通Mirror服务后你会得到一个Mirror地址，然后我们要做的就是把这个地址配置在Docker Server启动脚本中，重启Docker服务后Mirror配置就生效了（如何获得Mirror服务可以参考本篇文章的附录） Ubuntu下配置Docker Registry Mirror的命令如下：</description>
+      <guid>https://fengfees.github.io/blog/2014/12/16/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/</guid>
+      <description>**摘要：**Docker是基于Go语言开发，通过分层镜像标准化和内核虚拟化技术，使得应用开发者和运维工程师可以以统一的方式跨平台发布应用。镜像是Docker最核心的技术之一，也是应用发布的标准格式。</description>
     </item>
     
     <item>
       <title>Google Kubernetes设计文档之安全篇</title>
-      <link>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/</link>
+      <link>https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/</link>
       <pubDate>Thu, 11 Dec 2014 21:04:21 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/</guid>
-      <description>摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文为其设计文档系列的第一篇：安全。
-1.设计目标 本文讲述了Kubernetes的容器、API和基础设施在安全方面的设计原则。
- 保证容器与其运行的宿主机之间有明确的隔离； 限制容器对基础设施或者其它容器造成不良影响的能力； 最小特权原则——限定每个组件只被赋予了执行操作所必需的最小特权，由此确保可能产生的损失达到最小； 通过清晰地划分组件的边界来减少需要加固和加以保护的系统组件数量。  2.设计要点 将etcd中的数据与minion节点和基础设施进行隔离 在Kubernetes的设计中，如果攻击者可以访问etcd中的数据，那么他就可以在宿主机上运行任意容器，获得存储在volumes或者pods的任何受保护信息（比如访问口令或者作为环境变量的共享密钥），通过中间人攻击来拦截和重定向运行中的服务流量，或者直接删除整个集群的历史信息。 **Kubernetes设计的基本原则是，对etcd中数据的访问权限应该只赋予某些特定的组件，这些组件或者需要对系统有完整的控制权，或者对系统服务变更请求能执行正确的授权和身份验证操作。**将来，etcd会提供粒度访问控制，但这样的粒度要求有一个管理员能够深刻理解etcd中存储数据的schema，并按照schema设置相应的安全策略。管理员必须能够在策略层面上保证Kubernetes的安全性，而非实现层面；另外，随着时间推移，数据的schema可能产生变化，这样的状况应该被预先考虑以免造成意外的安全泄漏。 Kubelet和Kube Proxy都需要与它们特定角色相关的信息——对于Kubelet，需要的是运行的pods集合的信息；对于Kube Proxy，需要用以负载均衡的服务与端点集合信息。Kubelet同样需要提供运行的pods和历史终止数据的相关信息。Kubelet和Kube Proxy用于加载配置的方式是“wait for changes”的HTTP请求。因此，限制Kubelet和Kube Proxy的权限使其只能访问对应角色所需的信息是可行的。 **Replication controller和其他future controller的controller manager经过用户授权可以代表其执行对Kubernetes资源的自动化维护。Controller manager访问或修改资源状态的权限应该被严格地限定在它们特定的职责范围之内，而不能访问其他无关角色的信息。**例如，一个replication controller只需要如下权限：创建已知pods配置的副本，设定已经存在的pods的运行状态，或者删除它创建的已存在的pods；而不需要知道pods的内容或者当前状态，亦不需要有访问挂载了volume的pods中的数据的权限。 Kubernetes pod scheduler负责从pod中读取数据并将其注入pod所在集群的minion节点中。它需要的最低限度的权限有，查看pod ID（用以生成binding）、pod当前状态、分配给pod的资源信息等。Pod scheduler不需要修改pods或查看其它资源的权限，只需要创建binding的权限。Pod scheduler不需要删除binding的权限，除非它接管了宕机机器上原有组件的重定位工作。在这样的情况下，scheduler可能需要对用户或者项目容器信息的读取权限来决定重定位pod的优先位置。
-原文链接：Security in Kubernetes（编译/何思玫 审校/孙宏亮） [simple-author-box]</description>
+      <guid>https://fengfees.github.io/blog/2014/12/11/google-kubernetes%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E4%B9%8B%E5%AE%89%E5%85%A8%E7%AF%87/</guid>
+      <description>摘要：Kubernetes是Google开源的容器集群管理系统，构建于Docker之上，为容器化的应用提供资源调度、部署运行、服务发现、扩容缩容等功能。本文为其设计文档系列的第一篇：安全。</description>
     </item>
     
     <item>
       <title>Docker源码分析（五）：Docker Server的创建</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/</link>
+      <link>https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/</link>
       <pubDate>Tue, 09 Dec 2014 13:00:37 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/</guid>
-      <description>本文为《Docker源码分析》系列的第五篇——Docker Server的创建。
-1. Docker Server简介 Docker架构中，Docker Server是Docker Daemon的重要组成部分。Docker Server最主要的功能是：接受用户通过Docker Client发送的请求，并按照相应的路由规则实现路由分发。 同时，Docker Server具备十分优秀的用户友好性，多种通信协议的支持大大降低Docker用户使用Docker的门槛。除此之外，Docker Server设计实现了详尽清晰的API接口，以供Docker用户选择使用。通信安全方面，Docker Server可以提供安全传输层协议（TLS），保证数据的加密传输。并发处理方面，Docker Daemon大量使用了Golang中的goroutine，大大提高了服务端的并发处理能力。 本文为《Docker源码分析》系列的第五篇——Docker Server的创建。
-2. Docker Server源码分析内容安排 本文将从源码的角度分析Docker Server的创建，分析内容的安排主要如下：
- “serveapi”这个job的创建并执行流程，代表Docker Server的创建； “serveapi”这个job的执行流程深入分析； Docker Server创建Listener并服务API的流程分析。  3. Docker Server创建流程 《Docker源码分析（三）：Docker Daemon启动》主要分析了Docker Daemon的启动，而在mainDaemon()运行的最后环节，实现了创建并运行名为”serveapi”的job。这一环节的作用是：让Docker Daemon提供API访问服务。实质上，这正是实现了Docker架构中Docker Server的创建与运行。 从流程的角度来说，Docker Server的创建并运行，代表了”serveapi”这个job的整个生命周期：创建Job实例job，配置job环境变量，以及最终执行该job。本章分三节具体分析这三个不同的阶段。
-3.1 创建名为”serveapi”的job Job是Docker架构中Engine内部最基本的任务执行单位，故创建Docker Server这一任务的执行也不例外，需要表示为一个可执行的Job。换言之，需要创建Docker Server，则必须创建一个相应的Job。具体的Job创建形式位于./docker/docker/daemon.go，如下：
-job := eng.Job(&amp;quot;serveapi&amp;quot;, flHosts...)  以上代码通过Engine实例eng创建一个Job类型的实例job，job名为”serveapi”，同时用flHost的值来初始化job.Args。flHost的作用是：配置Docker Server监听的协议与监听的地址。 需要注意的是，《Docker源码分析（三）：Docker Daemon启动》mainDaemon()具体实现过程中，在加载builtins环节已经向eng对象注册了key为”serveapi”的Handler，而该Handler的value为api.ServeApi。因此，在运行名为”serveapi”的job时，会执行该job的Handler，即api.ServeApi。
-3.2 配置job环境变量 创建完Job实例job之后，Docker Daemon为job配置环境参数。在Job实现过程中，为Job配置参数有两种方式：第一，创建Job实例时，用指定参数直接初始化Job的Args属性；第二，创建完Job后，给Job添加指定的环境变量。以下代码则实现了为创建的job配置环境变量：
-job.SetenvBool(&amp;quot;Logging&amp;quot;, true) job.SetenvBool(&amp;quot;EnableCors&amp;quot;, *flEnableCors) job.Setenv(&amp;quot;Version&amp;quot;, dockerversion.VERSION) job.Setenv(&amp;quot;SocketGroup&amp;quot;, *flSocketGroup) job.SetenvBool(&amp;quot;Tls&amp;quot;, *flTls) job.SetenvBool(&amp;quot;TlsVerify&amp;quot;, *flTlsVerify) job.Setenv(&amp;quot;TlsCa&amp;quot;, *flCa) job.</description>
+      <guid>https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/</guid>
+      <description>本文为《Docker源码分析》系列的第五篇——Docker Server的创建。</description>
     </item>
     
     <item>
       <title>Blue-Green Deployments on Cloud Foundry (利用CloudFoundry实现蓝绿发布)</title>
-      <link>https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/</link>
       <pubDate>Tue, 02 Dec 2014 19:25:20 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/</guid>
-      <description>利用CloudFoundry实现蓝绿发布
-前言 原文地址：Blue-Green Deployments on Cloud Foundry We’ll begin with a basic Spring application named ms-spr-demo. This app takes users to a simple web page announcing the ubiquitous “Hello World!” message. We’ll utilize the cf command-line interface to push the application: 这里先向CF PUSH一个很简单的打印“Hello World”的应用：
-$ cf push --path build/libs/cf-demo.war Name&amp;gt; ms-spr-demo Instances&amp;gt; 1 Memory Limit&amp;gt; 512M Creating ms-spr-demo... OK 1: ms-spr-demo 2: none Subdomain&amp;gt; ms-spr-demo 1: cfapps.io 2: mattstine.com 3: none Domain&amp;gt; 1 Creating route ms-spr-demo.</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/blue-green-deployments-on-cloud-foundry-%E5%88%A9%E7%94%A8cloudfoundry%E5%AE%9E%E7%8E%B0%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83/</guid>
+      <description>利用CloudFoundry实现蓝绿发布</description>
     </item>
     
     <item>
       <title>Cloud Foundry’s 新容器技术： A Garden Overview</title>
-      <link>https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</link>
       <pubDate>Tue, 02 Dec 2014 18:52:46 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</guid>
-      <description>编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。
-Warden和Garden Warden背景： &amp;ldquo;CloudFoundry’s container technology is provided by Warden,which was created by VMware’s Pieter Noorduis and others.Warden is a subtle combination of Ruby code, a core written inC, and shell scripts to configure the host and containers.&amp;rdquo; 在此前的WardenDEA中，在每个安装好的DEA上都会运行Warden服务（Ruby写的，调用大量shell来配置host），用来管理Cgroup，Namespaces和以及进程管理。同时，Warden容器的感知和状态监控也由此服务来负责。作为一个C/S结构的服务，Warden使用了谷歌的protobuf协议来负责交互。每个容器内部都运行一个wshd daemon（C语言写的）来负责容器内的管理比如启动应用进程，输出日志和错误等等。这里需要注意的正是由于使用了protobuf，warden对外的交互部分强依赖于wardenprotocol，使得warden对开发者的易用性大打折扣。 
-Wardenstructure
-在CloudFoundry的下一代PaaS项目Diego中，Pivotal团队对于Warden进行了基于Golang的重构，并建立了一个独立的项目Garden。在Garden中，容器管理的功能被从server代码里分离出来，即server部分只负责接收协议请求，而原先的容器管理则交给backend组件，包括将接收到的请求映射成为Linux（假如是Linux backend的话）操作。值得注意的是：这样backend架构再次透露出了warden跨平台的野心，可以想象一旦Windowsbackend被社区（比如IronFoundry）贡献出来后的威力。更重要的是，RESTful风格的API终于被引入到了Garden里面，原作者说是为了实验和测试，但实际上Docker最成功的一点正是友好的API和以此为基础的扩展能力。 
-Gardenstructure
-Namespaces 容器化应用依然通过namespaces来定义它所能使用的资源。最简单的例子，应用的运行需要监听指定的端口，而传统方法中这个端口就必须在全局的host网络namespaces上可见。为了避免应用互相之间出现端口冲突，Garden服务就需要设置一组namepaces来隔离每个应用的IP和port（即网络namespace）。需要再次强调，容器化的应用资源隔离不同于传统的虚拟化技术，虽然我们在讲容器，但是我们并没有去创建“什么”，而是为实实在在运行着的应用进程划分属于它自己的“命名空间”。 Garden使用了除用户namespace之外的所有namespace技术。具体实现是使用挂载namespace的方法来用用户目录替换原host的root文件系统（使用pivot_root指令），然后unmount这个root文件系统使得从容器不会直接访问到该目录 备注：Linux在很早之前就支持了namespaces技术，从一开始为文件系统挂载点划分namespace，到最新的为用户添加namespace，具体演化参见：Articles on Linux namespaces
-ResourceControl 被限制在运行在namespaces中的应用可以在这个“匿名的操作系统环境“中自由的使用类似于CPU和MEM这样的资源，但是应用仍然是直接访问系统设备的。Linux提供了一系列controlgroups来将进程划分为层级结构的组然后将它们限制到不同的约束中。这些约束由cgroup中的resourcecontrollers来实现并负责与kernel子系统进行交互。举个例子：memoryresource controller可以限制一个controlgroup中的进程能够在真实内存中使用的页数，从而确保这些进程在超出限制后被停止。 Garden使用了五种资源控制：cpuset(CPUs and memory nodes) , cpu (CPU bandwidth), cpuacct (CPUaccounting), devices (device access), and memory(memoryusage)，并通过这些资源控制堆每一个容器设置一个controlgroup。所以容器中的进程将被限制在resourcecontrollers指定的资源数下运行（严格地说cpuacct仅统计CPUusage，并不做出具体限制）。 此外，Garden还使用setrlimit系统调用来控制容器中进程的资源使用；使用setquota来为容器中的用户设置配额。这一点上也同Warden相同。</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</guid>
+      <description>编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中warden的架构与实现</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 02 Dec 2014 17:19:09 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
-      <description>在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：
- warden的功能介绍及框架实现 warden框架的对外接口及实现 warden框架的内部模块及实现 warden的运行示例  warden的功能介绍及框架实现 warden功能介绍 由于Cloud Foundry v1中DEA组件运行应用程序时，自身设计存在一定的缺陷，即同一个DEA上运行的应用不能很好的实现运行过程中资源的隔离与限制，故在Cloud Foundry v2中引入了warden这一模块。 warden专门接收DEA组件发送的关于应用的管理请求，在处理这部分管理请求时，借助轻量级虚拟化技术，将宿主机操作系统进行虚拟化，在容器内部执行请求的具体内容。warden的具体使用效果为应用程序之间互不感知，资源间完成隔离，各自的资源使用存在上限。假设Cloud Foundry不存在应用程序资源的隔离与限制机制，则在同一个DEA上运行的多个应用程序，在负载增加的时候，会出现竭力竞争资源的情况，当资源消耗殆尽时，大大降低应用程序的可用性与安全性。 在资源隔离与限制方面，warden主要提供3个维度的用户自定义隔离与限制：内存、磁盘、网络带宽；另外warden还提供以下维度的资源隔离与限制，但仅提供默认值，不提供用户自定义设置：CPU、CPUACCT、Devices。 同时，warden作为一个虚拟化容器，还提供众多的API命令，供用户完成对warden container的管理。主要的命令如下：copy in、copy out、create、destroy、echo、error 、info、limit_bandwidth、limit_disk、limit_memory、limit_cpu、link 、list、message、net in、net out、ping、run、spawn、stop和stream等 。这些命令的功能介绍可以简单参见：James Bayer对于warden与docker的比较文档。
-warden框架实现 在涉及warden框架的具体实现时，需要先申明和warden相关的多个概念：
- warden：在Cloud Foundry中实现应用资源隔离与控制的框架，其中包括，warden_client、warden_server、warden_protocol和warden container； warden server：warden框架中server端的实现，主要负责接收client端请求，以及请求的处理执行； warden client：warden框架中client端的实现，被Cloud Foundry中被dea_ng组件调用，实现给warden_server发送具体请求； warden protocol：warden框架中定义warden_client与warden_server通信时的消息请求协议； warden container：warden框架中管理与运行应用程序的容器，资源的隔离与限制以容器为单位。  warden框架的实现为典型的C/S架构，如下图：
-
-warden框架的对外接口及实现 虽然warden模块是Cloud Foundry中不可或缺的一部分，但是如果不借助Cloud Foundry的话，warden依然可以用来管理warden container，并在container内部运行应用程序等。 若warden运行在Cloud Foundry内部，则dea_ng组件内嵌warden_client，并以warden_client与warden_server建立通信，分发应用的管理请求；若warden单独存在，则可以通过warden的REPL（Read-Eval-Print Loop）命令行工具瑞与warden_server进行通信，用户通过命令行发起container的管理请求。本章将以以上两个方式阐述warden框架的对外接口及实现。
-warden与dea_ng通信 warden在Cloud Foundry中的使用，几乎完全是和dea_ng一起捆绑使用。在部署dea_ng时，不论Cloud Foundry集群中安装了多个dea_ng组件，每个dea_ng组件所在的节点上都会安装一个warden，由此可见warden与dea_ng的存在为一一对应关系。 以下是warden与dea_ng的交互示意图：
-
-由以上示意图可知，从dea_ng接受请求，分发container请求，主要分为以下几个步骤：
- dea_ng通过消息中间件NATS获取app的管理请求； dea_ng根据请求类型，并通过Warden::Protocol协议创建出相对应的container请求； dea_ng通过已经和warden_server建立连接的waren_client发送container请求。  warden与REPL命令行交互 warden也可以单独安装在某个机器上，当需要管理warden时，可以通过REPL命令行的方式，启动一个进程，创建warden_client，并负责接收用户在命令行输入的warden container管理命令，然后通过warden_client给warden_server发送请求。 从上可知，REPL和dea_ng与warden的通信方式几乎相同，区别仅仅在两者的使用方式。以下是warden与repl命令行交互的示意图：</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
+      <description>在Cloud Foundry中，当应用开发者的应用由Cloud Foundry的组件DEA来运行时，应用的资源隔离与控制显得尤为重要，而warden的存在很好得解决了这个问题。 Cloud Foundry中warden项目的首要目的是提供一套简易的接口来管理隔离的环境，这些隔离的环境可以被称为“容器”，他们可以在CPU使用，内存使用，磁盘使用以及设备访问权限方面做相应的限制。 本文将从四个方面进行探讨分析warden的实现：</description>
     </item>
     
     <item>
       <title>Cloud Foundry中DEA与warden通信完成应用端口监听</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/</link>
       <pubDate>Tue, 02 Dec 2014 16:55:44 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/</guid>
-      <description>在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。
-DEA在执行启动一个应用的时候，主要做到以下这些部分：promise_droplet, promise_container, 其中这两个部分并发完成；promise_extract_droplet, promise_exec_hook_script(“before_start”), promise_start等。代码如下：
-\[ promise\_droplet, promise\_container \].each(&amp;amp;:run).each(&amp;amp;:resolve) \[ promise\_extract\_droplet, promise\_exec\_hook\_script(&#39;before\_start&#39;), promise\_start \].each(&amp;amp;:resolve)  promise_droplet: 在这一个环节，DEA主要做的工作是将droplet下载本机，通过droplet_uri,其中基本的路径在/config/dea.yml中，为base_dir: /tmp/dea_ng, 因此最终DEA下载到的droplet存放于DEA组件所在的宿主机上。
-promise_container: 该环节的工作主要完成创建一个warden container，随后可以为应用的运行提供一个合适的环境。promise_container的源码实现如下：
-def promise\_container Promise.new do |p| bind\_mounts = \[{&#39;src\_path&#39; =&amp;gt; droplet.droplet\_dirname, &#39;dst\_path&#39; =&amp;gt; droplet.droplet\_dirname}\] with\_network = true container.create\_container( bind\_mounts: bind\_mounts + config\[&#39;bind\_mounts&#39;\], limit\_cpu: config\[&#39;instance&#39;\]\[&#39;cpu\_limit\_shares&#39;\], byte: disk\_limit\_in\_bytes, inode: config.instance\_disk\_inode\_limit, limit\_memory: memory\_limit\_in\_bytes, setup\_network: with\_network) attributes\[&#39;warden\_handle&#39;\] = container.handle promise\_setup\_def create\_container(params) \[:bind\_mounts, :limit\_cpu, :byte, :inode, :limit\_memory, :setup\_network\].</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADdea%E4%B8%8Ewarden%E9%80%9A%E4%BF%A1%E5%AE%8C%E6%88%90%E5%BA%94%E7%94%A8%E7%AB%AF%E5%8F%A3%E7%9B%91%E5%90%AC/</guid>
+      <description>在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。</description>
     </item>
     
     <item>
       <title>Docker源码分析（四）：Docker Daemon之NewDaemon实现</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 02 Dec 2014 13:03:12 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/</guid>
-      <description>本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。
-1. 前言 Docker的生态系统日趋完善，开发者群体也在日趋庞大，这让业界对Docker持续抱有极其乐观的态度。然而，对于广大开发者而言，使用Docker这项技术已然不是门槛，享受Docker带来的技术福利已不是困难。如今，如何探寻Docker适应的场景，如何发展Docker周边的技术，以及如何弥合Docker新技术与传统物理机或VM技术的鸿沟，已经占据Docker研究者们的思考与实践。 本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。
-2. NewDaemon作用简介 在Docker架构中有很多重要的概念，如：graph，graphdriver，execdriver，networkdriver，volumes，Docker containers等。Docker的实现过程中，需要将以上实体进行统一化管理，而Docker Daemon中的daemon实例就是设计来完成这一任务。 从源码的角度，NewDaemon函数的执行出色的完成了Docker Daemon创建并加载daemon的任务，最终实现统一管理Docker Daemon的资源。
-3. NewDaemon源码分析内容安排 本文从源码角度，分析Docker Daemon加载过程中NewDaemon的实现，整个分析过程如下图： 
-4. NewDaemon具体实现 在《Docker源码分析》系列第三篇中，有一个重要的环节为：使用goroutine加载daemon对象并运行。在加载并运行daemon对象时，所做的第一个工作即为：
-d, err := daemon.NewDaemon(daemonCfg, eng)  该部分代码分析如下：
- 函数名：NewDaemon； 函数调用具体实现所处的包位置：./docker/daemon； 函数具体实现源文件：./docker/daemon/daemon.go； 函数传入实参：daemonCfg，定义了Docker Daemon运行过程中所需的众多配置信息；eng，在mainDaemon中创建的engine对象实例； 函数返回类型：d，具体的Daemon对象实例；err，错误状态。  进入./docker/daemon/daemon.go中NewDaemon的具体实现，代码如下
-func NewDaemon(config \*Config, eng \*engine.Engine) (\*Daemon, error) { daemon, err := NewDaemonFromDirectory(config, eng) if err != nil { return nil, err } return daemon, nil }  可见，在实现NewDaemon的过程中，主要依靠NewDaemonFromDirectory函数来实现创建Daemon的运行环境。该函数的实现，传入参数以及返回类型与NewDaemon相同。下文将大篇幅分析其实现细节。</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/</guid>
+      <description>本文为《Docker源码分析》第四篇——Docker Daemon之NewDaemon实现，力求帮助广大Docker爱好者更多得理解Docker 的核心——Docker Daemon的实现。</description>
     </item>
     
     <item>
       <title>Docker源码分析（三）：Docker Daemon启动</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/</link>
       <pubDate>Tue, 02 Dec 2014 13:02:44 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/</guid>
-      <description>本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。
-【摘要】 【Docker源码分析（三）：Docker Daemon启动】Docker作为业界备受推崇的轻量级虚拟化容器管理引擎，其强大的后台能力全凭Docker Daemon。本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。
-1 前言 Docker诞生以来，便引领了轻量级虚拟化容器领域的技术热潮。在这一潮流下，Google、IBM、Redhat等业界翘楚纷纷加入Docker阵营。虽然目前Docker仍然主要基于Linux平台，但是Microsoft却多次宣布对Docker的支持，从先前宣布的Azure支持Docker与Kubernetes，到如今宣布的下一代Windows Server原生态支持Docker。Microsoft的这一系列举措多少喻示着向Linux世界的妥协，当然这也不得不让世人对Docker的巨大影响力有重新的认识。 Docker的影响力不言而喻，但如果需要深入学习Docker的内部实现，笔者认为最重要的是理解Docker Daemon。在Docker架构中，Docker Client通过特定的协议与Docker Daemon进行通信，而Docker Daemon主要承载了Docker运行过程中的大部分工作。本文即为《Docker源码分析》系列的第三篇­——Docker Daemon篇。
-2 Docker Daemon简介 Docker Daemon是Docker架构中运行在后台的守护进程，大致可以分为Docker Server、Engine和Job三部分。Docker Daemon可以认为是通过Docker Server模块接受Docker Client的请求，并在Engine中处理请求，然后根据请求类型，创建出指定的Job并运行，运行过程的作用有以下几种可能：向Docker Registry获取镜像，通过graphdriver执行容器镜像的本地化操作，通过networkdriver执行容器网络环境的配置，通过execdriver执行容器内部运行的执行工作等。 以下为Docker Daemon的架构示意图： 
-3 Docker Daemon源码分析内容安排 本文从源码的角度，主要分析Docker Daemon的启动流程。由于Docker Daemon和Docker Client的启动流程有很大的相似之处，故在介绍启动流程之后，本文着重分析启动流程中最为重要的环节：创建daemon过程中mainDaemon()的实现。
-4 Docker Daemon的启动流程 由于Docker Daemon和Docker Client的启动都是通过可执行文件docker来完成的，因此两者的启动流程非常相似。Docker可执行文件运行时，运行代码通过不同的命令行flag参数，区分两者，并最终运行两者各自相应的部分。 启动Docker Daemon时，一般可以使用以下命令：docker &amp;ndash;daemon=true; docker –d; docker –d=true等。接着由docker的main()函数来解析以上命令的相应flag参数，并最终完成Docker Daemon的启动。 首先，附上Docker Daemon的启动流程图：  由于《Docker源码分析》系列之Docker Client篇中，已经涉及了关于Docker中main()函数运行的很多前续工作（可参见Docker Client篇），并且Docker Daemon的启动也会涉及这些工作，故本文略去相同部分，而主要针对后续仅和Docker Daemon相关的内容进行深入分析，即mainDaemon()的具体源码实现。
-5 mainDaemon( )的具体实现 通过Docker Daemon的流程图，可以得出一个这样的结论：有关Docker Daemon的所有的工作，都被包含在mainDaemon()方法的实现中。 宏观来讲，mainDaemon()完成创建一个daemon进程，并使其正常运行。 从功能的角度来说，mainDaemon()实现了两部分内容：第一，创建Docker运行环境；第二，服务于Docker Client，接收并处理相应请求。 从实现细节来讲，mainDaemon()的实现过程主要包含以下步骤：
- daemon的配置初始化（这部分在init()函数中实现，即在mainDaemon()运行前就执行，但由于这部分内容和mainDaemon()的运行息息相关，故可认为是mainDaemon()运行的先决条件）； 命令行flag参数检查； 创建engine对象； 设置engine的信号捕获及处理方法； 加载builtins； 使用goroutine加载daemon对象并运行； 打印Docker版本及驱动信息； Job之”serveapi”的创建与运行。  下文将一一深入分析以上步骤。</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/</guid>
+      <description>本文从源码出发，介绍了Docker Daemon的启动流程，并深入分析启动流程中每一步骤的实现细节。Docker的运行真可谓，载体为daemon，调度管理由engine，任务执行靠job。</description>
     </item>
     
     <item>
       <title>Docker源码分析（二）：Docker Client创建与命令执行</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
       <pubDate>Tue, 02 Dec 2014 13:01:39 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
-      <description>本文从源码层面介绍docker client的创建和执行过程。
-1. 前言 如今，Docker作为业界领先的轻量级虚拟化容器管理引擎，给全球开发者提供了一种新颖、便捷的软件集成测试与部署之道。在团队开发软件时，Docker可以提供可复用的运行环境、灵活的资源配置、便捷的集成测试方法以及一键式的部署方式。可以说，Docker的优势在简化持续集成、运维部署方面体现得淋漓尽致，它完全让开发者从前者中解放出来，把精力真正地倾注在开发上。 然而，把Docker的功能发挥到极致，并非一件易事。在深刻理解Docker架构的情况下，熟练掌握Docker Client的使用也非常有必要。前者可以参阅《Docker源码分析》系列之Docker架构篇，而本文主要针对后者，从源码的角度分析Docker Client，力求帮助开发者更深刻的理解Docker Client的具体实现，最终更好的掌握Docker Client的使用方法。即本文为《Docker源码分析》系列的第二篇——Docker Client篇。
-2. Docker Client源码分析章节安排 本文从源码的角度，主要分析Docker Client的两个方面：创建与命令执行。前四章安排如下： 第一章为前言，介绍Docker的作用以及研究Docker Client的必要性。 第二章介绍部分章节安排。 第三章从Docker Client的创建入手，进行源码分析，主要分为三小节。 在3.1节中，分析如何通过docker命令，解析出命令行flag参数，以及docker命令中的请求参数。 在3.2节中，分析如何处理具体的flag参数信息，并收集Docker Client所需的配置信息。 在3.3节中，分析如何创建一个Docker Client。 第四章在已有Docker Client的基础上，分析如何执行docker命令，分为两小节。 在4.1节中，分析如何解析docker命令中的请求参数，获取请求的类型。 在4.2节中，分析Docker Client如何将执行具体的请求命令，最终将请求发送至Docker Server。
-3. Docker Client的创建 Docker Client的创建，实质上是Docker用户通过可执行文件docker，与Docker Server建立联系的客户端。以下分三个小节分别阐述Docker Client的创建流程。 以下为整个docker源代码运行的流程图：  上图通过流程图的方式，使得读者更为清晰的了解Docker Client创建及执行请求的过程。其中涉及了诸多源代码中的特有名词，在下文中会一一解释与分析。
-3.1. Docker命令的flag参数解析 众所周知，在Docker的具体实现中，Docker Server与Docker Client均由可执行文件docker来完成创建并启动。那么，了解docker可执行文件通过何种方式区分两者，就显得尤为重要。 对于两者，首先举例说明其中的区别。Docker Server的启动，命令为docker -d或docker &amp;ndash;daemon=true；而Docker Client的启动则体现为docker &amp;ndash;daemon=false ps、docker pull NAME等。 可以把以上Docker请求中的参数分为两类：第一类为命令行参数，即docker程序运行时所需提供的参数，如: -D、&amp;ndash;daemon=true、&amp;ndash;daemon=false等；第二类为docker发送给Docker Server的实际请求参数，如：ps、pull NAME等。 对于第一类，我们习惯将其称为flag参数，在go语言的标准库中，同时还提供了一个flag包，方便进行命令行参数的解析。 交待以上背景之后，随即进入实现Docker Client创建的源码，位于./docker/docker/docker.go，在该go文件中，包含了整个Docker的main函数，也就是整个Docker（不论Docker Daemon还是Docker Client）的运行入口。部分main函数代码如下：
-func main() { if reexec.</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+      <description>本文从源码层面介绍docker client的创建和执行过程。</description>
     </item>
     
     <item>
       <title>Docker源码分析（一）：Docker架构</title>
-      <link>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/</link>
+      <link>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Tue, 02 Dec 2014 10:19:09 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/</guid>
-      <description>本文对docker的整体架构进行介绍。
-1 背景 1.1 Docker简介 Docker是Docker公司开源的一个基于轻量级虚拟化技术的容器引擎项目,整个项目基于Go语言开发，并遵从Apache 2.0协议。目前，Docker可以在容器内部快速自动化部署应用，并可以通过内核虚拟化技术（namespaces及cgroups等）来提供容器的资源隔离与安全保障等。由于Docker通过操作系统层的虚拟化实现隔离，所以Docker容器在运行时，不需要类似虚拟机（VM）额外的操作系统开销，提高资源利用率，并且提升诸如IO等方面的性能。 由于众多新颖的特性以及项目本身的开放性，Docker在不到两年的时间里迅速获得诸多厂商的青睐，其中更是包括Google、Microsoft、VMware等业界行业领导者。Google在今年六月份推出了Kubernetes，提供Docker容器的调度服务，而今年8月Microsoft宣布Azure上支持Kubernetes，随后传统虚拟化巨头VMware宣布与Docker强强合作。今年9月中旬，Docker更是获得4000万美元的C轮融资，以推动分布式应用方面的发展。 从目前的形势来看，Docker的前景一片大好。本系列文章从源码的角度出发，详细介绍Docker的架构、Docker的运行以及Docker的卓越特性。本文是Docker源码分析系列的第一篇———Docker架构篇。
-1.2 Docker版本信息 本文关于Docker架构的分析都是基于Docker的源码与Docker相应版本的运行结果，其中Docker为最新的1.2版本。
-2 Docker架构分析内容安排 本文的目的是：在理解Docker源代码的基础上，分析Docker架构。分析过程中主要按照以下三个步骤进行：
- Docker的总架构图展示 Docker架构图内部各模块功能与实现分析 以Docker命令的执行为例，进行Docker运行流程阐述  3 Docker总架构图 学习Docker的源码并不是一个枯燥的过程，反而可以从中理解Docker架构的设计原理。Docker对使用者来讲是一个C/S模式的架构，而Docker的后端是一个非常松耦合的架构，模块各司其职，并有机组合，支撑Docker的运行。 在此，先附上Docker总架构，如图3.1。  图3.1 Docker总架构图 如图3.1，不难看出，用户是使用Docker Client与Docker Daemon建立通信，并发送请求给后者。 而Docker Daemon作为Docker架构中的主体部分，首先提供Server的功能使其可以接受Docker Client的请求；而后Engine执行Docker内部的一系列工作，每一项工作都是以一个Job的形式的存在。 Job的运行过程中，当需要容器镜像时，则从Docker Registry中下载镜像，并通过镜像管理驱动graphdriver将下载镜像以Graph的形式存储；当需要为Docker创建网络环境时，通过网络管理驱动networkdriver创建并配置Docker容器网络环境；当需要限制Docker容器运行资源或执行用户指令等操作时，则通过execdriver来完成。 而libcontainer是一项独立的容器管理包，networkdriver以及execdriver都是通过libcontainer来实现具体对容器进行的操作。 当执行完运行容器的命令后，一个实际的Docker容器就处于运行状态，该容器拥有独立的文件系统，独立并且安全的运行环境等。
-4 Docker架构内各模块的功能与实现分析 接下来，我们将从Docker总架构图入手，抽离出架构内各个模块，并对各个模块进行更为细化的架构分析与功能阐述。主要的模块有：Docker Client、Docker Daemon、Docker Registry、Graph、Driver、libcontainer以及Docker container。
-4.1 Docker Client Docker Client是Docker架构中用户用来和Docker Daemon建立通信的客户端。用户使用的可执行文件为docker，通过docker命令行工具可以发起众多管理container的请求。 Docker Client可以通过以下三种方式和Docker Daemon建立通信：tcp://host:port，unix://path_to_socket和fd://socketfd。为了简单起见，本文一律使用第一种方式作为讲述两者通信的原型。与此同时，与Docker Daemon建立连接并传输请求的时候，Docker Client可以通过设置命令行flag参数的形式设置安全传输层协议(TLS)的有关参数，保证传输的安全性。 Docker Client发送容器管理请求后，由Docker Daemon接受并处理请求，当Docker Client接收到返回的请求相应并简单处理后，Docker Client一次完整的生命周期就结束了。当需要继续发送容器管理请求时，用户必须再次通过docker可执行文件创建Docker Client。
-4.2 Docker Daemon Docker Daemon是Docker架构中一个常驻在后台的系统进程，功能是：接受并处理Docker Client发送的请求。该守护进程在后台启动了一个Server，Server负责接受Docker Client发送的请求；接受请求后，Server通过路由与分发调度，找到相应的Handler来执行请求。 Docker Daemon启动所使用的可执行文件也为docker，与Docker Client启动所使用的可执行文件docker相同。在docker命令执行时，通过传入的参数来判别Docker Daemon与Docker Client。 Docker Daemon的架构，大致可以分为以下三部分：Docker Server、Engine和Job。Daemon架构如图4.</description>
+      <guid>https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/</guid>
+      <description>本文对docker的整体架构进行介绍。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中gorouter对StickySession的支持</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</link>
+      <link>https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</link>
       <pubDate>Fri, 21 Nov 2014 13:04:13 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</guid>
-      <description>Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。
-本文即分析Cloud Foundry中gorouter关于StickySession的实现方式。 该部分内容需要对gorouter有一定的了解，可以参见笔者之前的博文：Cloud Foundry中gorouter源码分析 关于StickySession的信息，gorouter所做的工作，主要分为两个部分：如何给HTTP请求添加StickySession、如何通过StickySession辨别应用的具体实例。
-如何给HTTP请求添加StickySession 在分析这个问题的时候，首先我们需要提出另一个问题：什么情况下需要给HTTP请求添加StickySession？ 首先，来看这样的一个方法setupStickySession的go语言实现：
-func (h \*RequestHandler) setupStickySession(endpointResponse \*http.Response, endpoint \*route.Endpoint) { needSticky := false for \_, v := range endpointResponse.Cookies() { if v.Name == StickyCookieKey { needSticky = true break } } if needSticky &amp;amp;&amp;amp; endpoint.PrivateInstanceId != &amp;quot;&amp;quot; { cookie := &amp;amp;http.Cookie{ Name: VcapCookieId, Value: endpoint.PrivateInstanceId, Path: &amp;quot;/&amp;quot;, } http.SetCookie(h.response, cookie) } }  紧接着，查看setupStickySession方法何时被调用的代码：
-func (h \*RequestHandler) HandleHttpRequest(transport \*http.</description>
+      <guid>https://fengfees.github.io/blog/2014/11/21/cloud-foundry%E4%B8%ADgorouter%E5%AF%B9stickysession%E7%9A%84%E6%94%AF%E6%8C%81/</guid>
+      <description>Cloud Foundry作为业界出众的PaaS平台，在应用的可扩展性方面做得非常优秀。 具体来讲，在一个应用需要横向伸展的时候，Cloud Foundry可以轻松地帮助用户做好伸展工作，也就是创建出一个应用的多个实例，多个实例地位相等，多个实例共同为用户服务，多个实例共同分担访问压力。 大致来说，可以认为是共同分担访问压力，但是也不是针对所有该应用的访问，都进行均衡，分发到不同的应用实例处。譬如：当Cloud Foundry的访问用户访问应用时，第一次的访问，gorouter会将请求分发到应用的某个实例处，但是如果该用户之后的访问都是有状态的，不希望之后的访问会被分发到该应用的其他实例处。针对以上这种情况，Cloud Foundry提供了自己的解决方案，使用StickySession的方式，保证请求依旧分发给指定的应用实例。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中DEA启动应用实例时环境变量的使用</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Thu, 20 Nov 2014 13:03:30 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description>在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。
-DEA接收应用启动请求及其执行流程 在这部分，通过代码的形式来说明DEA对于应用启动请求的执行流程。 1.首先DEA订阅相应主题的消息，主题为“dea.#{bootstrap.uuid}.start”，含义为“自身DEA的应用启动消息”：
-subscribe(&amp;quot;dea.#{bootstrap.uuid}.start&amp;quot;) do |message| bootstrap.handle\_dea\_directed\_start(message) end  2.当收到订阅主题之后，执行bootstrap.handle_dea_directed_start(message)，含义为“通过bootstrap类实例来处理应用的启动请求”：
-def handle\_dea\_directed\_start(message) start\_app(message.data) end  3.可以认为处理的入口，即为以上代码中的start_app方法：
-def start\_app(data) instance = instance\_manager.create\_instance(data) return unless instance instance.start end  4.在start_app方法中，首先通过instance_manager类实例来创建一个instance对象，通过执行instance实例的类方法start，可以看到自始至终，传递的参数的原始来源都是通过NATS消息传递来的message，也就是1中的message：
-def start(&amp;amp;callback) p = Promise.new do …… \[ promise\_droplet, promise\_container \].each(&amp;amp;:run).each(&amp;amp;:resolve) \[ promise\_extract\_droplet, promise\_exec\_hook\_script(&#39;before\_start&#39;), promise\_start \].each(&amp;amp;:resolve) …… p.deliver end  5.其中真正关于应用启动的执行在promise_start方法中实现：
-def promise\_start Promise.new do |p| env = Env.new(StartMessage.new(@raw\_attributes), self) if staged\_info command = start\_command || staged\_info\[&#39;start\_command&#39;\] unless command p.</description>
+      <guid>https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。</description>
     </item>
     
     <item>
       <title>Haproxy端口映射（client头中URL/HOST修改后转发）</title>
-      <link>https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/</link>
+      <link>https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/</link>
       <pubDate>Tue, 28 Oct 2014 17:02:26 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/</guid>
-      <description>CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。
-解决方案 配置两层Haproxy，第一层的Haproxy与公网地址绑定。 对第一层的Haproxy进行配置，把外部通过IP+PORT访问的地址映射到后端第二层Haproxy，并把其访问的http Head修改，把Host字段改成能被Cloudfoundry接受的url字符串。 第二层Haproxy就跟CloudFoundry官方配置相同，作为负载均衡把流量导向下层多个gorouter。
-Haproxy的安装：(也可通过源码安装) apt-get install haproxy
-修改基本的配置文件如下： 配置文件所在地址：/etc/haproxy/haproxy.cfg（用xx.xx.xx.xx代表一个IP地址）
-global chroot /var/lib/haproxy pidfile /var/run/haproxy.pid maxconn 4000 user haproxy group haproxy stats socket /var/lib/haproxy/stats debug defaults log global option httpclose timeout connect 30000ms timeout client 300000ms timeout server 300000ms frontend http-in mode http bind \*:81 reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas option httplog option forwardfor reqadd X-Forwarded-Proto:\\ http default\_backend http-routers backend http-routers mode http reqirep ^Host:\\ xx.xx.xx.xx\\:81 Host:\\ t1.cloud.paas balance roundrobin server node0 t1.</description>
+      <guid>https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/</guid>
+      <description>CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中gorouter源码分析</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
       <pubDate>Wed, 07 May 2014 10:20:09 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
-      <description>在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意. 为了提高Cloud Foundry router的可用性，Cloud Foundry开源社区不久前推出了gorouter。gorouter采用现阶段比较新颖的go作为编程语言，并重新设计了原有的组件架构。由于go语言本身的特性，gorouter处理并发请求的能力大大超过了router，甚至在同种实验环境下，性能是原先router的20倍左右。 由于gorouter的高性能，笔者也抱着期待的心态去接触go，当然还有gorouter。本文不会从go语言语法的角度入手gorouter，所以有一些go语言的基础再来看本文，是有必要的。本文主要是对gorouter的源码的简单解读，另外还包含一些笔者对gorouter的看法。
-gorouter的程序组织形式 首先，先从gorouter的程序组织形式入手，可见下图：
-
-以下简单介绍其中一些重要文件的功能：
- common：common意指通用，所以该文件夹中也是一些比较通识的概念定义，比如varz，healthz，component等，以及关于项目过程的一些基本操作定义。 config：顾名思义，该文件夹中的文件为gorouter组件的配置文件。 log：定义gorouter的log形式定义。 proxy：作为一个代理处理外界进入Cloud Foundry的所有请求。 registry：处理组件或者DEA中应用到gorouter来注册uri的事件，另外还负责请求访问应用时查找应用真实IP，port。 route：主要定义在rigistry中需要使用到的三个数据结构：endpoint，pool和uris。 router：程序的主入口，main函数所在处。 stats：主要负责一些应用记录的状态，还有一些其他零碎的东西，比如定义一个堆。 util：其中一般是工具源码，在这里只负责给gorouter进程写pid这件事。 varz：主要涉及varz信息的处理，其实就是gorouter组件状态的查阅。 router.go: 主要定义了router的数据结构，及其实例初始化的过程，还有最终运行的流程。  gorouter的功能：gorouter的功能主要可以分为三个部分：负责接收Cloud Foundry内部组件及应用uri注册以及注销的请求，负责转发所有外部对Cloud Foundry的访问请求，负责提供gorouter作为一个组件的状态监控。
- 接受uri注册及注销请求 当Cloud Foundry内一个组件需要提供HTTP服务的时候，那么这个组件则必须将自己的uri和IP一起注册到gorouter处，典型的有，Cloud Foundry中Service Gateway与Cloud Controller通过HTTP建立连接的，另外Cloud Controller也需要对外提供HTTP服务，所以这些组件必须在gorouter中进行注册，以便可以顺利通信或访问。 除了平台级的组件uri注册，最常见的是应用级的应用uri注册，也就是在Cloud Foundry中新部署应用时，应用所在的DEA会向gorouter发送一个uri，IP和port的注册请求。gorouter收到这个请求后，会添加该记录，并保证可以解析外部的URL访问形式。当然，反过来，当一个应用被删除的时候，为了不浪费Cloud Foundry内部的uri资源，Cloud Foundry会将该uri从gorouter中注销，随即gorouter在节点处删除这条记录。 转发对Cloud Foundry的访问请求 gorouter接受到的访问请求大致可以分为三种：外部请求有：用户对应用的访问请求，用户对Cloud Foundry内部资源的管理请求；内部的请求有：内部组件之间通过HTTP的各类通信。 虽然说请求的类型可以分为三种，但是gorouter对于这些请求的操作都是一致的，找到相应的uri，提取出相应的IP和port，然后进行转发。需要注意的是，在原先版本的router中，router只能接收HTTP请求，然而现在gorouter中，已经考虑了TCP连接，以及websocket。 提供组件监控 Cloud Foundry都有自己的状态监控，可以通过HTTP访问。这主要是每个组件在启动的时候，都作为一个component向Cloud Foundry进行注册，注册的时候带有很多关于自身组件的信息，同时也启动了一个HTTP server。  gorouter的初始化及启动流程和Router对象实例的创建与初始化 gorouter的启动过程主要在router.go文件中，在该文件中，首先定义创建一个Router实例的操作并进行初始化，另外还定义了Router实例的开始运行所做的操作。 在router.go文件中，首先需要是Router结构体的定义： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-type Router struct { config *config.Config …… }  随后又定义了Router实例的初始化： [plain] view plaincopy在CODE上查看代码片派生到我的代码片</description>
+      <guid>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意.</description>
     </item>
     
     <item>
       <title>Cloud Foundry中collector组件的源码分析</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
       <pubDate>Wed, 07 May 2014 10:19:45 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
-      <description>在Cloud Foundry中有一个叫collector的组件，该组件的功能是通过消息总线发现在Cloud Foundry中注册过的各个组件的信息，然后通过varz和healthz接口来查询它们的信息并发送到指定的存储位置。 本文从collector的功能出发，主要讲述以上两个功能的源码实现。
-发现注册组件 在Cloud Foundry中，每个组件在启动的时候后会以一个component的形式向Cloud Foundry注册，同时也会作为一个组件，向NATS发布一些启动信息。 首先以DEA为例，讲述该组件register与向NATS publish信息的实现。首先看以下/dea/lib/dea/agent.rb中register的代码： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-VCAP::Component.register(:type =&amp;gt; &#39;DEA&#39;, :host =&amp;gt; @local_ip, :index =&amp;gt; @config[&#39;index&#39;], :config =&amp;gt; @config, :port =&amp;gt; status_config[&#39;port&#39;], :user =&amp;gt; status_config[&#39;user&#39;], :password =&amp;gt; status_config[&#39;password&#39;])  这段代码表示，DEA通过VCAP::Component对象中的register方法，实现注册。以下进入vcap-common/lib/vcap/component.rb中的register方法： [ruby] view plaincopy在CODE上查看代码片派生到我的代码片
-def register(opts) uuid = VCAP.secure_uuid …… auth = [opts[:user] || VCAP.secure_uuid, opts[:password] || VCAP.secure_uuid] @discover = { :type =&amp;gt; type, …… :credentials =&amp;gt; auth, :start =&amp;gt; Time.now } …… @healthz = &amp;quot;ok\n&amp;quot;.</description>
+      <guid>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry中有一个叫collector的组件，该组件的功能是通过消息总线发现在Cloud Foundry中注册过的各个组件的信息，然后通过varz和healthz接口来查询它们的信息并发送到指定的存储位置。 本文从collector的功能出发，主要讲述以上两个功能的源码实现。</description>
     </item>
     
     <item>
       <title>Cloud Foundry中syslog_aggregator的实现分析</title>
-      <link>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</link>
+      <link>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</link>
       <pubDate>Wed, 07 May 2014 10:19:32 +0000</pubDate>
       
-      <guid>https://fengfees.github.io/blog/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</guid>
-      <description>在Cloud Foundry中，用来收集Cloud Foundry各组件日志信息的组件，名为syslog_aggregator。 syslog_aggregator可以做到方便的收集Cloud Foundry中所有组件的日志信息，并将这些信息进行初步处理，比如说：将不同月份产生的日志，进行分类存储；另外还对同一月份内产生的日志，将其通过不同的日期进行分类。这样的话，当Cloud Foundry平台的开发者，在运营该平台时需要查看Cloud Foundry中某一个组件产生的日志时，可以方便的查找到对应日期的日志。syslog_aggregator除了可以对日志进行分组件，分月份，分日期进行存储外，还提供一些对日志进行打包或剪枝的功能，比如：syslog_aggregator会将一定期限内的日志，进行压缩，以达到节省存储空间的功能；另外syslog_aggregator还会定期对日志进行清除，比如只保存一定期限时间长度的日志，当日志超过该时限，syslog_aggregator会将其清除。 以下是对syslog_aggregator实现的简单分析： syslog_aggregator组件主要包括monit模块，日志管理模块。
-monit模块 monit模块主要是实现：监控syslog_aggregator组件的运行状态，一旦监控过syslog_aggregator组件中该进程不存活时，即刻重启该进程；另外，syslog_aggregator组件还将自身的信息通过cloud_agent传送给NATS，这里的信息包括syslog_aggregator组件所在的宿主机的存活状态以及资源使用情况。 以下通过monit监控进程的代码： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-check process syslog_aggregator with pidfile /var/vcap/sys/run/syslog_aggregator/syslog_aggregator.pid start program &amp;quot;/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl start&amp;quot; stop program &amp;quot;/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl stop&amp;quot; group vcap  该段代码中清晰的标明了进程的pid，进程的start命令以及stop命令。 cloud_agent作为BOSH监控Cloud Foundry组件级信息的辅助工具，负责收集syslog_aggregator组件所在宿主机的运行状态以及资源使用情况，并发送给health_monitor，由health_monitor统一管理。由于cloud_agent不是本文的重点，所以本文不再赘述。
-日志管理模块 实现日志管理，syslog_aggregator是通过启动syslog_aggregator_ctl脚本来实现的。上文中提到的monit模块中，也正是监控这个脚本命令启动的进程。以下来分析一下该脚本的代码实现： [plain] view plaincopy在CODE上查看代码片派生到我的代码片
-#!/bin/bash RUN_DIR=/var/vcap/sys/run/syslog_aggregator LOG_DIR=/var/vcap/store/log JOB_DIR=/var/vcap/jobs/syslog_aggregator PACKAGE_DIR=/var/vcap/packages/syslog_aggregator BIN_DIR=$JOB_DIR/bin PIDFILE=$RUN_DIR/syslog_aggregator.pid source /var/vcap/packages/common/utils.sh case $1 in start) apt-get -y install rsyslog-relp pid_guard $PIDFILE &amp;quot;Syslog aggregator&amp;quot; mkdir -p $RUN_DIR mkdir -p $LOG_DIR chown -R vcap:vcap $LOG_DIR rm -f /etc/cron.</description>
+      <guid>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry中，用来收集Cloud Foundry各组件日志信息的组件，名为syslog_aggregator。 syslog_aggregator可以做到方便的收集Cloud Foundry中所有组件的日志信息，并将这些信息进行初步处理，比如说：将不同月份产生的日志，进行分类存储；另外还对同一月份内产生的日志，将其通过不同的日期进行分类。这样的话，当Cloud Foundry平台的开发者，在运营该平台时需要查看Cloud Foundry中某一个组件产生的日志时，可以方便的查找到对应日期的日志。syslog_aggregator除了可以对日志进行分组件，分月份，分日期进行存储外，还提供一些对日志进行打包或剪枝的功能，比如：syslog_aggregator会将一定期限内的日志，进行压缩，以达到节省存储空间的功能；另外syslog_aggregator还会定期对日志进行清除，比如只保存一定期限时间长度的日志，当日志超过该时限，syslog_aggregator会将其清除。 以下是对syslog_aggregator实现的简单分析： syslog_aggregator组件主要包括monit模块，日志管理模块。</description>
     </item>
     
     <item>
@@ -634,18 +332,7 @@ check process syslog_aggregator with pidfile /var/vcap/sys/run/syslog_aggregator
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fengfees.github.io/contact/</guid>
-      <description>浙大SEL实验室： 浙江大学软件工程实验室（Software Engineering Lab）从属于浙江大学超大规模信息系统研究中心，由丁轶群博士于2011年成立，依托浙江大学计算机理论和应用工程基础研究，扎根于工业界前沿与先进技术领域，致力在云计算平台技术基础上研究关键领域面临的超大规模信息系统问题，通过理论探索和工程实践的有机结合，寻求关键领域信息化发展的突破。
-软件工程实验室研发团队经过多年的发展，已经具备了稳定的研发梯队，其中包括教授/副教授8人（教师团队列表），博士、硕士研究生百余人，以及本科生数十人，形成了年轻、富有活力的研发团队。 软件工程实验室从事云计算大规模信息工程研究已近十余年，承担了数十项国内外大规模信息系统的研发，在全球化大规模信息系统开发、分布式系统研发、云计算平台研发、容器技术等方面积累了丰富的科研和工程经验。
-浙大SEL团队在开源PaaS/CaaS云计算技术上的研发能力国内数一数二。团队为Kubernetes、Docker、Cloud Foundry等开源项目累计贡献近1400万行代码，贡献度名列国内第一，世界第四。作为国内最早投入到PaaS/CaaS云计算技术研发的机构之一，SEL团队携手Google、华为、Docker、IBM、思科等国际大公司共同创建了CNCF（cloud native computing foundation）基金会，共同推进下一代面向云原生应用的云计算平台的发展。SEL团队也是国内唯一两家与Cloud Foundry开源基金会签订源代码贡献协议的机构之一。作为PaaS/CaaS云计算技术的布道者，SEL团队多次受邀在国内外重要开源云计算技术峰会上发表主题演讲。由团队所著书籍《Docker容器与容器云》获人民邮电出版社2015年最受欢迎技术新书TOP20荣誉，此书已被译成繁体中文行销台湾地区。
-基于以上技术和成果，该团队设计并建设了苏宁公有PaaS云平台，发挥苏宁在仓储、货运等方面的优势，为上下游企业提供垂直PaaS服务；设计并建设了杭州智慧城管系统PaaS云平台、宁波智慧城市PaaS云平台、天津食品药品监督管理PaaS云平台；参与国家科技支撑计划项目课题“交通运输物流信息交换基础网络与应用服务技研发及应用”，设计实现面向物流信息交换网络的云平台。
-目前的研究领域： 111
-优秀学长学姐： 111
-合作企业： 谐云：
-华为：
-阿里：
- 教师团队： 丁轶群 浙江大学SEL实验室负责人 浙大SEL实验室创始人&amp;amp;带队老师，Cloud Native Computing Foundation会员。浙江省第一批青年科学家。《Docker容器与容器云》主要作者。设计建设国外高性能外汇交易系统、大型电商云平台，智慧城市云平台，具备丰富高性能分布式系统工程经验。
-才振功 博士，曾就职于道富银行，承担了国内外多个云平台容量规划和资源调度、云迁移项目，提出了云应用性能预测模型和面向云平台的自动化迁移技术方案，申请发明专利2项（实审中），实用新型专利1项（已授权）
-联系方式： </description>
+      <description>浙大SEL实验室： 浙江大学软件工程实验室（Software Engineering Lab）从属于浙江大学超大规模信息系统研究中心，由丁轶群博士于2011年成立，依托浙江大学计算机理论和应用工程基础研究，扎根于工业界前沿与先进技术领域，致力在云计算平台技术基础上研究关键领域面临的超大规模信息系统问题，通过理论探索和工程实践的有机结合，寻求关键领域信息化发展的突破。</description>
     </item>
     
   </channel>
