@@ -204,7 +204,8 @@
                                         
                                     </div>
                                     <p class="intro">在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="btn btn-template-main"></a>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/11/20/cloud-foundry%E4%B8%ADdea%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8/" class="btn btn-template-main">继续阅读</a>
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -236,7 +237,8 @@
                                         
                                     </div>
                                     <p class="intro">CloudFoundry是对域名强依赖的云计算集群，没有域名的话几乎无法访问。但是域名备案等事宜所耗时间较长，在上线较为紧急的情况下，就需要实现直接通过“IP+端口”的形式，在公网访问CF集群上部署的APP。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main"></a>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/10/28/haproxy%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84client%E5%A4%B4%E4%B8%ADurlhost%E4%BF%AE%E6%94%B9%E5%90%8E%E8%BD%AC%E5%8F%91/" class="btn btn-template-main">继续阅读</a>
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -268,7 +270,8 @@
                                         
                                     </div>
                                     <p class="intro">在Cloud Foundry v1版本中，router作为路由节点，转发所有进入Cloud Foundry的请求。由于开发语言为ruby，故router接受并处理并发请求的能力受到语言层的限制。虽然在v1版本中，router曾经有过一定的优化，采用lua脚本代替原先的ruby脚本，由lua来分析请求，使得一部分请求不再经过ruby代码，而直接去DEA访问应用，但是，一旦router暴露在大量的访问请求下，性能依旧是不尽如人意.</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADgorouter%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main">继续阅读</a>
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -300,7 +303,8 @@
                                         
                                     </div>
                                     <p class="intro">在Cloud Foundry中有一个叫collector的组件，该组件的功能是通过消息总线发现在Cloud Foundry中注册过的各个组件的信息，然后通过varz和healthz接口来查询它们的信息并发送到指定的存储位置。 本文从collector的功能出发，主要讲述以上两个功能的源码实现。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADcollector%E7%BB%84%E4%BB%B6%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="btn btn-template-main">继续阅读</a>
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -332,7 +336,8 @@
                                         
                                     </div>
                                     <p class="intro">在Cloud Foundry中，用来收集Cloud Foundry各组件日志信息的组件，名为syslog_aggregator。 syslog_aggregator可以做到方便的收集Cloud Foundry中所有组件的日志信息，并将这些信息进行初步处理，比如说：将不同月份产生的日志，进行分类存储；另外还对同一月份内产生的日志，将其通过不同的日期进行分类。这样的话，当Cloud Foundry平台的开发者，在运营该平台时需要查看Cloud Foundry中某一个组件产生的日志时，可以方便的查找到对应日期的日志。syslog_aggregator除了可以对日志进行分组件，分月份，分日期进行存储外，还提供一些对日志进行打包或剪枝的功能，比如：syslog_aggregator会将一定期限内的日志，进行压缩，以达到节省存储空间的功能；另外syslog_aggregator还会定期对日志进行清除，比如只保存一定期限时间长度的日志，当日志超过该时限，syslog_aggregator会将其清除。 以下是对syslog_aggregator实现的简单分析： syslog_aggregator组件主要包括monit模块，日志管理模块。</p>
-                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/" class="btn btn-template-main"></a>
+                                    <p class="read-more"><a href="https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/" class="btn btn-template-main">继续阅读</a>
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -341,11 +346,13 @@
 
                         <ul class="pager">
                             
-                            <li class="previous"><a href="/blog/page/3/">&larr; </a></li>
+                            <li class="first"><a href="/blog/" >首页</a></li>
+                            <li class="previous"><a href="/blog/page/3/">&larr; 往前</a></li>
                             
 
                             
-                            <li class="next disabled"><a href="#"> &rarr;</a></li>
+                            <li class="next disabled"><a href="#">往后 &rarr;</a></li>
+                            
                             
                         </ul>
                     </div>
@@ -385,6 +392,25 @@
 
 
 
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title"></h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            
+            <li>
+                <a href="/categories/111">111 (1)</a>
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
 
 
 

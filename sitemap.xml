@@ -3,7 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fengfees.github.io/categories/111/</loc>
+    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fengfees.github.io/blog/</loc>
+    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/categories/</loc>
     <lastmod>2016-11-30T17:41:43+00:00</lastmod>
   </url>
   
@@ -290,10 +300,6 @@
   <url>
     <loc>https://fengfees.github.io/tags/syslog_aggregator/</loc>
     <lastmod>2014-05-07T10:19:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fengfees.github.io/categories/</loc>
   </url>
   
   <url>
