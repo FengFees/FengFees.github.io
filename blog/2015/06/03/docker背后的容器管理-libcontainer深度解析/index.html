@@ -113,34 +113,34 @@
                 <ul class="nav navbar-nav navbar-right">
                   
                   
-                  
                   <li class="dropdown">
                     
                     <a href="/">主页</a>
                     
                   </li>
                   
-                  
-                  <li class="dropdown active">
+                  <li class="dropdown">
                     
                     <a href="/blog/">博客</a>
                     
                   </li>
-                  
-                  
+
                   <li class="dropdown">
                     
-                    <a href="/community/">社区</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">社区 <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
                     
-                  </li>
-                  
-                  
+                      <li><a href="https://www.servicemesher.com/">ServiceMesh社区</a></li>
+                    
+                      <li><a href="">kubeedge社区</a></li>
+                    
+                  </ul>
+
                   <li class="dropdown">
                     
                     <a href="/archives/">归档</a>
                     
                   </li>
-                  
                   
                   <li class="dropdown">
                     
@@ -148,9 +148,44 @@
                     
                   </li>
                   
+                </li>
+                
+                <li>
+                  <a data-toggle="modal"  >
+                    <span class="hidden-sm hidden-md hidden-lg">搜索</span> 
+                    <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                  </a>
+                </li>
+                
+                <li>
+                  <a class="aa-input-container" id="aa-input-container">
+                    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
+                  </a>
+                  <script>
+                    var client = algoliasearch("X4YB3WOBNV", "d2134c5a8d250e6d3246594240c45201");
+                    var index = client.initIndex("sel");
+                    
+                    autocomplete('#aa-search-input',
+                    { hint: false}, {
+                        source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+                        
+                        displayKey: 'name',
+                        
+                        templates: {
+                            
+                            suggestion: function(suggestion) {
+                                baseURL="https:\/\/fengfees.github.io/\/"
+                                baseURL=baseURL.substring(0,baseURL.length-1)
+                                return '<span>' + '<a href="' + baseURL + suggestion.url+ '">' +
+                                    suggestion._highlightResult.title.value + '</a></span>'+
+                                    '<span>'+suggestion._highlightResult.summary.value+'</span>';
+                            }
+                        }
+                    });
+                    </script>
+                </li>
 
-                  
-                  
+                
                 </ul>
             </div>
             
@@ -168,6 +203,8 @@
             
         </div>
     </div>
+
+    
 </header>
 
 
@@ -489,7 +526,7 @@ close(checkpoint[1]);</p>
                         
                         
                         
-                        <div id="SOHUCS" sid="comments"></div>
+                        <div id="SOHUCS"></div>
                         <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
                         <script type="text/javascript">
                           window.changyan.api.config({
@@ -511,51 +548,7 @@ close(checkpoint[1]);</p>
 
                         
 
-<div class="panel panel-default sidebar-menu">
 
-    <div class="panel-heading">
-      <h3 class="panel-title">搜索栏</h3>
-      
-    </div>
-
-    <div class="panel-body">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
-            <div class="input-group">
-                <input type="search" name="q" class="form-control" placeholder="">
-                <input type="hidden" name="sitesearch" value="https://fengfees.github.io/">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-template-main"><i class="fas fa-search"></i></button>
-                </span>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-
-
-
-
-<div class="panel panel-default sidebar-menu">
-
-    <div class="panel-heading">
-        <h3 class="panel-title">归档栏</h3>
-        
-    </div>
-
-    <div class="panel-body">
-        <ul class="nav nav-pills nav-stacked">
-            
-            
-            <li>
-                <a href="/categories/book">book (2)</a>
-            </li>
-            
-        </ul>
-    </div>
-
-</div>
 
 
 
