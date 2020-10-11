@@ -149,41 +149,103 @@
                   </li>
                   
                 </li>
+
                 
                 <li>
                   <a data-toggle="modal"  >
-                    <span class="hidden-sm hidden-md hidden-lg">搜索</span> 
-                    <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                    <div class="search">
+                      <input type="text" placeholder="请输入搜索内容..." id="search-key" />
+                      <img onclick="search()">
+                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> 
+                        <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                      </img>
+                    </div>
+                    <h1 id="search-tip" style="color: red;text-align: center;display: none;font-size: medium;">搜索中，请稍后 ...</h1>
+                  
                   </a>
+                  <div id="result"></div>
+                  <script type="text/javascript">
+                    
+                    window.onload = function() {
+                      document.onkeydown = function(ev) {
+                        var event = ev || event
+                        if (event.keyCode == 13) {
+                          search()
+                        }
+                      }
+                    }
+                  
+                    
+                    function search() {
+                      key = document.getElementById("search-key").value;
+                      if (key === "") {
+                        return;
+                      }
+                      document.getElementById("search-key").value = "";
+                  
+                      
+                      document.getElementById("search-tip").innerText = "搜索中，请稍后 ...";
+                      document.getElementById("search-tip").style.display = "block";
+                  
+                      
+                      var el = document.getElementById('result');
+                      var childs = el.childNodes;
+                      for (var i = childs.length - 1; i >= 0; i--) {
+                        el.removeChild(childs[i]);
+                      }
+                  
+                      
+                      xmltext = new XMLHttpRequest;
+                      xmltext.open("GET", "/index.xml", false);
+                      xmltext.send();
+                      resp = xmltext.responseXML;
+                      items = resp.getElementsByTagName("item");
+                      
+                      var i = 0;
+                      haveResult = false;
+                      while (i < items.length) {
+                        txt = items[i].getElementsByTagName("title")[0].innerHTML + items[i].getElementsByTagName("description")[0].innerHTML
+                        if (txt.indexOf(key) > -1) {
+                          haveResult = true;
+                          title = items[i].getElementsByTagName("title")[0].innerHTML;
+                          link = items[i].getElementsByTagName("link")[0].innerHTML;
+                          time = items[i].getElementsByTagName("pubDate")[0].innerHTML;
+                          mark = items[i].getElementsByTagName("description")[0].innerHTML;
+                          addItem(title, link, time, mark)
+                        }
+                        i++;
+                      }
+                      if (!haveResult) {
+                        document.getElementById("search-tip").innerText = "搜索完毕，未发现结果 ...";
+                        document.getElementById("search-tip").style.display = "block";
+                      }
+                    }
+                  
+                    
+                    function addItem(title, link, time, mark) {
+                      document.getElementById("search-tip").style.display = "none";
+                      tmpl = "<article class=\"post\" style=\"border-bottom: 1px solid #e6e6e6;\" >" +
+                        "<header class=\"post-header\">" +
+                        "<h1 class=\"post-title\"><a class=\"post-link\" href=\"" + link + "\" target=\"_blank\">" + title + "</a></h1>" +
+                        "<div class=\"post-meta\">" +
+                        " <span class=\"post-time\">" + time + "</span>" +
+                        "</div>" +
+                        " </header>" +
+                        "<div class=\"post-content\">" +
+                        "<div class=\"post-summary\">" + mark + "</div>" +
+                        "<div class=\"read-more\">" +
+                        "<a href=" + link + " class=\"read-more-link\" target=\"_blank\">阅读更多</a>" +
+                        "</div>" +
+                        " </div>" +
+                        "</article>"
+                      div = document.createElement("div")
+                      div.innerHTML = tmpl;
+                      document.getElementById('result').appendChild(div)
+                    }
+                  </script>
                 </li>
                 
-                <li>
-                  <a class="aa-input-container" id="aa-input-container">
-                    <input type="search" id="aa-search-input" class="aa-input-search" placeholder="输入文章标题或摘要" name="search" autocomplete="off" autofocus="autofocus"/>
-                  </a>
-                  <script>
-                    var client = algoliasearch("X4YB3WOBNV", "d2134c5a8d250e6d3246594240c45201");
-                    var index = client.initIndex("sel");
-                    
-                    autocomplete('#aa-search-input',
-                    { hint: false}, {
-                        source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
-                        
-                        displayKey: 'name',
-                        
-                        templates: {
-                            
-                            suggestion: function(suggestion) {
-                                baseURL="https:\/\/fengfees.github.io/\/"
-                                baseURL=baseURL.substring(0,baseURL.length-1)
-                                return '<span>' + '<a href="' + baseURL + suggestion.url+ '">' +
-                                    suggestion._highlightResult.title.value + '</a></span>'+
-                                    '<span>'+suggestion._highlightResult.summary.value+'</span>';
-                            }
-                        }
-                    });
-                    </script>
-                </li>
+                
 
                 
                 </ul>
@@ -340,6 +402,26 @@
                         
 
                         
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">搜索栏</h3>
+      
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="google站外搜索">
+                <input type="hidden" name="sitesearch" value="https://fengfees.github.io/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fas fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 
