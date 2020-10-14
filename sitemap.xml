@@ -8,7 +8,7 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/categories/book/</loc>
+    <loc>https://fengfees.github.io/tags/books/</loc>
     <lastmod>2016-11-30T17:41:43+00:00</lastmod>
   </url>
   
@@ -19,6 +19,11 @@
   
   <url>
     <loc>https://fengfees.github.io/tags/docker/</loc>
+    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/categories/docker/</loc>
     <lastmod>2016-11-30T17:41:43+00:00</lastmod>
   </url>
   
