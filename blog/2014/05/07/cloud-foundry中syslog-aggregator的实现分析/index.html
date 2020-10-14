@@ -389,7 +389,7 @@ done
         
         <div class="search" id="search">
             <div class="input-group">
-                <input type="search" name="q" class="form-control" placeholder="请输入文章标题或摘要..." id="search-key">
+                <input type="text" name="q" class="form-control" placeholder="请输入文章标题或摘要..." id="search-key">
                 <input type="hidden" name="sitesearch" value="https://fengfees.github.io/">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-template-main" onclick="search()"><i class="fas fa-search"></i></button>
@@ -420,7 +420,7 @@ done
                       document.getElementById("search-tip").style.display = "block";
                   
                       
-                      var el = document.getElementById('content');
+                      var el = document.getElementById('blog-listing-medium');
                       var childs = el.childNodes;
                       for (var i = childs.length - 1; i >= 0; i--) {
                         el.removeChild(childs[i]);
@@ -472,7 +472,7 @@ done
                         "</article>"
                       div = document.createElement("div")
                       div.innerHTML = tmpl;
-                      document.getElementById('content').appendChild(div)
+                      document.getElementById('blog-listing-medium').appendChild(div)
                     }
 
         </script>
