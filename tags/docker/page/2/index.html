@@ -121,6 +121,8 @@
                       <li><a href="https://www.servicemesher.com/">ServiceMesh社区</a></li>
                     
                       <li><a href="">kubeedge社区</a></li>
+
+                      <li><a href="http://www.icsoft.zju.edu.cn/index.php">浙江大学智能计算与软件中心</a></li>
                     
                   </ul>
 
@@ -138,100 +140,6 @@
                   
                 </li>
 
-                
-                <li>
-                  <a data-toggle="modal"  >
-                    <div class="search">
-                      <input type="text" placeholder="请输入搜索内容..." id="search-key" />
-                      <img onclick="search()">
-                        <span class="hidden-sm hidden-md hidden-lg">搜索</span> 
-                        <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
-                      </img>
-                    </div>
-                    <h1 id="search-tip" style="color: red;text-align: center;display: none;font-size: medium;">搜索中，请稍后 ...</h1>
-                  
-                  </a>
-                  <div id="result"></div>
-                  <script type="text/javascript">
-                    
-                    window.onload = function() {
-                      document.onkeydown = function(ev) {
-                        var event = ev || event
-                        if (event.keyCode == 13) {
-                          search()
-                        }
-                      }
-                    }
-                  
-                    
-                    function search() {
-                      key = document.getElementById("search-key").value;
-                      if (key === "") {
-                        return;
-                      }
-                      document.getElementById("search-key").value = "";
-                  
-                      
-                      document.getElementById("search-tip").innerText = "搜索中，请稍后 ...";
-                      document.getElementById("search-tip").style.display = "block";
-                  
-                      
-                      var el = document.getElementById('result');
-                      var childs = el.childNodes;
-                      for (var i = childs.length - 1; i >= 0; i--) {
-                        el.removeChild(childs[i]);
-                      }
-                  
-                      
-                      xmltext = new XMLHttpRequest;
-                      xmltext.open("GET", "/index.xml", false);
-                      xmltext.send();
-                      resp = xmltext.responseXML;
-                      items = resp.getElementsByTagName("item");
-                      
-                      var i = 0;
-                      haveResult = false;
-                      while (i < items.length) {
-                        txt = items[i].getElementsByTagName("title")[0].innerHTML + items[i].getElementsByTagName("description")[0].innerHTML
-                        if (txt.indexOf(key) > -1) {
-                          haveResult = true;
-                          title = items[i].getElementsByTagName("title")[0].innerHTML;
-                          link = items[i].getElementsByTagName("link")[0].innerHTML;
-                          time = items[i].getElementsByTagName("pubDate")[0].innerHTML;
-                          mark = items[i].getElementsByTagName("description")[0].innerHTML;
-                          addItem(title, link, time, mark)
-                        }
-                        i++;
-                      }
-                      if (!haveResult) {
-                        document.getElementById("search-tip").innerText = "搜索完毕，未发现结果 ...";
-                        document.getElementById("search-tip").style.display = "block";
-                      }
-                    }
-                  
-                    
-                    function addItem(title, link, time, mark) {
-                      document.getElementById("search-tip").style.display = "none";
-                      tmpl = "<article class=\"post\" style=\"border-bottom: 1px solid #e6e6e6;\" >" +
-                        "<header class=\"post-header\">" +
-                        "<h1 class=\"post-title\"><a class=\"post-link\" href=\"" + link + "\" target=\"_blank\">" + title + "</a></h1>" +
-                        "<div class=\"post-meta\">" +
-                        " <span class=\"post-time\">" + time + "</span>" +
-                        "</div>" +
-                        " </header>" +
-                        "<div class=\"post-content\">" +
-                        "<div class=\"post-summary\">" + mark + "</div>" +
-                        "<div class=\"read-more\">" +
-                        "<a href=" + link + " class=\"read-more-link\" target=\"_blank\">阅读更多</a>" +
-                        "</div>" +
-                        " </div>" +
-                        "</article>"
-                      div = document.createElement("div")
-                      div.innerHTML = tmpl;
-                      document.getElementById('result').appendChild(div)
-                    }
-                  </script>
-                </li>
                 
                 
 
@@ -282,7 +190,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/16/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/">
                                           
@@ -291,7 +199,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/16/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/">玩转Docker镜像</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -315,7 +223,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">
                                           
@@ -324,7 +232,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/09/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%94docker-server%E7%9A%84%E5%88%9B%E5%BB%BA/">Docker源码分析（五）：Docker Server的创建</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -348,7 +256,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">
                                           
@@ -357,7 +265,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/">Cloud Foundry’s 新容器技术： A Garden Overview</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -381,7 +289,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">
                                           
@@ -390,7 +298,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E5%9B%9Bdocker-daemon%E4%B9%8Bnewdaemon%E5%AE%9E%E7%8E%B0/">Docker源码分析（四）：Docker Daemon之NewDaemon实现</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -414,7 +322,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">
                                           
@@ -423,7 +331,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%89docker-daemon%E5%90%AF%E5%8A%A8/">Docker源码分析（三）：Docker Daemon启动</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -447,7 +355,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
                                           
@@ -456,7 +364,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%BA%8Cdocker-client%E5%88%9B%E5%BB%BA%E4%B8%8E%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">Docker源码分析（二）：Docker Client创建与命令执行</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -480,7 +388,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">
                                           
@@ -489,7 +397,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/2014/12/02/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%80docker%E6%9E%B6%E6%9E%84/">Docker源码分析（一）：Docker架构</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -513,7 +421,7 @@
                         
                         <section class="post">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                   <div class="image">
                                       <a href="https://fengfees.github.io/blog/1/01/01/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">
                                           
@@ -522,7 +430,7 @@
                                       </a>
                                   </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-9">
                                     <h2><a href="https://fengfees.github.io/blog/1/01/01/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/">《Docker容器与容器云》推荐</a></h2>
                                     <div class="clearfix">
                                         <p class="author-category">
@@ -579,19 +487,125 @@
     </div>
 
     <div class="panel-body">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+        
+        <div class="search" id="search">
             <div class="input-group">
-                <input type="search" name="q" class="form-control" placeholder="google站外搜索">
+                <input type="search" name="q" class="form-control" placeholder="请输入文章标题或摘要..." id="search-key">
                 <input type="hidden" name="sitesearch" value="https://fengfees.github.io/">
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-template-main"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-template-main" onclick="search()"><i class="fas fa-search"></i></button>
                 </span>
             </div>
-        </form>
+            <h1 id="search-tip" style="color: red;text-align: center;display: none;font-size: medium;">搜索中，请稍后 ...</h1>
+        </div>
+        <script type="text/javascript">
+            
+            window.onload = function() {
+                      document.onkeydown = function(ev) {
+                        var event = ev || event
+                        if (event.keyCode == 13) {
+                          search()
+                        }
+                      }
+                    }
+            
+            function search() {
+                      key = document.getElementById("search-key").value;
+                      if (key === "") {
+                        return;
+                      }
+                      document.getElementById("search-key").value = "";
+                  
+                      
+                      document.getElementById("search-tip").innerText = "搜索中，请稍后 ...";
+                      document.getElementById("search-tip").style.display = "block";
+                  
+                      
+                      var el = document.getElementById('content');
+                      var childs = el.childNodes;
+                      for (var i = childs.length - 1; i >= 0; i--) {
+                        el.removeChild(childs[i]);
+                      }
+                  
+                      
+                      xmltext = new XMLHttpRequest;
+                      xmltext.open("GET", "/index.xml", false);
+                      xmltext.send();
+                      resp = xmltext.responseXML;
+                      items = resp.getElementsByTagName("item");
+                      
+                      var i = 0;
+                      haveResult = false;
+                      while (i < items.length) {
+                        txt = items[i].getElementsByTagName("title")[0].innerHTML + items[i].getElementsByTagName("description")[0].innerHTML
+                        if (txt.indexOf(key) > -1) {
+                          haveResult = true;
+                          title = items[i].getElementsByTagName("title")[0].innerHTML;
+                          link = items[i].getElementsByTagName("link")[0].innerHTML;
+                          time = items[i].getElementsByTagName("pubDate")[0].innerHTML;
+                          mark = items[i].getElementsByTagName("description")[0].innerHTML;
+                          addItem(title, link, time, mark)
+                        }
+                        i++;
+                      }
+                      if (!haveResult) {
+                        document.getElementById("search-tip").innerText = "搜索完毕，未发现结果 ...";
+                        document.getElementById("search-tip").style.display = "block";
+                      }
+                    }
+                  
+                    
+                    function addItem(title, link, time, mark) {
+                      document.getElementById("search-tip").style.display = "none";
+                      tmpl = "<article class=\"post\" style=\"border-bottom: 1px solid #e6e6e6;\" >" +
+                        "<header class=\"post-header\">" +
+                        "<h1 class=\"post-title\"><a class=\"post-link\" href=\"" + link + "\" target=\"_blank\">" + title + "</a></h1>" +
+                        "<div class=\"post-meta\">" +
+                        " <span class=\"post-time\">" + time + "</span>" +
+                        "</div>" +
+                        " </header>" +
+                        "<div class=\"post-content\">" +
+                        "<div class=\"post-summary\">" + mark + "</div>" +
+                        "<div class=\"read-more\">" +
+                        "<a href=" + link + " class=\"read-more-link\" target=\"_blank\">阅读更多</a>" +
+                        "</div>" +
+                        " </div>" +
+                        "</article>"
+                      div = document.createElement("div")
+                      div.innerHTML = tmpl;
+                      document.getElementById('content').appendChild(div)
+                    }
+
+        </script>
+        
     </div>
 </div>
 
 
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">归档栏</h3>
+        
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            
+            <li>
+                <a href="/categories/book">book (2)</a>
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
 
 
 
@@ -743,7 +757,7 @@
                     <div class="image same-height-always">
                         <a href="https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/">
                           
-                            <img src="/img/banner.jpg" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
+                            <img src="/img/blogs/123/docker2.png" class="img-responsive" alt="《Docker容器与容器云》第2版推荐">
                           
                         </a>
                     </div>
