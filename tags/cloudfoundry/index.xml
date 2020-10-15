@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>在生产中使用金丝雀部署来进行测试</title>
+      <link>https://fengfees.github.io/blog/2014/12/02/%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 02 Dec 2014 17:26:05 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/12/02/%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95/</guid>
+      <description>根据Nolio发布的DevOps最佳实践系列中的第一个demo，很多公司通过路由策略选择性地对部分用户发布新功能从而使用 “金丝雀部署（Canary Deployments）”来测试生产中的软件，并将这一方式作为其可持续交付的一部分。“金丝雀部署”是增量发布的一种类型，它的执行方式是在原有软件生产版本可用的情况下，同时部署一个新的版本。同时运行同一个软件产品的多个版本需要软件针对配置和完美自动化部署进行特别设计。 考虑到A/B测试和预防性（pre-emptive）性能测试，一旦克服了“金丝雀部署”所涉及的技术挑战将可以减少部署流程中的风险。A/B 测试允许在不改变大多数用户的用户体验的情况下进行对新功能的测试。而性能测试对于整个用户群体来说同样只会产生微不足道的影响。 根据Nolio的“金丝雀部署”，该方式由以下几个步骤组成：</description>
+    </item>
+    
+    <item>
       <title>Cloud Foundry中warden的架构与实现</title>
       <link>https://fengfees.github.io/blog/2014/12/02/cloud-foundry%E4%B8%ADwarden%E7%9A%84%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 02 Dec 2014 17:19:09 +0000</pubDate>
@@ -108,6 +117,42 @@
       
       <guid>https://fengfees.github.io/blog/2014/05/07/cloud-foundry%E4%B8%ADsyslog-aggregator%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90/</guid>
       <description>在Cloud Foundry中，用来收集Cloud Foundry各组件日志信息的组件，名为syslog_aggregator。 syslog_aggregator可以做到方便的收集Cloud Foundry中所有组件的日志信息，并将这些信息进行初步处理，比如说：将不同月份产生的日志，进行分类存储；另外还对同一月份内产生的日志，将其通过不同的日期进行分类。这样的话，当Cloud Foundry平台的开发者，在运营该平台时需要查看Cloud Foundry中某一个组件产生的日志时，可以方便的查找到对应日期的日志。syslog_aggregator除了可以对日志进行分组件，分月份，分日期进行存储外，还提供一些对日志进行打包或剪枝的功能，比如：syslog_aggregator会将一定期限内的日志，进行压缩，以达到节省存储空间的功能；另外syslog_aggregator还会定期对日志进行清除，比如只保存一定期限时间长度的日志，当日志超过该时限，syslog_aggregator会将其清除。 以下是对syslog_aggregator实现的简单分析： syslog_aggregator组件主要包括monit模块，日志管理模块。</description>
+    </item>
+    
+    <item>
+      <title>Health_Manager2.0源码分析</title>
+      <link>https://fengfees.github.io/blog/2014/04/15/health-manager2-0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Tue, 15 Apr 2014 15:14:56 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/15/health-manager2-0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry v2版本中，Health_Manager_next已经替代v1版本中的Health_Manager。 笔者写这篇文档之前，在Github上，Health_Manager_next作为一个单独的项目，存在于Cloud Foundry之下；然而在笔者写这篇文档的时候，Health_Manager_next项目在Cloud Foundry下已经不复存在，然而进入原先的Health_Manager项目，可以发现，Health_Manager项目的项目说明已经成为HealthManager 2.</description>
+    </item>
+    
+    <item>
+      <title>[James Bayer]Cloud Foundry和BOSH部分遭受OpenSSL漏洞影响</title>
+      <link>https://fengfees.github.io/blog/2014/04/11/james-bayercloud-foundry%E5%92%8Cbosh%E9%83%A8%E5%88%86%E9%81%AD%E5%8F%97openssl%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D/</link>
+      <pubDate>Fri, 11 Apr 2014 10:49:01 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/11/james-bayercloud-foundry%E5%92%8Cbosh%E9%83%A8%E5%88%86%E9%81%AD%E5%8F%97openssl%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D/</guid>
+      <description>James Bayer jbayer@gopivotal.</description>
+    </item>
+    
+    <item>
+      <title>Cloud_Controller_NG源码阅读记录</title>
+      <link>https://fengfees.github.io/blog/2014/04/03/ontroller-ng%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 03 Apr 2014 14:15:12 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/03/ontroller-ng%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</guid>
+      <description>Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： * 维护一个包含应用、服务、配置信息的数据库(CCDB)。 * 在blobstore中存储应用的packages和droplets。 * 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 * 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行过程。 说明： 1.</description>
+    </item>
+    
+    <item>
+      <title>以NATS为主线的CloudFoundry原理</title>
+      <link>https://fengfees.github.io/blog/2013/12/02/%E4%BB%A5nats%E4%B8%BA%E4%B8%BB%E7%BA%BF%E7%9A%84cloudfoundry%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Mon, 02 Dec 2013 13:04:57 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2013/12/02/%E4%BB%A5nats%E4%B8%BA%E4%B8%BB%E7%BA%BF%E7%9A%84cloudfoundry%E5%8E%9F%E7%90%86/</guid>
+      <description>本文将试图以CloudFoundry中的消息组件NATS为主要线索，以在CF中广泛使用的并发和网络编程框架EventMachine为侧重，来串联整个CF主线功能的工作原理，力求能用简单直接的方式描述出较多的架构细节和系统设计。 需要准备的知识： EventMachine(EM)的基础知识和使用方法，可以参考不久前的介绍：Research on EventMachine 关于NATS源码级别的介绍，可以参考我们之前的这篇文章：Research on NATS</description>
     </item>
     
   </channel>

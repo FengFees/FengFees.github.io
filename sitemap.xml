@@ -4,7 +4,152 @@
   
   <url>
     <loc>https://fengfees.github.io/blog/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/cloudnative/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/edgecomputing/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/kubeedge/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/11/29/kubeedge%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E7%B3%BB%E5%88%97%E4%B8%80%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/kubernetes/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/</loc>
+    <lastmod>2018-11-29T16:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/istio/</loc>
+    <lastmod>2018-10-11T20:11:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/10/11/knative-serving%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2018-10-11T20:11:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/serverless/</loc>
+    <lastmod>2018-10-11T20:11:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/service-mesh/</loc>
+    <lastmod>2018-10-11T20:11:02+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/containerd/</loc>
+    <lastmod>2018-08-05T19:03:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/docker/</loc>
+    <lastmod>2018-08-05T19:03:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/08/05/%E4%BB%8Econtaienrd-pull%E9%95%9C%E5%83%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90oci-distribution-spec/</loc>
+    <lastmod>2018-08-05T19:03:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/micro-service/</loc>
+    <lastmod>2018-07-27T14:28:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/07/27/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%89-istio%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Bpilot-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-07-27T14:28:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/07/13/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%BA%8C-istio-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-07-13T14:15:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/06/26/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%80-istio-pilot-agent%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2018-06-26T14:29:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/cri/</loc>
+    <lastmod>2018-05-29T10:35:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/kubelet/</loc>
+    <lastmod>2018-05-29T10:35:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/pouch/</loc>
+    <lastmod>2018-05-29T10:35:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/05/29/pouchcontainer-cri%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-05-29T10:35:04+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/runc/</loc>
+    <lastmod>2018-05-10T10:16:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/runtime/</loc>
+    <lastmod>2018-05-10T10:16:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/05/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3docker%E5%AE%B9%E5%99%A8%E5%BC%95%E6%93%8Erunc%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2018-05-10T10:16:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/docker-network/</loc>
+    <lastmod>2018-03-14T11:23:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2018/03/14/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3flannel/</loc>
+    <lastmod>2018-03-14T11:23:35+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2016/11/30/k8s%E4%BB%A3%E7%A0%81%E8%B4%A1%E7%8C%AE%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D%E7%AC%AC%E5%85%AD/</loc>
+    <lastmod>2016-11-30T18:12:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/news/</loc>
+    <lastmod>2016-11-30T18:12:46+00:00</lastmod>
   </url>
   
   <url>
@@ -18,27 +163,7 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/tags/docker/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fengfees.github.io/categories/docker/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fengfees.github.io/tags/kubernetes/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fengfees.github.io/tags/news/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fengfees.github.io/tags/</loc>
     <lastmod>2016-11-30T17:41:43+00:00</lastmod>
   </url>
   
@@ -48,8 +173,8 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/</loc>
-    <lastmod>2016-11-30T17:41:43+00:00</lastmod>
+    <loc>https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</loc>
+    <lastmod>2015-10-21T20:26:10+00:00</lastmod>
   </url>
   
   <url>
@@ -58,13 +183,28 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/tags/runc/</loc>
-    <lastmod>2015-10-21T19:44:38+00:00</lastmod>
+    <loc>https://fengfees.github.io/tags/apiserver/</loc>
+    <lastmod>2015-08-09T11:25:44+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/tags/runtime/</loc>
-    <lastmod>2015-10-21T19:44:38+00:00</lastmod>
+    <loc>https://fengfees.github.io/blog/2015/08/09/kubernetes-apiserver%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-api%E8%AF%B7%E6%B1%82%E7%9A%84%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B/</loc>
+    <lastmod>2015-08-09T11:25:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2015/08/07/kubernetes-node-components-kubelet/</loc>
+    <lastmod>2015-08-07T19:46:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/categories/kubernetes/</loc>
+    <lastmod>2015-07-30T13:41:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/security/</loc>
+    <lastmod>2015-07-30T13:41:07+00:00</lastmod>
   </url>
   
   <url>
@@ -73,8 +213,13 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/tags/security/</loc>
-    <lastmod>2015-07-30T13:41:07+00:00</lastmod>
+    <loc>https://fengfees.github.io/tags/agent/</loc>
+    <lastmod>2015-06-23T11:14:25+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2015/06/23/tutum-agent%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</loc>
+    <lastmod>2015-06-23T11:14:25+00:00</lastmod>
   </url>
   
   <url>
@@ -133,8 +278,8 @@
   </url>
   
   <url>
-    <loc>https://fengfees.github.io/tags/docker-network/</loc>
-    <lastmod>2015-01-16T14:20:20+00:00</lastmod>
+    <loc>https://fengfees.github.io/blog/2015/01/22/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-kube-proxy-%E7%BB%84%E4%BB%B6/</loc>
+    <lastmod>2015-01-22T14:16:32+00:00</lastmod>
   </url>
   
   <url>
@@ -145,6 +290,11 @@
   <url>
     <loc>https://fengfees.github.io/tags/pipework/</loc>
     <lastmod>2015-01-16T14:20:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2015/01/13/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-%E4%B9%8B-kubelet/</loc>
+    <lastmod>2015-01-13T15:50:51+00:00</lastmod>
   </url>
   
   <url>
@@ -215,6 +365,11 @@
   <url>
     <loc>https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</loc>
     <lastmod>2014-12-02T18:52:46+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2014/12/02/%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2014-12-02T17:26:05+00:00</lastmod>
   </url>
   
   <url>
@@ -303,15 +458,51 @@
   </url>
   
   <url>
+    <loc>https://fengfees.github.io/blog/2014/04/15/health-manager2-0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2014-04-15T15:14:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/healthmanager/</loc>
+    <lastmod>2014-04-15T15:14:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2014/04/11/james-bayercloud-foundry%E5%92%8Cbosh%E9%83%A8%E5%88%86%E9%81%AD%E5%8F%97openssl%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D/</loc>
+    <lastmod>2014-04-11T10:49:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/ccng/</loc>
+    <lastmod>2014-04-03T14:15:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/cloud_controller_ng/</loc>
+    <lastmod>2014-04-03T14:15:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2014/04/03/ontroller-ng%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2014-04-03T14:15:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/tags/nats/</loc>
+    <lastmod>2013-12-02T13:04:57+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fengfees.github.io/blog/2013/12/02/%E4%BB%A5nats%E4%B8%BA%E4%B8%BB%E7%BA%BF%E7%9A%84cloudfoundry%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2013-12-02T13:04:57+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fengfees.github.io/community/</loc>
   </url>
   
   <url>
     <loc>https://fengfees.github.io/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fengfees.github.io/blog/1/01/01/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</loc>
   </url>
   
 </urlset>

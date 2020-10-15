@@ -6,10 +6,100 @@
     <description>Recent content on 浙大SEL实验室</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 30 Nov 2016 17:41:43 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 29 Nov 2018 16:55:37 +0000</lastBuildDate>
     
 	<atom:link href="https://fengfees.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubeedge源码分析系列一：总体架构分析</title>
+      <link>https://fengfees.github.io/blog/2018/11/29/kubeedge%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E7%B3%BB%E5%88%97%E4%B8%80%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/</link>
+      <pubDate>Thu, 29 Nov 2018 16:55:37 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/11/29/kubeedge%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E7%B3%BB%E5%88%97%E4%B8%80%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90/</guid>
+      <description>kubeedge是华为在KubeCon CloudNativeCon China 2018上发布的面向边缘环境容器管理平台。kubeedge能够接入云端Kubernetes集群，使得边缘端应用的管理可以跟云端应用的管理一样，采用广为熟知的Kubernetes API。 SEL实验室准备用一系列文章分析kubeedge的总体架构和各个模块的内部实现机制，本文为系列文章的第一篇，分析kubeedge的版本为1.</description>
+    </item>
+    
+    <item>
+      <title>knative serving开发环境搭建</title>
+      <link>https://fengfees.github.io/blog/2018/10/11/knative-serving%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Thu, 11 Oct 2018 20:11:02 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/10/11/knative-serving%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>本文基官方knative serving的开发环境搭建文档，加自己的实践，给出以下knative serving开发环境的搭建方案。</description>
+    </item>
+    
+    <item>
+      <title>从contaienrd pull镜像流程分析oci distribution spec</title>
+      <link>https://fengfees.github.io/blog/2018/08/05/%E4%BB%8Econtaienrd-pull%E9%95%9C%E5%83%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90oci-distribution-spec/</link>
+      <pubDate>Sun, 05 Aug 2018 19:03:13 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/08/05/%E4%BB%8Econtaienrd-pull%E9%95%9C%E5%83%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90oci-distribution-spec/</guid>
+      <description>oci组织成立以来已经形成了关于image和runtime的两个spec。2018年4月，作为与registry交互的镜像分发协议也进入了oci标准化的工作范围。oci以当前被广泛采用的Docker Registry HTTP API V2为基础，构建了oci distribution spec。</description>
+    </item>
+    
+    <item>
+      <title>Service Mesh深度学习系列（三）| xds协议解密</title>
+      <link>https://fengfees.github.io/blog/2018/07/27/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%89-istio%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Bpilot-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 27 Jul 2018 14:28:25 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/07/27/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%89-istio%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%8Bpilot-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</guid>
+      <description>本文分析的istio代码版本为0.8.0，commit为0cd8d67，commit时间为2018年6月18日。</description>
+    </item>
+    
+    <item>
+      <title>Service Mesh深度学习系列（二）| istio pilot模块分析</title>
+      <link>https://fengfees.github.io/blog/2018/07/13/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%BA%8C-istio-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 13 Jul 2018 14:15:16 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/07/13/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%BA%8C-istio-discovery%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</guid>
+      <description>本文分析的istio代码版本为0.8.0，commit为0cd8d67，commit时间为2018年6月18日。</description>
+    </item>
+    
+    <item>
+      <title>Service Mesh深度学习系列（一）| istio pilot-agent模块分析</title>
+      <link>https://fengfees.github.io/blog/2018/06/26/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%80-istio-pilot-agent%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</link>
+      <pubDate>Tue, 26 Jun 2018 14:29:18 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/06/26/service-mesh%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97%E4%B8%80-istio-pilot-agent%E6%A8%A1%E5%9D%97%E5%88%86%E6%9E%90/</guid>
+      <description>本文分析的istio代码版本为0.8.0，commit为0cd8d67，commit时间为2018年6月18日。</description>
+    </item>
+    
+    <item>
+      <title>PouchContainer CRI的设计与实现</title>
+      <link>https://fengfees.github.io/blog/2018/05/29/pouchcontainer-cri%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Tue, 29 May 2018 10:35:04 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/05/29/pouchcontainer-cri%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</guid>
+      <description>1. CRI简介 在每个Kubernetes节点的最底层都有一个程序负责具体的容器创建删除工作，Kubernetes会对其接口进行调用，从而完成容器的编排调度。我们将这一层软件称之为容器运行时（Container Runtime），大名鼎鼎的Docker就是其中的代表。 当然，容器运行时并非只有Docker一种，包括CoreOS的rkt，hyper.</description>
+    </item>
+    
+    <item>
+      <title>深入理解Docker容器引擎runC执行框架</title>
+      <link>https://fengfees.github.io/blog/2018/05/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3docker%E5%AE%B9%E5%99%A8%E5%BC%95%E6%93%8Erunc%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Thu, 10 May 2018 10:16:40 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/05/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3docker%E5%AE%B9%E5%99%A8%E5%BC%95%E6%93%8Erunc%E6%89%A7%E8%A1%8C%E6%A1%86%E6%9E%B6/</guid>
+      <description>深入理解Docker容器引擎runC执行框架 1 简介 根据官方的定义：runC是一个根据OCI标准创建并运行容器的CLI tool。 Docker就是基于runC创建的，简单地说，runC是Docker中最为核心的部分，容器的创建，运行，销毁等等操作最终都将通过调用runC完成。下面我们将演示如何使用runC，以最精简的方式创建并运行一个容器。</description>
+    </item>
+    
+    <item>
+      <title>技术干货|深入理解flannel</title>
+      <link>https://fengfees.github.io/blog/2018/03/14/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3flannel/</link>
+      <pubDate>Wed, 14 Mar 2018 11:23:35 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2018/03/14/%E6%8A%80%E6%9C%AF%E5%B9%B2%E8%B4%A7%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3flannel/</guid>
+      <description>根据官网的描述，flannel是一个专为kubernetes定制的三层网络解决方案，主要用于解决容器的跨主机通信问题。</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes全球代码贡献量排行，浙江大学第六</title>
+      <link>https://fengfees.github.io/blog/2016/11/30/k8s%E4%BB%A3%E7%A0%81%E8%B4%A1%E7%8C%AE%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D%E7%AC%AC%E5%85%AD/</link>
+      <pubDate>Wed, 30 Nov 2016 18:12:46 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2016/11/30/k8s%E4%BB%A3%E7%A0%81%E8%B4%A1%E7%8C%AE%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E6%8E%92%E5%90%8D%E7%AC%AC%E5%85%AD/</guid>
+      <description>全球企业Kubernetes开源社区代码贡献排名：浙江大学SEL实验室排名第六。请看来自Stackalytics|Kubernetes community contribution官方网站截图。  从全球企业的贡献排名来看，排名状况基本变化不大，仍然是Google独占鳌头。令人欣喜的是，浙江大学SEL实验室排名又上升了一位，代码贡献量近24万行，总排名超越CoreOS达到世界第六位。这无疑是振奋人心的事情，这意味着越来越多的年轻学术人员投入Kubernetes开源社区建设，这将近一步提高中国在容器云社区的地位。 Kubernetes是当前容器集群编排3大开源方案中社区活跃度最高的。虽然现在正值入冬，但仍然挡不住 Kubernetes掀起全球关注的热潮。Kubernetes体现了Google对海量容器集群管理的经验和精华，这让Kubernetes在容器云计算框架横行天下的年代游刃有余，已经逐步成为了容器云框架中的佼佼者。从Kubernetes开放、自由、持续发展生态圈兼容的态度能看出，Kubernetes正变得越来越自信。 下图为Kubernetes模块代码贡献分析图：  从图中可知：Kubernetes运维和生态圈组件模块代码贡献直追核心模块kubernetes，排名2-4位的模块分别是Kubernetes生态圈、操作和界面。Kubernetes使用者越来越关心容器云框架落地而非仅仅将其作为空中楼阁远观而止。 Kubernetes在国内发展已经超过了3年的时间，但是遗憾的一点，尽管我们拥有世界上最多的开发人员，但是我们常常对社区没有话语权，国内的用户的需求无法对社区上游形 成影响，导致很多本地化定制的需求无法真正的在社区版本代码得到体现。所以如何让中国的声音出现在社区，是我们所有容器云计算人需要思考的问题。更希望越来越多的国内传统IT巨头能够意识到这个问题，投身于开源的事业中。</description>
+    </item>
     
     <item>
       <title>《Docker容器与容器云》第2版推荐</title>
@@ -18,6 +108,15 @@
       
       <guid>https://fengfees.github.io/blog/2016/11/30/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E7%AC%AC2%E7%89%88%E6%8E%A8%E8%8D%90/</guid>
       <description>自Docker容器与容器云第1版出版以来，销量达到10000多本，得到了广大技术人员的认可，并且翻译成繁体，进入台湾市场。本书对Docker和Kubernetes的源码解析深入细致，是国内Docker界的良心之作。 经过作者们多年的实践经验积累及近一年的精心准备，浙江大学SEL实验室出版的《Docker容器与容器云》第2版，终于与我们见面了。</description>
+    </item>
+    
+    <item>
+      <title>《Docker容器与容器云》推荐</title>
+      <link>https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</link>
+      <pubDate>Wed, 21 Oct 2015 20:26:10 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/10/21/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</guid>
+      <description>《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。</description>
     </item>
     
     <item>
@@ -30,12 +129,39 @@
     </item>
     
     <item>
-      <title>4S: Services Account, Secret, Security Context and Security in Kubernetes</title>
+      <title>kubernetes apiserver源码分析——api请求的认证过程</title>
+      <link>https://fengfees.github.io/blog/2015/08/09/kubernetes-apiserver%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-api%E8%AF%B7%E6%B1%82%E7%9A%84%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Sun, 09 Aug 2015 11:25:44 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/08/09/kubernetes-apiserver%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-api%E8%AF%B7%E6%B1%82%E7%9A%84%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B/</guid>
+      <description>解决什么问题 笔者之前希望全面分析一下k8apiserver的源码，后来发现这样并不十分有效，其一没有针对性，其二由于代码本身比较复杂，涉及到的功能较多，面面俱到也不太现实。 于是我们就回到最初的需求，到底需要解决什么问题，第一个问题就是，apiserver启动的时候，使用secure模式，参数应该如何设置，相关的机制又是怎样？ 这一部分的issue很多，如果不从源码来分析的话，就只能黑盒化的去尝试各种参数搭配，费时费力，也不确定是否正确，之前就是这样，这几个issue可以供参考： https://github.</description>
+    </item>
+    
+    <item>
+      <title>kubernetes node components - kubelet</title>
+      <link>https://fengfees.github.io/blog/2015/08/07/kubernetes-node-components-kubelet/</link>
+      <pubDate>Fri, 07 Aug 2015 19:46:42 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/08/07/kubernetes-node-components-kubelet/</guid>
+      <description>kubelet作为k8s集群node上的重要组件，一直饱受关注。下面请随笔者一起walk through the code.</description>
+    </item>
+    
+    <item>
+      <title>详解k8s中的&#39;4S&#39;: Services Account, Secret, Security Context and Security in Kubernetes</title>
       <link>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</link>
       <pubDate>Thu, 30 Jul 2015 13:41:07 +0000</pubDate>
       
       <guid>https://fengfees.github.io/blog/2015/07/30/4s-services-account-secret-security-context-and-security-in-kubernetes/</guid>
       <description>Service Account, Secrets和Security Contexts作为保证kubernetes集群Security的策略被引入，相关代码一直处于快速变更与迭代中。本文谨从design和初级实践的视角对其进行概略性的分析，以飨读者。</description>
+    </item>
+    
+    <item>
+      <title>tutum-agent原理浅析</title>
+      <link>https://fengfees.github.io/blog/2015/06/23/tutum-agent%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</link>
+      <pubDate>Tue, 23 Jun 2015 11:14:25 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/06/23/tutum-agent%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/</guid>
+      <description>tutum-aget是tutum提供的一个开源代理引擎。当你把tutum-agent安装在你本地机器上以后，你就可以把本地的机器节点添加到云端，让tutum来帮你统一进行管理。你随时随地都可以登陆tutum网站获得如下功能。</description>
     </item>
     
     <item>
@@ -102,12 +228,30 @@
     </item>
     
     <item>
+      <title>Kubernetes代码走读之Minion Node 组件 kube-proxy</title>
+      <link>https://fengfees.github.io/blog/2015/01/22/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-kube-proxy-%E7%BB%84%E4%BB%B6/</link>
+      <pubDate>Thu, 22 Jan 2015 14:16:32 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/01/22/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-kube-proxy-%E7%BB%84%E4%BB%B6/</guid>
+      <description>Kube-proxy是kubernetes 里运行在minion节点上的一个组件, 它起的作用是一个服务代理的角色.</description>
+    </item>
+    
+    <item>
       <title>Docker网络详解及pipework源码解读与实践</title>
       <link>https://fengfees.github.io/blog/2015/01/16/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</link>
       <pubDate>Fri, 16 Jan 2015 14:20:20 +0000</pubDate>
       
       <guid>https://fengfees.github.io/blog/2015/01/16/docker%E7%BD%91%E7%BB%9C%E8%AF%A6%E8%A7%A3%E5%8F%8Apipework%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B8%8E%E5%AE%9E%E8%B7%B5/</guid>
       <description>Docker作为目前最火的轻量级容器技术，有很多令人称道的功能，如Docker的镜像管理。然而，Docker同样有着很多不完善的地方，网络方面就是Docker比较薄弱的部分。因此，我们有必要深入了解Docker的网络知识，以满足更高的网络需求。本文首先介绍了Docker自身的4种网络工作方式，然后通过3个样例 —— 将Docker容器配置到本地网络环境中、单主机Docker容器的VLAN划分、多主机Docker容器的VLAN划分，演示了如何使用pipework帮助我们进行复杂的网络设置，以及pipework是如何工作的。</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Minion Node 组件 之 Kubelet</title>
+      <link>https://fengfees.github.io/blog/2015/01/13/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-%E4%B9%8B-kubelet/</link>
+      <pubDate>Tue, 13 Jan 2015 15:50:51 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2015/01/13/kubernetes-minion-node-%E7%BB%84%E4%BB%B6-%E4%B9%8B-kubelet/</guid>
+      <description>Kubelet是Google Kubernetes 集群minion工作节点上的一个重要组件.</description>
     </item>
     
     <item>
@@ -170,7 +314,7 @@
       <pubDate>Tue, 16 Dec 2014 16:15:36 +0000</pubDate>
       
       <guid>https://fengfees.github.io/blog/2014/12/16/%E7%8E%A9%E8%BD%ACdocker%E9%95%9C%E5%83%8F/</guid>
-      <description>**摘要：**Docker是基于Go语言开发，通过分层镜像标准化和内核虚拟化技术，使得应用开发者和运维工程师可以以统一的方式跨平台发布应用。镜像是Docker最核心的技术之一，也是应用发布的标准格式。</description>
+      <description>摘要: Docker是基于Go语言开发，通过分层镜像标准化和内核虚拟化技术，使得应用开发者和运维工程师可以以统一的方式跨平台发布应用。镜像是Docker最核心的技术之一，也是应用发布的标准格式。</description>
     </item>
     
     <item>
@@ -207,6 +351,15 @@
       
       <guid>https://fengfees.github.io/blog/2014/12/02/cloud-foundrys-%E6%96%B0%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF-a-garden-overview/</guid>
       <description>编译自： Cloud Foundry’s Container Technology: A Garden Overview Containers in Cloud Foundry: warden meets libcontainer CloudFoundry（CF）中很早就使用了VMware研发的Warden容器来负责应用的资源分配隔离和实例调度。可惜的是，这一本来可以成为业界标准和并掀起一阵革命的容器PaaS技术却因为Pivotal的方针路线上的种种原因被后来居上Docker吊打至今。最近CFer有醒悟的迹象，在Warden上进行了大量改进和升级，本文就来一窥CF新容器技术的一些要点。</description>
+    </item>
+    
+    <item>
+      <title>在生产中使用金丝雀部署来进行测试</title>
+      <link>https://fengfees.github.io/blog/2014/12/02/%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 02 Dec 2014 17:26:05 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/12/02/%E5%9C%A8%E7%94%9F%E4%BA%A7%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%87%91%E4%B8%9D%E9%9B%80%E9%83%A8%E7%BD%B2%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95/</guid>
+      <description>根据Nolio发布的DevOps最佳实践系列中的第一个demo，很多公司通过路由策略选择性地对部分用户发布新功能从而使用 “金丝雀部署（Canary Deployments）”来测试生产中的软件，并将这一方式作为其可持续交付的一部分。“金丝雀部署”是增量发布的一种类型，它的执行方式是在原有软件生产版本可用的情况下，同时部署一个新的版本。同时运行同一个软件产品的多个版本需要软件针对配置和完美自动化部署进行特别设计。 考虑到A/B测试和预防性（pre-emptive）性能测试，一旦克服了“金丝雀部署”所涉及的技术挑战将可以减少部署流程中的风险。A/B 测试允许在不改变大多数用户的用户体验的情况下进行对新功能的测试。而性能测试对于整个用户群体来说同样只会产生微不足道的影响。 根据Nolio的“金丝雀部署”，该方式由以下几个步骤组成：</description>
     </item>
     
     <item>
@@ -318,6 +471,42 @@
     </item>
     
     <item>
+      <title>Health_Manager2.0源码分析</title>
+      <link>https://fengfees.github.io/blog/2014/04/15/health-manager2-0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Tue, 15 Apr 2014 15:14:56 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/15/health-manager2-0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>在Cloud Foundry v2版本中，Health_Manager_next已经替代v1版本中的Health_Manager。 笔者写这篇文档之前，在Github上，Health_Manager_next作为一个单独的项目，存在于Cloud Foundry之下；然而在笔者写这篇文档的时候，Health_Manager_next项目在Cloud Foundry下已经不复存在，然而进入原先的Health_Manager项目，可以发现，Health_Manager项目的项目说明已经成为HealthManager 2.</description>
+    </item>
+    
+    <item>
+      <title>[James Bayer]Cloud Foundry和BOSH部分遭受OpenSSL漏洞影响</title>
+      <link>https://fengfees.github.io/blog/2014/04/11/james-bayercloud-foundry%E5%92%8Cbosh%E9%83%A8%E5%88%86%E9%81%AD%E5%8F%97openssl%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D/</link>
+      <pubDate>Fri, 11 Apr 2014 10:49:01 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/11/james-bayercloud-foundry%E5%92%8Cbosh%E9%83%A8%E5%88%86%E9%81%AD%E5%8F%97openssl%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D/</guid>
+      <description>James Bayer jbayer@gopivotal.</description>
+    </item>
+    
+    <item>
+      <title>Cloud_Controller_NG源码阅读记录</title>
+      <link>https://fengfees.github.io/blog/2014/04/03/ontroller-ng%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 03 Apr 2014 14:15:12 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2014/04/03/ontroller-ng%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</guid>
+      <description>Cloud_Controller_NG就是cloud controller next generation的意思。即Cloud Foundry 平台用来管理控制应用和服务的组件。 官方文档是这么解释CCNG的作用的： * 维护一个包含应用、服务、配置信息的数据库(CCDB)。 * 在blobstore中存储应用的packages和droplets。 * 通过NATS和其他组件进行通信，包括Droplet Execution Agents (DEAs)、Service Gateways、和 Health Manager（HM）。 * 其他供用户调用的后端API。 阅读该组件源码，有助于从应用管理的视角理解cloudfoundry的运行过程。 说明： 1.</description>
+    </item>
+    
+    <item>
+      <title>以NATS为主线的CloudFoundry原理</title>
+      <link>https://fengfees.github.io/blog/2013/12/02/%E4%BB%A5nats%E4%B8%BA%E4%B8%BB%E7%BA%BF%E7%9A%84cloudfoundry%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Mon, 02 Dec 2013 13:04:57 +0000</pubDate>
+      
+      <guid>https://fengfees.github.io/blog/2013/12/02/%E4%BB%A5nats%E4%B8%BA%E4%B8%BB%E7%BA%BF%E7%9A%84cloudfoundry%E5%8E%9F%E7%90%86/</guid>
+      <description>本文将试图以CloudFoundry中的消息组件NATS为主要线索，以在CF中广泛使用的并发和网络编程框架EventMachine为侧重，来串联整个CF主线功能的工作原理，力求能用简单直接的方式描述出较多的架构细节和系统设计。 需要准备的知识： EventMachine(EM)的基础知识和使用方法，可以参考不久前的介绍：Research on EventMachine 关于NATS源码级别的介绍，可以参考我们之前的这篇文章：Research on NATS</description>
+    </item>
+    
+    <item>
       <title>Contact</title>
       <link>https://fengfees.github.io/community/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -333,15 +522,6 @@
       
       <guid>https://fengfees.github.io/contact/</guid>
       <description>浙大SEL实验室： 浙江大学软件工程实验室（Software Engineering Lab）从属于浙江大学超大规模信息系统研究中心，由丁轶群博士于2011年成立，依托浙江大学计算机理论和应用工程基础研究，扎根于工业界前沿与先进技术领域，致力在云计算平台技术基础上研究关键领域面临的超大规模信息系统问题，通过理论探索和工程实践的有机结合，寻求关键领域信息化发展的突破。</description>
-    </item>
-    
-    <item>
-      <title>《Docker容器与容器云》推荐</title>
-      <link>https://fengfees.github.io/blog/1/01/01/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://fengfees.github.io/blog/1/01/01/docker%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%BA%91%E6%8E%A8%E8%8D%90/</guid>
-      <description>《Docker容器与容器云》是Kubernetes社区核心开发者张磊博士及其技术团队近年来PaaS方面积累，全书不仅描述了容器与容器云技术，还融入了实验室四年来对云计算各个层面的理解。该书是国内第一本对Docker原理进行深度解析的书籍，也是第一本结合PaaS对各类容器云进行深度剖析，并着重深入分析Kubernetes原理的书籍。</description>
     </item>
     
   </channel>
