@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>深入理解Docker容器引擎runC执行框架</title>
-  <meta name="author" content="浙大SEL实验室" />
+  <meta name="author" content="姚增增" />
   
   
   
@@ -67,8 +67,7 @@
   
     
     
-    
-    <meta property="article:tag" content="Docker">
+    <meta property="article:section" content="Docker">
     <meta property="article:tag" content="Docker">
     <meta property="article:tag" content="runc">
     <meta property="article:tag" content="runtime">
@@ -204,8 +203,8 @@
 
                         
                           <p class="text-muted text-uppercase mb-small text-right">
-                            
-                            
+                             <a href="#">姚增增</a>
+                             | 
                             2018-05-10
                           </p>
                         
@@ -719,9 +718,18 @@ func prepareRootfs(pipe io.ReadWriter, iConfig *initConfig) (err error) {
     }
 }
 </code></pre>
-<p><code>Exec</code>方法仅仅只是对<code>exec</code>的简单封装。而<code>exec</code>方法的工作很简单，找到<code>exec.fifo</code>管道的路径，打开它，并调用<code>readFromExecFifo</code>从管道中将容器初始化进程从另一端写入的字节读出。一旦管道中的数据被读出，容器内的初始化进程将不再被阻塞，紧接着将完成<code>Exec</code>系统调用，容器初始化进程将被切换为用户指定的程序。到此为止，一个容器真正启动成功。 可是这一路分析下来，似乎并没有对容器的namespace进行配置的操作？事实上，子进程<code>runc init</code>的执行流在进入Go语言的运行时之前，会被包<code>/runc/libcontainer/nsenter</code>劫持，先去执行一段C代码。这段C代码同样会从<code>init</code>管道中读取容器的配置，主要是namespace的路径，clone flag等等，并根据这些配置，调用<code>setns</code>系统调用，将容器进程加入到合适的namespace中。之后再进入Go的运行时，完成上文所述的各种初始化操作。</p>
+<p><code>Exec</code>方法仅仅只是对<code>exec</code>的简单封装。而<code>exec</code>方法的工作很简单，找到<code>exec.fifo</code>管道的路径，打开它，并调用<code>readFromExecFifo</code>从管道中将容器初始化进程从另一端写入的字节读出。一旦管道中的数据被读出，容器内的初始化进程将不再被阻塞，紧接着将完成<code>Exec</code>系统调用，容器初始化进程将被切换为用户指定的程序。到此为止，一个容器真正启动成功。</p>
+<p>可是这一路分析下来，似乎并没有对容器的namespace进行配置的操作？事实上，子进程<code>runc init</code>的执行流在进入Go语言的运行时之前，会被包<code>/runc/libcontainer/nsenter</code>劫持，先去执行一段C代码。这段C代码同样会从<code>init</code>管道中读取容器的配置，主要是namespace的路径，clone flag等等，并根据这些配置，调用<code>setns</code>系统调用，将容器进程加入到合适的namespace中。之后再进入Go的运行时，完成上文所述的各种初始化操作。</p>
 <h3 id="3-总结">3 总结</h3>
-<p>简而言之，runC创建容器的过程如下图所示： <img src="http://www.sel.zju.edu.cn/wp-content/uploads/2018/08/runc.png" alt="runc"> 1. <code>runc create</code>命令加载文件<code>config.json</code>中容器的配置并转化为与<code>libcontainer</code>兼容的模式 2. <code>libcontainer</code>根据配置创建<code>Container</code>以及<code>ParentProcess</code>对象 3. <code>Parentproces</code>创建<code>runc init</code>子进程，中间会被<code>/runc/libcontainer/nsenter</code>劫持，使<code>runc init</code>子进程位于容器配置指定的各个namespace内 4. <code>ParentProcess</code>用<code>init</code>管道将容器配置信息传输给<code>runc init</code>进程，<code>runc init</code>再据此进行容器的初始化操作。初始化完成之后，再向另一个管道<code>exec.fifo</code>进行写操作，进入阻塞状态 5. 执行<code>runc start</code>命令，从管道<code>exec.fifo</code>中读取上一个步骤写入的字节。<code>runc init</code>进程不再阻塞，执行<code>Exec</code>系统调用，切换至用户指定的容器进程，容器真正创建并启动完成</p>
+<p>简而言之，runC创建容器的过程如下图所示：</p>
+<p><a href="https://res.cloudinary.com/feesuper/image/upload/v1603020114/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/840/runc_bs41uj.png"><img src="http://www.sel.zju.edu.cn/wp-content/uploads/2018/08/runc.png" alt="runc"></a></p>
+<ol>
+<li><code>runc create</code>命令加载文件<code>config.json</code>中容器的配置并转化为与<code>libcontainer</code>兼容的模式</li>
+<li><code>libcontainer</code>根据配置创建<code>Container</code>以及<code>ParentProcess</code>对象</li>
+<li><code>Parentproces</code>创建<code>runc init</code>子进程，中间会被<code>/runc/libcontainer/nsenter</code>劫持，使<code>runc init</code>子进程位于容器配置指定的各个namespace内</li>
+<li><code>ParentProcess</code>用<code>init</code>管道将容器配置信息传输给<code>runc init</code>进程，<code>runc init</code>再据此进行容器的初始化操作。初始化完成之后，再向另一个管道<code>exec.fifo</code>进行写操作，进入阻塞状态</li>
+<li>执行<code>runc start</code>命令，从管道<code>exec.fifo</code>中读取上一个步骤写入的字节。<code>runc init</code>进程不再阻塞，执行<code>Exec</code>系统调用，切换至用户指定的容器进程，容器真正创建并启动完成</li>
+</ol>
 <h3 id="注">注：</h3>
 <ol>
 <li>文中源码对应的runC版本为<code>v1.0.0-rc5</code>，commit：<code>4fc53a81fb7c994640722ac585fa9ca548971871</code></li>
@@ -736,7 +744,6 @@ func prepareRootfs(pipe io.ReadWriter, iConfig *initConfig) (err error) {
 <p><a href="http://cizixs.com/2017/11/05/oci-and-runc">OCI和runc:容器标准化和docker</a></p>
 </li>
 </ul>
-<p>[simple-author-box]</p>
 
                         </div>
                         
@@ -887,11 +894,23 @@ func prepareRootfs(pipe io.ReadWriter, iConfig *initConfig) (err error) {
             
             
             <li>
-                <a href="/categories/docker">docker (3)</a>
+                <a href="/categories/cloudfoundry">cloudfoundry (3)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/contaienrd">contaienrd (1)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/docker">docker (4)</a>
             </li>
             
             <li>
                 <a href="/categories/kubernetes">kubernetes (1)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/network">network (1)</a>
             </li>
             
         </ul>
@@ -1148,7 +1167,7 @@ func prepareRootfs(pipe io.ReadWriter, iConfig *initConfig) (err error) {
                     <div class="image same-height-always">
                         <a href="https://fengfees.github.io/blog/2018/08/05/%E4%BB%8Econtaienrd-pull%E9%95%9C%E5%83%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90oci-distribution-spec/">
                           
-                            <img src="/img/placeholder.png" class="img-responsive" alt="从contaienrd pull镜像流程分析oci distribution spec">
+                            <img src="/img/blogs/921/dockerarchitecture.png" class="img-responsive" alt="从contaienrd pull镜像流程分析oci distribution spec">
                           
                         </a>
                     </div>

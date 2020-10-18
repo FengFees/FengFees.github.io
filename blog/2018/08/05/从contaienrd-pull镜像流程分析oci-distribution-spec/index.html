@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>从contaienrd pull镜像流程分析oci distribution spec</title>
-  <meta name="author" content="浙大SEL实验室" />
+  <meta name="author" content="丁轶群" />
   
   
   
   
-  <meta name="keywords" content="containerd, Docker">
+  <meta name="keywords" content="Docker, containerd">
   
   
   <meta name="description" content="">
@@ -67,10 +67,9 @@
   
     
     
-    
+    <meta property="article:section" content="contaienrd">
+    <meta property="article:tag" content="Docker">
     <meta property="article:tag" content="containerd">
-    <meta property="article:tag" content="Docker">
-    <meta property="article:tag" content="Docker">
     
     
     <meta property="article:published_time" content="2018-08-05T19:03:13Z">
@@ -203,15 +202,14 @@
 
                         
                           <p class="text-muted text-uppercase mb-small text-right">
-                            
-                            
+                             <a href="#">丁轶群</a>
+                             | 
                             2018-08-05
                           </p>
                         
 
                         <div id="post-content">
-                          <p>oci组织成立以来已经形成了关于image和runtime的两个spec。<a href="https://www.linuxfoundation.org/press-release/2018/04/open-container-initiative-announces-distribution-specification-project/">2018年4月</a>，作为与registry交互的镜像分发协议也进入了oci标准化的工作范围。oci以当前被广泛采用的<a href="https://github.com/docker/distribution/blob/5cb406d511b7b9163bff9b6439072e4892e5ae3b/docs/spec/api.md">Docker Registry HTTP API V2</a>为基础，构建了oci distribution spec。<br>
-containerd当前同时支持docker版的和oci版的registry api。为了了解oci所定义的镜像分发协议，本文分析v1.1.0的containerd代码pull流程，tag创建时间为2018年4月23日。</p>
+                          <p>oci组织成立以来已经形成了关于image和runtime的两个spec。<a href="https://www.linuxfoundation.org/press-release/2018/04/open-container-initiative-announces-distribution-specification-project/">2018年4月</a>，作为与registry交互的镜像分发协议也进入了oci标准化的工作范围。oci以当前被广泛采用的<a href="https://github.com/docker/distribution/blob/5cb406d511b7b9163bff9b6439072e4892e5ae3b/docs/spec/api.md">Docker Registry HTTP API V2</a>为基础，构建了oci distribution spec。containerd当前同时支持docker版的和oci版的registry api。为了了解oci所定义的镜像分发协议，本文分析v1.1.0的containerd代码pull流程，tag创建时间为2018年4月23日。</p>
 <h2 id="pull操作的cli命令解释">pull操作的cli命令解释</h2>
 <p>关于containerd cli（即ctr）的pull操作指令，由于containerd代码中语焉不详，我们<a href="https://docs.docker.com/engine/reference/commandline/pull/">参照docker官方文档</a>，pull镜像的指令的操作格式如下：</p>
 <pre><code>docker pull [OPTIONS] NAME[:TAG|@DIGEST]
@@ -238,7 +236,14 @@ hex         := /[A-Fa-f0-9]+/
 <li>all-platform：下载适用所有平台的镜像</li>
 </ol>
 <h2 id="ctr-image-pull执行流程">ctr image pull执行流程</h2>
-<p>整体流程可以参考<a href="https://github.com/containerd/containerd/blob/master/design/architecture.md">官方流程图</a> <img src="https://github.com/containerd/containerd/raw/master/design/data-flow.png" alt=""> 1. Instruct the Distribution layer to pull a particular image. The distribution layer places the image content into the content store. The image name and root manifest pointers are registered with the metadata store. 2. Once the image is pulled, the user can instruct the bundle controller to unpack the image into a bundle. Consuming from the content store, layers from the image are unpacked into the snapshot component. 3. When the snapshot for the rootfs of a container is ready, the bundle controller can use the image manifest and config to prepare the execution configuration. Part of this is entering mounts into the execution config from the snapshot module. 4. The prepared bundle is then passed off to the runtime subsystem for execution. It reads the bundle configuration to create a running container. 跟ctr image pull操作执行逻辑定义在<code>containerd/cmd/ctr/commands/images/pull.go</code>定义的匿名函数中，步骤如下：</p>
+<p>整体流程可以参考<a href="https://github.com/containerd/containerd/blob/master/design/architecture.md">官方流程图</a> <img src="https://github.com/containerd/containerd/raw/master/design/data-flow.png" alt=""></p>
+<ol>
+<li>Instruct the Distribution layer to pull a particular image. The distribution layer places the image content into the content store. The image name and root manifest pointers are registered with the metadata store.</li>
+<li>Once the image is pulled, the user can instruct the bundle controller to unpack the image into a bundle. Consuming from the content store, layers from the image are unpacked into the snapshot component.</li>
+<li>When the snapshot for the rootfs of a container is ready, the bundle controller can use the image manifest and config to prepare the execution configuration. Part of this is entering mounts into the execution config from the snapshot module.</li>
+<li>The prepared bundle is then passed off to the runtime subsystem for execution. It reads the bundle configuration to create a running container.</li>
+</ol>
+<p>跟ctr image pull操作执行逻辑定义在<code>containerd/cmd/ctr/commands/images/pull.go</code>定义的匿名函数中，步骤如下：</p>
 <ol>
 <li>resolve用户需要下载的镜像</li>
 <li>从registry pull镜像，把镜像层内容和config保存进content服务，把镜像相关的元数据保存进images元数据服务</li>
@@ -779,8 +784,6 @@ containerd.io/gc.ref.content.1=sha256:b3e481a692c4fce21591fbaa4d7588bc6de5ae6516
    }
 }
 </code></pre>
-<h3 id="unpack步骤">unpack步骤</h3>
-<p>TODO [simple-author-box]</p>
 
                         </div>
                         
@@ -931,11 +934,23 @@ containerd.io/gc.ref.content.1=sha256:b3e481a692c4fce21591fbaa4d7588bc6de5ae6516
             
             
             <li>
-                <a href="/categories/docker">docker (3)</a>
+                <a href="/categories/cloudfoundry">cloudfoundry (3)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/contaienrd">contaienrd (1)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/docker">docker (4)</a>
             </li>
             
             <li>
                 <a href="/categories/kubernetes">kubernetes (1)</a>
+            </li>
+            
+            <li>
+                <a href="/categories/network">network (1)</a>
             </li>
             
         </ul>
@@ -1192,7 +1207,7 @@ containerd.io/gc.ref.content.1=sha256:b3e481a692c4fce21591fbaa4d7588bc6de5ae6516
                     <div class="image same-height-always">
                         <a href="https://fengfees.github.io/blog/2018/08/05/%E4%BB%8Econtaienrd-pull%E9%95%9C%E5%83%8F%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90oci-distribution-spec/">
                           
-                            <img src="/img/placeholder.png" class="img-responsive" alt="从contaienrd pull镜像流程分析oci distribution spec">
+                            <img src="/img/blogs/921/dockerarchitecture.png" class="img-responsive" alt="从contaienrd pull镜像流程分析oci distribution spec">
                           
                         </a>
                     </div>
