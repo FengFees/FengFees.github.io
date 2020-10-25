@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>Cloud Foundry中DEA启动应用实例时环境变量的使用</title>
-  <meta name="author" content="浙大SEL实验室" />
+  <meta name="author" content="孙宏亮" />
   
   
   
   
-  <meta name="keywords" content="Cloudfoundry, dea">
+  <meta name="keywords" content="dea, cloudfoundry">
   
   
   <meta name="description" content="">
@@ -67,9 +67,9 @@
   
     
     
-    
-    <meta property="article:tag" content="Cloudfoundry">
+    <meta property="article:section" content="cloudfoundry">
     <meta property="article:tag" content="dea">
+    <meta property="article:tag" content="cloudfoundry">
     
     
     <meta property="article:published_time" content="2014-11-20T13:03:30Z">
@@ -202,17 +202,17 @@
 
                         
                           <p class="text-muted text-uppercase mb-small text-right">
-                            
-                            
+                             <a href="#">孙宏亮</a>
+                             | 
                             2014-11-20
                           </p>
                         
 
                         <div id="post-content">
                           <p>在Cloud Foundry v2中，当应用用户需要启动应用的实例时，用户通过cf CLI向cloud controller发送请求，而cloud controller通过NATS向DEA转发启动请求。真正执行启动事宜的是DEA，DEA主要做的工作为启动一个warden container, 并将droplet等内容拷贝进入container内部，最后配置完指定的环境变量，在这些环境变量下启动应用的启动脚本。 本文将从阐述Cloud Foundry中DEA如何为应用实例的启动配置环境变量。</p>
-<!-- raw HTML omitted -->
 <h1 id="dea接收应用启动请求及其执行流程"><strong>DEA接收应用启动请求及其执行流程</strong></h1>
-<p>在这部分，通过代码的形式来说明DEA对于应用启动请求的执行流程。 1.首先DEA订阅相应主题的消息，主题为“dea.#{bootstrap.uuid}.start”，含义为“自身DEA的应用启动消息”：</p>
+<p>在这部分，通过代码的形式来说明DEA对于应用启动请求的执行流程。
+1.首先DEA订阅相应主题的消息，主题为“dea.#{bootstrap.uuid}.start”，含义为“自身DEA的应用启动消息”：</p>
 <pre><code>subscribe(&quot;dea.#{bootstrap.uuid}.start&quot;) do |message|  
     bootstrap.handle\_dea\_directed\_start(message)  
 end  
@@ -586,7 +586,7 @@ BASH
             
             
             <li>
-                <a href="/categories/cloudfoundry">cloudfoundry (3)</a>
+                <a href="/categories/cloudfoundry">cloudfoundry (12)</a>
             </li>
             
             <li>

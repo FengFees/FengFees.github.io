@@ -8,12 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>Cloud Foundry中DEA与warden通信完成应用端口监听</title>
-  <meta name="author" content="浙大SEL实验室" />
+  <meta name="author" content="孙宏亮" />
   
   
   
   
-  <meta name="keywords" content="Cloudfoundry, dea">
+  <meta name="keywords" content="dea, cloudfoundry">
   
   
   <meta name="description" content="">
@@ -67,9 +67,9 @@
   
     
     
-    
-    <meta property="article:tag" content="Cloudfoundry">
+    <meta property="article:section" content="cloudfoundry">
     <meta property="article:tag" content="dea">
+    <meta property="article:tag" content="cloudfoundry">
     
     
     <meta property="article:published_time" content="2014-12-02T16:55:44Z">
@@ -202,15 +202,14 @@
 
                         
                           <p class="text-muted text-uppercase mb-small text-right">
-                            
-                            
+                             <a href="#">孙宏亮</a>
+                             | 
                             2014-12-02
                           </p>
                         
 
                         <div id="post-content">
                           <p>在Cloud Foundry v2版本中，DEA为一个用户应用运行的控制模块，而应用的真正运行都是依附于warden。更具体的来说，是DEA接收到Cloud Controller的请求；DEA发送请求给warden server；warden server创建warden container并将用户应用droplet等环境配置好；DEA发送应用启动请求至warden serve；最后warden container执行启动脚本启动应用。 本文主要具体描述，DEA如何与warden交互，以保证最终用户的应用可以成功绑定某一个端口，实现用户应用对外提供服务。</p>
-<!-- raw HTML omitted -->
 <p>DEA在执行启动一个应用的时候，主要做到以下这些部分：promise_droplet, promise_container, 其中这两个部分并发完成；promise_extract_droplet, promise_exec_hook_script(“before_start”), promise_start等。代码如下：</p>
 <pre><code>\[  
   promise\_droplet,  
@@ -361,12 +360,15 @@ rescue =&gt; e
     send\_error(e)  
 end  
 </code></pre>
-<p>可见，在warden server中，请求类型可以简单分为5种：PingRequest, ListRequest, EchoRequest, CreateRequest和其他请求，像NetIn请求则属于其他请求中的一种，程序执行进入case语句块的else分支，也就是： &lt; pre&gt; if request.respond_to?(:handle)<br>
-container = find_container(request.handle)<br>
-process_container_request(request, container)<br>
-else<br>
-raise WardenError.new(&ldquo;Unknown request: #{request.class.name.split(&quot;::&quot;).last}&quot;)<br>
-end &lt; pre&gt; 代码清晰可见，warden server首先通过handle找到具体是给哪一个warden container发送请求，然后调用process_container_request(request, container)方法。进入process_container_request(request, container)方法可以看到：加入请求类型不为StopRequest以及StreamRequest，则进入case语句块的else分支，执行代码：</p>
+<p>可见，在warden server中，请求类型可以简单分为5种：PingRequest, ListRequest, EchoRequest, CreateRequest和其他请求，像NetIn请求则属于其他请求中的一种，程序执行进入case语句块的else分支，也就是：</p>
+<pre><code>if request.respond\_to?(:handle)  
+  container = find\_container(request.handle)  
+  process\_container\_request(request, container)  
+else  
+  raise WardenError.new(&quot;Unknown request: #{request.class.name.split(&quot;::&quot;).last}&quot;)  
+end
+</code></pre>
+<p>代码清晰可见，warden server首先通过handle找到具体是给哪一个warden container发送请求，然后调用process_container_request(request, container)方法。进入process_container_request(request, container)方法可以看到：加入请求类型不为StopRequest以及StreamRequest，则进入case语句块的else分支，执行代码：</p>
 <pre><code>response = container.dispatch(request)  
      send\_response(response)  
 </code></pre>
@@ -656,7 +658,7 @@ end
             
             
             <li>
-                <a href="/categories/cloudfoundry">cloudfoundry (3)</a>
+                <a href="/categories/cloudfoundry">cloudfoundry (12)</a>
             </li>
             
             <li>
