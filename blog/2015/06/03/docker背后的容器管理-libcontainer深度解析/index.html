@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <title>Docker背后的容器管理——libcontainer深度解析</title>
-  <meta name="author" content="浙大SEL实验室" />
+  <meta name="author" content="孙健波" />
   
   
   
@@ -67,7 +67,7 @@
   
     
     
-    
+    <meta property="article:section" content="Docker">
     <meta property="article:tag" content="Docker">
     <meta property="article:tag" content="libcontainer">
     
@@ -202,8 +202,8 @@
 
                         
                           <p class="text-muted text-uppercase mb-small text-right">
-                            
-                            
+                             <a href="#">孙健波</a>
+                             | 
                             2015-06-03
                           </p>
                         
@@ -214,72 +214,18 @@
 <p>容器是一个可管理的执行环境，与主机系统共享内核，可与系统中的其他容器进行隔离。</p>
 </blockquote>
 <p>在2013年Docker刚发布的时候，它是一款基于LXC的开源容器管理引擎。把LXC复杂的容器创建与使用方式简化为Docker自己的一套命令体系。随着Docker的不断发展，它开始有了更为远大的目标，那就是反向定义容器的实现标准，将底层实现都抽象化到libcontainer的接口。这就意味着，底层容器的实现方式变成了一种可变的方案，无论是使用namespace、cgroups技术抑或是使用systemd等其他方案，只要实现了libcontainer定义的一组接口，Docker都可以运行。这也为Docker实现全面的跨平台带来了可能。</p>
-<!-- raw HTML omitted -->
-<h1 id="1-libcontainer-特性">1. libcontainer 特性</h1>
+<ol>
+<li>libcontainer 特性
+===================</li>
+</ol>
 <p>目前版本的libcontainer，功能实现上涵盖了包括namespaces使用、cgroups管理、Rootfs的配置启动、默认的Linux capability权限集、以及进程运行的环境变量配置。内核版本最低要求为<code>2.6</code>，最好是<code>3.8</code>，这与内核对namespace的支持有关。 目前除user namespace不完全支持以外，其他五个namespace都是默认开启的，通过<code>clone</code>系统调用进行创建。</p>
 <h3 id="11-建立文件系统">1.1 建立文件系统</h3>
 <p>文件系统方面，容器运行需要<code>rootfs</code>。所有容器中要执行的指令，都需要包含在<code>rootfs</code>（在Docker中指令包含在其上叠加的镜像层也可以执行）所有挂载在容器销毁时都会被卸载，因为mount namespace会在容器销毁时一同消失。为了容器可以正常执行命令，以下文件系统必须在容器运行时挂载到<code>rootfs</code>中。</p>
-<p>路径</p>
-<p>类型</p>
-<p>参数</p>
-<p>权限及数据</p>
-<p>/proc</p>
-<p>proc</p>
-<p>MS_NOEXEC,MS_NOSUID,MS_NODEV</p>
-<p>/dev</p>
-<p>tmpfs</p>
-<p>MS_NOEXEC,MS_STRICTATIME</p>
-<p>mode=755</p>
-<p>/dev/shm</p>
-<p>shm</p>
-<p>MS_NOEXEC,MS_NOSUID,MS_NODEV</p>
-<p>mode=1777,size=65536k</p>
-<p>/dev/mqueue</p>
-<p>mqueue</p>
-<p>MS_NOEXEC,MS_NOSUID,MS_NODEV</p>
-<p>/dev/pts</p>
-<p>devpts</p>
-<p>MS_NOEXEC,MS_NOSUID</p>
-<p>newinstance,ptmxmode=0666,mode=620,gid5</p>
-<p>/sys</p>
-<p>sysfs</p>
-<p>MS_NOEXEC,MS_NOSUID,MS_NODEV,MS_RDONLY</p>
+<p><img src="https://res.cloudinary.com/feesuper/image/upload/v1604125812/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/577/libcontainer1_dqyq4c.png" alt="libcontainer1"></p>
 <p>当容器的文件系统刚挂载完毕时，<code>/dev</code>文件系统会被一系列设备节点所填充，所以<code>rootfs</code>不应该管理<code>/dev</code>文件系统下的设备节点，libcontainer会负责处理并正确启动这些设备。设备及其权限模式如下。</p>
-<p>路径</p>
-<p>模式</p>
-<p>权限</p>
-<p>/dev/null</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/zero</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/full</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/tty</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/random</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/urandom</p>
-<p>0666</p>
-<p>rwm</p>
-<p>/dev/fuse</p>
-<p>0666</p>
-<p>rwm</p>
+<p><img src="https://res.cloudinary.com/feesuper/image/upload/v1604125811/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/577/libcontainer2_cbdu3j.png" alt="libcontainer2"></p>
 <p>容器支持伪终端<code>TTY</code>，当用户使用时，就会建立<code>/dev/console</code>设备。其他终端支持设备，如<code>/dev/ptmx</code>则是宿主机的<code>/dev/ptmx</code> 链接。容器中指向宿主机 <code>/dev/null</code>的IO也会被重定向到容器内的 <code>/dev/null</code>设备。当<code>/proc</code>挂载完成后，<code>/dev/</code>中与IO相关的链接也会建立，如下表。</p>
-<p>源地址</p>
-<p>目的地址</p>
-<p>/proc/1/fd</p>
-<p>/dev/fd</p>
-<p>/proc/1/fd/0</p>
-<p>/dev/stdin</p>
-<p>/proc/1/fd/1</p>
-<p>/dev/stdout</p>
-<p>/proc/1/fd/2</p>
-<p>/dev/stderr</p>
+<p><img src="https://res.cloudinary.com/feesuper/image/upload/v1604125812/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/577/libcontainer3_lwdvj5.png" alt="libcontainer3"></p>
 <p><code>pivot_root</code> 则用于改变进程的根目录，这样可以有效的将进程控制在我们建立的<code>rootfs</code>中。如果<code>rootfs</code>是基于<code>ramfs</code>的（不支持<code>pivot_root</code>），那么会在<code>mount</code>时使用<code>MS_MOVE</code>标志位加上<code>chroot</code>来顶替。 当文件系统创建完毕后，<code>umask</code>权限被重新设置回<code>0022</code>。</p>
 <h2 id="12-资源管理">1.2 资源管理</h2>
 <p>在<a href="http://www.infoq.com/cn/articles/docker-kernel-knowledge-cgroups-resource-isolation">《Docker背后的内核知识：cgroups资源隔离》</a>一文中已经提到，Docker使用cgroups进行资源管理与限制，包括设备、内存、CPU、输入输出等。 目前除网络外所有内核支持的子系统都被加入到libcontainer的管理中，所以libcontainer使用cgroups原生支持的统计信息作为资源管理的监控展示。 容器中运行的第一个进程<code>init</code>，必须在初始化开始前放置到指定的cgroup目录中，这样就能防止初始化完成后运行的其他用户指令逃逸出cgroups的控制。父子进程的同步则通过管道来完成，在随后的运行时初始化中会进行展开描述。</p>
@@ -488,7 +434,7 @@ close(checkpoint[1]);</p>
 </ul>
 <p><strong>Process对象</strong>，主要描述了容器内进程的配置以及IO。包括参数<code>Args</code>，环境变量<code>Env</code>，用户<code>User</code>（由于uid、gid映射），工作目录<code>Cwd</code>，标准输入输出及错误输入，控制终端路径<code>consolePath</code>，容器权限<code>Capabilities</code>以及上述提到的ParentProcess对象<code>ops</code>（拥有上面的一些操作函数，可以直接管理进程）。</p>
 <h2 id="5-总结">5. 总结</h2>
-<p>本文主要介绍了Docker容器管理的方式libcontainer，从libcontainer的使用到源码实现方式。我们深入到容器进程内部，感受到了libcontainer较为全面的设计。总体而言，libcontainer本身主要分为三大块工作内容，一是容器的创建及初始化，二是容器生命周期管理，三则是进程管理，调用方为Docker的<code>execdriver</code>。容器的监控主要通过cgroups的状态统计信息，未来会加入进程追踪等更丰富的功能。另一方面，libcontainer在安全支持方面也为用户尽可能多的提供了支持和选择。遗憾的是，容器安全的配置需要用户对系统安全本身有足够高的理解，user namespace也尚未支持，可见libcontainer依旧有很多工作要完善。但是Docker社区的火热也自然带动了大家对libcontainer的关注，相信在不久的将来，libcontainer就会变得更安全、更易用。 [simple-author-box]</p>
+<p>本文主要介绍了Docker容器管理的方式libcontainer，从libcontainer的使用到源码实现方式。我们深入到容器进程内部，感受到了libcontainer较为全面的设计。总体而言，libcontainer本身主要分为三大块工作内容，一是容器的创建及初始化，二是容器生命周期管理，三则是进程管理，调用方为Docker的<code>execdriver</code>。容器的监控主要通过cgroups的状态统计信息，未来会加入进程追踪等更丰富的功能。另一方面，libcontainer在安全支持方面也为用户尽可能多的提供了支持和选择。遗憾的是，容器安全的配置需要用户对系统安全本身有足够高的理解，user namespace也尚未支持，可见libcontainer依旧有很多工作要完善。但是Docker社区的火热也自然带动了大家对libcontainer的关注，相信在不久的将来，libcontainer就会变得更安全、更易用。</p>
 
                         </div>
                         
@@ -647,7 +593,7 @@ close(checkpoint[1]);</p>
             </li>
             
             <li>
-                <a href="/categories/docker">docker (4)</a>
+                <a href="/categories/docker">docker (8)</a>
             </li>
             
             <li>
