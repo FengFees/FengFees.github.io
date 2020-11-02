@@ -98,7 +98,7 @@
       <pubDate>Thu, 12 Mar 2015 20:16:14 +0000</pubDate>
       
       <guid>https://fengfees.github.io/blog/2015/03/12/docker%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B9%9Ddocker%E9%95%9C%E5%83%8F/</guid>
-      <description>本文介绍docker架构中的镜像。</description>
+      <description>1.前言 回首过去的2014年，大家可以看到Docker在全球刮起了一阵又一阵的“容器风”，工业界对Docker的探索与实践更是一波高过一波。在如今的2015年以及未来，Docker似乎并不会像其他昙花一现的技术一样，在历史的舞台上热潮褪去，反而在工业界实践与评估之后，显现了前所未有的发展潜力。</description>
     </item>
     
     <item>

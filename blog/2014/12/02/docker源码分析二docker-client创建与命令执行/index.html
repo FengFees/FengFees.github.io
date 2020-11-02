@@ -215,7 +215,7 @@
 <p>本文从源码的角度，主要分析Docker Client的两个方面：创建与命令执行。前四章安排如下： 第一章为前言，介绍Docker的作用以及研究Docker Client的必要性。 第二章介绍部分章节安排。 第三章从Docker Client的创建入手，进行源码分析，主要分为三小节。 在3.1节中，分析如何通过docker命令，解析出命令行flag参数，以及docker命令中的请求参数。 在3.2节中，分析如何处理具体的flag参数信息，并收集Docker Client所需的配置信息。 在3.3节中，分析如何创建一个Docker Client。 第四章在已有Docker Client的基础上，分析如何执行docker命令，分为两小节。 在4.1节中，分析如何解析docker命令中的请求参数，获取请求的类型。 在4.2节中，分析Docker Client如何将执行具体的请求命令，最终将请求发送至Docker Server。</p>
 <h1 id="3-docker-client的创建"><strong>3. Docker Client的创建</strong></h1>
 <p>Docker Client的创建，实质上是Docker用户通过可执行文件docker，与Docker Server建立联系的客户端。以下分三个小节分别阐述Docker Client的创建流程。 以下为整个docker源代码运行的流程图：</p>
-<p><a href="https://res.cloudinary.com/feesuper/image/upload/v1604214021/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/147/docker-2-1_ttsgvw.jpg"><img src="https://res.cloudinary.com/feesuper/image/upload/v1604214021/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/147/docker-2-1_ttsgvw.jpg" alt="docker-2-1"></a></p>
+<p><a href="https://res.cloudinary.com/feesuper/image/upload/c_scale,w_543/v1604214021/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/147/docker-2-1_ttsgvw.jpg"><img src="https://res.cloudinary.com/feesuper/image/upload/c_scale,w_543/v1604214021/sel%E5%AE%9E%E9%AA%8C%E5%AE%A4%E5%8D%9A%E5%AE%A2/blogs/147/docker-2-1_ttsgvw.jpg" alt="docker-2-1"></a></p>
 <p>上图通过流程图的方式，使得读者更为清晰的了解Docker Client创建及执行请求的过程。其中涉及了诸多源代码中的特有名词，在下文中会一一解释与分析。</p>
 <h2 id="31-docker命令的flag参数解析"><strong>3.1. Docker命令的flag参数解析</strong></h2>
 <p>众所周知，在Docker的具体实现中，Docker Server与Docker Client均由可执行文件docker来完成创建并启动。那么，了解docker可执行文件通过何种方式区分两者，就显得尤为重要。 对于两者，首先举例说明其中的区别。Docker Server的启动，命令为docker -d或docker &ndash;daemon=true；而Docker Client的启动则体现为docker &ndash;daemon=false ps、docker pull NAME等。 可以把以上Docker请求中的参数分为两类：第一类为命令行参数，即docker程序运行时所需提供的参数，如: -D、&ndash;daemon=true、&ndash;daemon=false等；第二类为docker发送给Docker Server的实际请求参数，如：ps、pull NAME等。</p>
@@ -681,7 +681,7 @@ authConfig := cli.configFile.ResolveAuthConfig(hostname)
             </li>
             
             <li>
-                <a href="/categories/docker">docker (11)</a>
+                <a href="/categories/docker">docker (12)</a>
             </li>
             
             <li>
